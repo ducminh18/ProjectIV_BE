@@ -59,7 +59,7 @@ Route::get('blobs/{id}', [FileApiController::class, 'getByBlob'])->name('file.bl
 Route::get('blobs/download/{id}', [FileApiController::class, 'downloadById'])->name('file.blob');
 Route::get('file/download/{name}', [FileApiController::class, 'download'])->name('file.download');
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
     // Route::post('register', [RegisterApiController::class, 'register'])->name('auth.register');
     Route::post('login', [AuthenticationApiController::class, 'adminLogin'])->name('auth.admin.login');
 });
