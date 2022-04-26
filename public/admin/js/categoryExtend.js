@@ -28,7 +28,10 @@ extendController = ($scope, $http) => {
         $scope.deleting = false;
     }
     $scope.save = () => {
+<<<<<<< HEAD
         $scope.name = document.getElementById('name').value;
+=======
+>>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
         if ($scope.editting) {
             $scope.update($scope.id, {name: $scope.name, visible: $scope.visible});
         } else if ($scope.deleting) {

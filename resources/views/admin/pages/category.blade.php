@@ -85,7 +85,11 @@
                         <div ng-if="!deleting">
                             <div class="form-group mb-3">
                                 <label class="form-label fw-bold">Tên loại</label>
+<<<<<<< HEAD
                                 <input class="form-control" type="text" ng-model="name" id="name" >
+=======
+                                <input class="form-control" type="text" ng-model="name"/>
+>>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"

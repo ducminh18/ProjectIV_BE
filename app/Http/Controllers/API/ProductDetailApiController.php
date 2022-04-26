@@ -34,7 +34,12 @@ class ProductDetailApiController extends Controller
                         'consumableOnly' => $request->get('consumable_only') ?? false,
                         'with_detail' => $request->get('with_detail') ?? false,
                         'product_id' => $request->get('product_id'),
+<<<<<<< HEAD
                         'search' => $request->get('search')
+=======
+                        'search' => $request->get('search'),
+                        'with_product' => $request->get('with_product')
+>>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
                     ]
                 );
             $response = response()->json([
