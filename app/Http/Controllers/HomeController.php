@@ -9,8 +9,8 @@ class HomeController extends Controller
 {
     function Index(Request $request)
     {
-        // return view('home/pages/index');
-        $data = DB::select('SELECT * FROM `products` LIMIT 8');
-        return view('home', ['data' => $data]);
+        return view('home/pages/index');
+        // $data = DB::select('SELECT * FROM `products` LIMIT 8');
+        // return view('home', ['data' => $data]);
     }
 }

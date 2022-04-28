@@ -2,7 +2,7 @@
 
 var extendController;
 const app = angular.module("myApp", []);
-app.controller("myController", function ($scope, $http) {
+app.controller("homeController", function ($scope, $http) {
     $scope.data = [];
     $scope.totalRecords = 0;
     $scope.page = 1;

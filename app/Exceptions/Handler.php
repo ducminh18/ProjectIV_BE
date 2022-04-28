@@ -42,7 +42,6 @@ class Handler extends ExceptionHandler
         });
     }
 
-<<<<<<< HEAD
     // public function render($request, Throwable $e)
     // {
     //     return response()->json([
@@ -52,15 +51,4 @@ class Handler extends ExceptionHandler
     //         'trace' => $e->getTrace()
     //     ]);
     // }
-=======
-    public function render($request, Throwable $e)
-    {
-        return response()->json([
-            'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-            'status' => false,
-            'message' => $e->getMessage(),
-            'trace' => $e->getTrace(),
-        ]);
-    }
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
 }
