@@ -53,11 +53,7 @@ Route::middleware([])->prefix('admin')->group(function () {
     Route::post('file/duplicated-filter', [FileApiController::class, 'duplicatedFilter'])->name('file.duplicatedFilter');
     Route::post('blobs/duplicate/{id}', [FileApiController::class, 'duplicateBlob'])->name('file.duplicateBlob');
 });
-<<<<<<< HEAD
 Route::put('blobs/{id}', [FileApiController::class, 'updateBlob'])->name('blob.update')->middleware(['auth:api']);
-=======
-Route::post('blobs/{id}', [FileApiController::class, 'updateBlob'])->name('blob.update');
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
 Route::post('upload', [FileApiController::class, 'upload'])->name('file.upload');
 Route::delete('blobs/{id}', [FileApiController::class, 'delete'])->name('blob.delete')->middleware(['auth:api']);
 Route::get('files/{name}', [FileApiController::class, 'get'])->name('file.get');

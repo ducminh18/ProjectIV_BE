@@ -13,17 +13,8 @@ app.controller('myController', function ($scope, $http) {
     $scope.editting = false;
     $scope.searchValue = '';
     $scope.deleting = false;
-<<<<<<< HEAD
     $scope.getList = () => {
         const url = `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}`;
-=======
-    $scope.extendQuerys = '';
-    if (extendController) {
-        extendController($scope, $http);
-    }
-    $scope.getList = () => {
-        const url = `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
         $http.get(url)
             .then(res => {
                 if (res.data.status == true) {
@@ -104,12 +95,9 @@ app.controller('myController', function ($scope, $http) {
     $scope.search = () => {
         $scope.getList();
     }
-<<<<<<< HEAD
     if (extendController) {
         extendController($scope, $http);
     }
-=======
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
 });
 
 app.filter('page', function () {

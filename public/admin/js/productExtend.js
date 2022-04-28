@@ -21,12 +21,7 @@ extendController = ($scope, $http) => {
     }
 
     $scope.showEdit = (item) => {
-<<<<<<< HEAD
         document.getElementById('default_image.file_path').value = '';
-=======
-        const file = document.getElementById('default_image.file_path');
-        if (file != null) file.value = '';
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
         $scope.id = item.id;
         $scope.selectedCategory = $scope.categories.find(v => v.id == item.category_id)??{};
         for (let field of $scope.fields.filter(v => !v.readonly)) {
@@ -42,39 +37,20 @@ extendController = ($scope, $http) => {
         for (let field of $scope.fields.filter(v => !v.readonly)) {
             $scope.item[field.field] = field.default;
         }
-<<<<<<< HEAD
         document.getElementById('default_image.file_path').value = '';
-=======
-        const file = document.getElementById('default_image.file_path');
-        if (file != null) value = '';
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
         editor.setData('');
         $scope.editting = false;
         $scope.deleting = false;
     }
     $scope.save = () => {
-<<<<<<< HEAD
         let file = document.getElementById('default_image.file_path').files[0];
-=======
-        const fileE = document.getElementById('default_image.file_path');
-        let file;
-        if (fileE != null) 
-            file = fileE.files[0];
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
         let item = {};
         for (let field of $scope.fields.filter(v => !v.readonly)) {
             item[field.field] = $scope.item[field.field];
         }
-<<<<<<< HEAD
         let index = document.getElementById('selectCate').selectedIndex;
         $scope.selectedCategory = $scope.categories[index];
         item.category_id = $scope.selectedCategory;
-=======
-        let index = document.getElementById('selectCate')?.selectedIndex??-1;
-        if (index > 0)
-            $scope.selectedCategory = $scope.categories[index];
-        item.category_id = $scope.selectedCategory.id;
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
         if (file != undefined && file != null)
         {
             $scope.upLoadFile(file, '/api/upload')

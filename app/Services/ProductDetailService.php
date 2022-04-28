@@ -82,14 +82,7 @@ function getAll(
         $query->where('remaining_quantity', '>', '0');
     }
     $query->with('image');
-<<<<<<< HEAD
     $query->with('product');
-=======
-
-    if (isset($option['with_product'])) {
-        $query->with('product');
-    }
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
 
     if (isset($option['product_id'])) {
         $query->where('product_id', '=', $option['product_id']);
@@ -100,19 +93,11 @@ function getAll(
     }
     if (isset($option['search']) && $option['search'] != '') {
         $query->join('products', 'product_details.product_id', '=', 'products.id')
-<<<<<<< HEAD
             ->where('products.name', 'LIKE', "%" . $option['search'] . "%")
             ->where('product_details.option_value', 'LIKE', "%" . $option['search'] . "%", 'OR')
             ->where('product_details.option_name', '=', $option['search'], 'OR')
             ->where('product_details.unit', '=', $option['search'], 'OR')
             ->get(['product_details.*']);
-=======
-            ->where('products.name', 'LIKE', "%" . $option['search'] . "%", 'OR')
-            ->where('product_details.option_value', 'LIKE', "%" . $option['search'] . "%", 'OR')
-            ->where('product_details.option_name', '=', $option['search'], 'OR')
-            ->where('product_details.unit', '=', $option['search'], 'OR')
-            ->select(['product_details.*', 'products.name']);
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
     }
     if ($orderBy) {
         $query->orderBy($orderBy['column'], $orderBy['sort']);
