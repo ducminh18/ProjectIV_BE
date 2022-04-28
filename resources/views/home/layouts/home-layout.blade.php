@@ -37,6 +37,7 @@
 	<link rel="stylesheet" type="text/css" href="FE/css/main.css">
 	<link rel="stylesheet" type="text/css" href="FE/css/style.css">
 	<!--===============================================================================================-->
+	
 </head>
 
 <body class="animsition">
@@ -320,7 +321,10 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="FE/js/main.js"></script>
-
+	<script src="/angular.min.js"></script>
+	<script src="/admin/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/scripts.js"></script>
+    @yield('scripts')
 </body>
 
 </html>
