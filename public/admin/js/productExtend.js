@@ -64,7 +64,11 @@ extendController = ($scope, $http) => {
     }
 
     $scope.showEdit = (item) => {
+<<<<<<< HEAD
         document.getElementById("default_image.file_path").value = "";
+=======
+        document.getElementById('default_image.file_path').value = '';
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
         $scope.id = item.id;
         $scope.selectedCategory =
             $scope.categories.find((v) => v.id == item.category_id) ?? {};
@@ -81,17 +85,27 @@ extendController = ($scope, $http) => {
         for (let field of $scope.fields.filter((v) => !v.readonly)) {
             $scope.item[field.field] = field.default;
         }
+<<<<<<< HEAD
         document.getElementById("default_image.file_path").value = "";
         editor.setData("");
+=======
+        document.getElementById('default_image.file_path').value = '';
+        editor.setData('');
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
         $scope.editting = false;
         $scope.deleting = false;
     };
     $scope.save = () => {
+<<<<<<< HEAD
         let file = document.getElementById("default_image.file_path").files[0];
+=======
+        let file = document.getElementById('default_image.file_path').files[0];
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
         let item = {};
         for (let field of $scope.fields.filter((v) => !v.readonly)) {
             item[field.field] = $scope.item[field.field];
         }
+<<<<<<< HEAD
         let index = document.getElementById("selectCate").selectedIndex;
         $scope.selectedCategory = $scope.categories[index];
         item.category_id = $scope.selectedCategory;
@@ -111,6 +125,32 @@ extendController = ($scope, $http) => {
                 }
             });
         } else {
+=======
+        let index = document.getElementById('selectCate').selectedIndex;
+        $scope.selectedCategory = $scope.categories[index];
+        item.category_id = $scope.selectedCategory;
+        if (file != undefined && file != null)
+        {
+            $scope.upLoadFile(file, '/api/upload')
+                .then(res => {
+                    if (res.data.status == true)
+                    {
+                        item.default_image = res.data.data.id;
+                    }
+                    item.description = editor.getData();
+                    item.category_id = $scope.selectedCategory.id;
+                    if ($scope.editting) {
+                        $scope.update($scope.id, item);
+                    } else if ($scope.deleting) {
+                        $scope.delete($scope.id);
+                    } else {
+                        $scope.create(item)
+                    }
+                });
+        }
+        else
+        {
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
             item.description = editor.getData();
             item.category_id = $scope.selectedCategory.id;
             if ($scope.editting) {
