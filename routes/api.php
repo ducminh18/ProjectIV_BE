@@ -53,6 +53,34 @@ Route::middleware([])->prefix('admin')->group(function () {
     Route::post('file/duplicated-filter', [FileApiController::class, 'duplicatedFilter'])->name('file.duplicatedFilter');
     Route::post('blobs/duplicate/{id}', [FileApiController::class, 'duplicateBlob'])->name('file.duplicateBlob');
 });
+<<<<<<< HEAD
+Route::middleware([])->prefix('/')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return response()->json([
+            'code' => Response::HTTP_OK,
+            'status' => true,
+            'data' => new UserResource(Auth::user()),
+            'meta' => []
+
+        ]);
+    });
+    Route::resource('products', ProductApiController::class)->except(['edit', 'create']);
+    Route::resource('product-details', ProductDetailApiController::class)->except(['edit', 'create']);
+    Route::resource('invoice', InvoiceApiController::class)->except(['edit', 'create']);
+    Route::resource('invoice-details', InvoiceDetailApiController::class)->except(['edit', 'create']);
+    Route::resource('carts', CartApiController::class)->except(['edit', 'create']);
+    Route::post('carts/{id}', [CartApiController::class, 'checkOut'])->name('carts.checkout');
+    Route::resource('categories', CategoryApiController::class)->except(['edit', 'create']);
+    Route::post('logout', [AuthenticationApiController::class, 'logout'])->name('auth.logout');
+    Route::post('image_assigns', [ImageAssignApiController::class, 'store'])->name('image_assign.store');
+    Route::delete('image_assigns/{id}', [ImageAssignApiController::class, 'destroy'])->name('image_assign.delete');
+    Route::get('blobs', [FileApiController::class, 'getListBlob'])->name('file.index');
+    Route::post('upload', [FileApiController::class, 'uploadRange'])->name('file.uploadRange');
+    Route::post('file/duplicated-filter', [FileApiController::class, 'duplicatedFilter'])->name('file.duplicatedFilter');
+    Route::post('blobs/duplicate/{id}', [FileApiController::class, 'duplicateBlob'])->name('file.duplicateBlob');
+});
+=======
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
 Route::put('blobs/{id}', [FileApiController::class, 'updateBlob'])->name('blob.update')->middleware(['auth:api']);
 Route::post('upload', [FileApiController::class, 'upload'])->name('file.upload');
 Route::delete('blobs/{id}', [FileApiController::class, 'delete'])->name('blob.delete')->middleware(['auth:api']);

@@ -7,40 +7,9 @@
 @endsection
 @section('main-content')
     <div ng-app="myApp" ng-controller="myController">
-<<<<<<< HEAD
         <div class="mb-3 border-1 rounded-1 d-flex justify-content-between">
             <button ng-click="showAddNew()" type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
-=======
-        <input type="hidden" id="product_id" value="{{ $product->id }}"> 
-        <div class="container">
-            <div class="row">
-                <div class="mb-3 fw-bold form-group col-12 col-md-6">
-                    <label for="">Code</label>
-                    <input class="form-control" type="text" value="{{$product->code}}">
-                </div>
-                <div class="mb-3 fw-bold form-group col-12 col-md-6">
-                    <label for="">Tên sản phẩm</label>
-                    <input class="form-control" type="text" value="{{$product->name}}">
-                </div>
-                <div class="mb-3 fw-bold form-group col-12 col-md-6">
-                    <label for="">Số lượng</label>
-                    <input class="form-control" type="text" value="{{$product->quanity}}">
-                </div>
-                <div class="mb-3 fw-bold form-group col-12 col-md-6">
-                    <label for="">Số lựa chọn</label>
-                    <input class="form-control" type="text" value="{{$product->option_count}}">
-                </div>
-                <div class="mb-3 fw-bold form-group col-12 col-md-6">
-                    <label for="">Ảnh</label>
-                        <img height="100" ng-if="f.type == 'file'" src="/api/files/{{ $product->image->file_path }}" />
-                </div>
-            </div>
-        </div>
-        <div class="mb-3 border-1 rounded-1 d-flex justify-content-between">
-            <button ng-click="showAddNew()" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">
->>>>>>> d4b75824f1a38af2224f826d1dba8aa3d4941276
                 Thêm
             </button>
             <div>

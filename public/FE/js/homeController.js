@@ -2,7 +2,7 @@
 
 var extendController;
 const app = angular.module("myApp", []);
-app.controller("myController", function ($scope, $http) {
+app.controller("homeController", function ($scope, $http) {
     $scope.data = [];
     $scope.totalRecords = 0;
     $scope.page = 1;
@@ -15,7 +15,6 @@ app.controller("myController", function ($scope, $http) {
     $scope.deleting = false;
     $scope.getList = () => {
         const url = `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}`;
-<<<<<<< HEAD
         $http.get(url).then((res) => {
             if (res.data.status == true) {
                 $scope.data = res.data.data;
@@ -25,17 +24,6 @@ app.controller("myController", function ($scope, $http) {
         });
     };
     $scope.upLoadFile = function (file, uploadUrl) {
-=======
-        $http.get(url)
-            .then(res => {
-                if (res.data.status == true) {
-                    $scope.data = res.data.data;
-                    $scope.totalRecords = res.data.meta.total;
-                }
-            });
-    }
-    $scope.upLoadFile = function(file, uploadUrl) {
->>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
         var fd = new FormData();
         fd.append("file", file);
 
@@ -101,11 +89,7 @@ app.controller("myController", function ($scope, $http) {
 
     $scope.search = () => {
         $scope.getList();
-<<<<<<< HEAD
     };
-=======
-    }
->>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
     if (extendController) {
         extendController($scope, $http);
     }

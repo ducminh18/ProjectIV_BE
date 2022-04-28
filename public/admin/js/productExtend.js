@@ -1,53 +1,131 @@
-const route = 'products';
+const route = "products";
 extendController = ($scope, $http) => {
     // $scope.name = '';
     // $scope.visible = true;
     $scope.fields = [
-        {hidden: false, field: 'name', display: 'Tên sản phẩm', default: '', type: 'text'},
-        {hidden: false, field: 'code', display: 'Mã', default: '', type: 'text'},
-        {hidden: false, field: 'category.name', display: 'Tên loại', default: '', type: 'text', readonly : true},
-        {hidden: false, field: 'quantity', display: 'Số lượng', default: '', type: 'text'},
-        {hidden: false, field: 'default_image.file_path', display: 'Ảnh', default: '', type: 'file'},
-        {hidden: false, field: 'visible', display: 'Hiển thị', default: true, type: 'checkbox'},
-        {hidden: true, field: 'description', display: 'Mô tả', default: '', type: 'editor'},
+        {
+            hidden: false,
+            field: "name",
+            display: "Tên sản phẩm",
+            default: "",
+            type: "text",
+        },
+        {
+            hidden: false,
+            field: "code",
+            display: "Mã",
+            default: "",
+            type: "text",
+        },
+        {
+            hidden: false,
+            field: "category.name",
+            display: "Tên loại",
+            default: "",
+            type: "text",
+            readonly: true,
+        },
+        {
+            hidden: false,
+            field: "quantity",
+            display: "Số lượng",
+            default: "",
+            type: "text",
+        },
+        {
+            hidden: false,
+            field: "default_image.file_path",
+            display: "Ảnh",
+            default: "",
+            type: "file",
+        },
+        {
+            hidden: false,
+            field: "visible",
+            display: "Hiển thị",
+            default: true,
+            type: "checkbox",
+        },
+        {
+            hidden: true,
+            field: "description",
+            display: "Mô tả",
+            default: "",
+            type: "editor",
+        },
         // {hidden: true, field: 'visible', display: 'Hiển thị', default: true, type:'checkbox'},
     ];
     $scope.id = 0;
     $scope.item = {};
     $scope.selectedCategory = {};
 
-    for (let field of $scope.fields.filter(v => !v.readonly)) {
+    for (let field of $scope.fields.filter((v) => !v.readonly)) {
         $scope.item[field.field] = field.default;
     }
 
     $scope.showEdit = (item) => {
+<<<<<<< HEAD
+        document.getElementById("default_image.file_path").value = "";
+=======
         document.getElementById('default_image.file_path').value = '';
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
         $scope.id = item.id;
-        $scope.selectedCategory = $scope.categories.find(v => v.id == item.category_id)??{};
-        for (let field of $scope.fields.filter(v => !v.readonly)) {
+        $scope.selectedCategory =
+            $scope.categories.find((v) => v.id == item.category_id) ?? {};
+        for (let field of $scope.fields.filter((v) => !v.readonly)) {
             $scope.item[field.field] = item[field.field];
         }
         $scope.editting = true;
-        editor.setData(item.description??'');
+        editor.setData(item.description ?? "");
         $scope.formVisible = true;
         $scope.deleting = false;
-    }
+    };
 
     $scope.showAddNew = () => {
-        for (let field of $scope.fields.filter(v => !v.readonly)) {
+        for (let field of $scope.fields.filter((v) => !v.readonly)) {
             $scope.item[field.field] = field.default;
         }
+<<<<<<< HEAD
+        document.getElementById("default_image.file_path").value = "";
+        editor.setData("");
+=======
         document.getElementById('default_image.file_path').value = '';
         editor.setData('');
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
         $scope.editting = false;
         $scope.deleting = false;
-    }
+    };
     $scope.save = () => {
+<<<<<<< HEAD
+        let file = document.getElementById("default_image.file_path").files[0];
+=======
         let file = document.getElementById('default_image.file_path').files[0];
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
         let item = {};
-        for (let field of $scope.fields.filter(v => !v.readonly)) {
+        for (let field of $scope.fields.filter((v) => !v.readonly)) {
             item[field.field] = $scope.item[field.field];
         }
+<<<<<<< HEAD
+        let index = document.getElementById("selectCate").selectedIndex;
+        $scope.selectedCategory = $scope.categories[index];
+        item.category_id = $scope.selectedCategory;
+        if (file != undefined && file != null) {
+            $scope.upLoadFile(file, "/api/upload").then((res) => {
+                if (res.data.status == true) {
+                    item.default_image = res.data.data.id;
+                }
+                item.description = editor.getData();
+                item.category_id = $scope.selectedCategory.id;
+                if ($scope.editting) {
+                    $scope.update($scope.id, item);
+                } else if ($scope.deleting) {
+                    $scope.delete($scope.id);
+                } else {
+                    $scope.create(item);
+                }
+            });
+        } else {
+=======
         let index = document.getElementById('selectCate').selectedIndex;
         $scope.selectedCategory = $scope.categories[index];
         item.category_id = $scope.selectedCategory;
@@ -72,6 +150,7 @@ extendController = ($scope, $http) => {
         }
         else
         {
+>>>>>>> 7dca136466195f76199f1f30319a1b5f0164bd44
             item.description = editor.getData();
             item.category_id = $scope.selectedCategory.id;
             if ($scope.editting) {
@@ -79,22 +158,21 @@ extendController = ($scope, $http) => {
             } else if ($scope.deleting) {
                 $scope.delete($scope.id);
             } else {
-                $scope.create(item)
+                $scope.create(item);
             }
         }
-    }
+    };
     $scope.showDelete = (id) => {
         $scope.id = id;
         $scope.deleting = true;
-    }
+    };
     $scope.categories = [];
-    $http.get('/api/admin/categories?page=1&limit=1000')
-        .then(res => {
-            if (res.data.status == true) {
-                $scope.categories = res.data.data;
-            }
-        });
+    $http.get("/api/admin/categories?page=1&limit=1000").then((res) => {
+        if (res.data.status == true) {
+            $scope.categories = res.data.data;
+        }
+    });
     $scope.change = () => {
         console.log($scope.file);
-    }
-}
+    };
+};
