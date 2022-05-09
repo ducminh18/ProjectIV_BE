@@ -13,12 +13,15 @@ app.controller("myController", function ($scope, $http) {
     $scope.editting = false;
     $scope.searchValue = "";
     $scope.deleting = false;
+    $scope.extendQuerys = "";
+    if (extendController) {
+        extendController($scope, $http);
+    }
     $scope.getList = () => {
-        const url = `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}`;
+        const url = `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
         $http.get(url).then((res) => {
             if (res.data.status == true) {
                 $scope.data = res.data.data;
-                console.log(res.data.data);
                 $scope.totalRecords = res.data.meta.total;
             }
         });
@@ -87,12 +90,7 @@ app.controller("myController", function ($scope, $http) {
     };
     $scope.getList();
 
-    $scope.search = () => {
-        $scope.getList();
-    };
-    if (extendController) {
-        extendController($scope, $http);
-    }
+    $scope.search = $scope.getList;
 });
 
 app.filter("page", function () {
