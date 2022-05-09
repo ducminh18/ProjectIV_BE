@@ -70,13 +70,13 @@ class ProductApiController extends Controller
                 ]);
             } else {
                 $data['created_by'] = 20;
-                    $result = $this->product_service->create($data);
-                    $response = response()->json([
-                        'code' => Response::HTTP_OK,
-                        'status' => $result > 0,
-                        'data' => $result,
-                        'meta' => []
-                    ]);
+                $result = $this->product_service->create($data);
+                $response = response()->json([
+                    'code' => Response::HTTP_OK,
+                    'status' => $result > 0,
+                    'data' => $result,
+                    'meta' => []
+                ]);
             }
         } catch (\Throwable $th) {
             $response = response()->json([
@@ -121,7 +121,7 @@ class ProductApiController extends Controller
                 'data' => $id,
                 'meta' => []
             ]);
-        } catch (Throwable $th) {
+        } catch (\Throwable $th) {
             $response = response()->json([
                 'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'status' => false,
