@@ -34,7 +34,8 @@ class ProductDetailApiController extends Controller
                         'consumableOnly' => $request->get('consumable_only') ?? false,
                         'with_detail' => $request->get('with_detail') ?? false,
                         'product_id' => $request->get('product_id'),
-                        'search' => $request->get('search')
+                        'search' => $request->get('search'),
+                        'with_product' => $request->get('with_product')
                     ]
                 );
             $response = response()->json([
@@ -63,7 +64,7 @@ class ProductDetailApiController extends Controller
     {
         try {
             $data = $request->post();
-            $data['created_by'] = 20;
+            $data['created_by']=20;
             $validator = Validator::make($data,  ProductDetail::RULES);
             if ($validator->fails()) {
                 $response = response()->json([
@@ -73,13 +74,13 @@ class ProductDetailApiController extends Controller
                 ]);
             } else {
                 $data['created_by'] = 20;
-                $result = $this->product_detail_service->create($data);
-                $response = response()->json([
-                    'code' => Response::HTTP_OK,
-                    'status' => $result > 0,
-                    'data' => $result,
-                    'meta' => []
-                ]);
+                    $result = $this->product_detail_service->create($data);
+                    $response = response()->json([
+                        'code' => Response::HTTP_OK,
+                        'status' => $result > 0,
+                        'data' => $result,
+                        'meta' => []
+                    ]);
             }
         } catch (\Throwable $th) {
             $response = response()->json([
