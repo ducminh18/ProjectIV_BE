@@ -53,6 +53,7 @@ Route::middleware([])->prefix('admin')->group(function () {
     Route::post('file/duplicated-filter', [FileApiController::class, 'duplicatedFilter'])->name('file.duplicatedFilter');
     Route::post('blobs/duplicate/{id}', [FileApiController::class, 'duplicateBlob'])->name('file.duplicateBlob');
 });
+<<<<<<< HEAD
 Route::middleware([])->prefix('/')->group(function () {
     Route::get('/user', function (Request $request) {
         return response()->json([
@@ -79,6 +80,9 @@ Route::middleware([])->prefix('/')->group(function () {
     Route::post('blobs/duplicate/{id}', [FileApiController::class, 'duplicateBlob'])->name('file.duplicateBlob');
 });
 Route::put('blobs/{id}', [FileApiController::class, 'updateBlob'])->name('blob.update')->middleware(['auth:api']);
+=======
+Route::post('blobs/{id}', [FileApiController::class, 'updateBlob'])->name('blob.update');
+>>>>>>> 41d2e61880e7cd27510565c27bed18ed960795c3
 Route::post('upload', [FileApiController::class, 'upload'])->name('file.upload');
 Route::delete('blobs/{id}', [FileApiController::class, 'delete'])->name('blob.delete')->middleware(['auth:api']);
 Route::get('files/{name}', [FileApiController::class, 'get'])->name('file.get');
@@ -87,7 +91,7 @@ Route::get('blobs/{id}', [FileApiController::class, 'getByBlob'])->name('file.bl
 Route::get('blobs/download/{id}', [FileApiController::class, 'downloadById'])->name('file.blob');
 Route::get('file/download/{name}', [FileApiController::class, 'download'])->name('file.download');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->group(function() {
     // Route::post('register', [RegisterApiController::class, 'register'])->name('auth.register');
     Route::post('login', [AuthenticationApiController::class, 'adminLogin'])->name('auth.admin.login');
 });

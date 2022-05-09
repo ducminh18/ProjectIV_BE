@@ -21,7 +21,7 @@ class ProductDetailService
         $updated = ProductDetail::where('id', $id)->update($data);
 
         if ($updated > 0 && ($productDetail->product_id != $data['product_id'] ||
-            $productDetail->remaining_quantity != $data['remaining_quantity'])) {
+                $productDetail->remaining_quantity != $data['remaining_quantity'])) {
             $this->product_service->refresh($productDetail->product_id);
 
             if ($productDetail->product_id != $data['product_id']) {
@@ -48,18 +48,21 @@ class ProductDetailService
     public function create(array |ProductDetail $data)
     {
         $productDetail = is_array($data) ?
-            ProductDetail::create($data)
+        ProductDetail::create($data)
             : $data;
-        if ($productDetail->save()) {
+        if($productDetail->save())
+        {
             $product = Product::find($productDetail->product_id);
-            if ($product) {
+            if ($product)
+            {
                 $query = ProductDetail::query()
-                    ->where('product_id', '=', $product->id);
+                ->where('product_id','=',$product->id);
                 $product->quantity = $query->sum('remaining_quantity');
                 $product->option_count = $query->count();
                 $product->save();
             }
 
+<<<<<<< HEAD
             return $productDetail->id;
         } else
             return 0;
@@ -79,36 +82,66 @@ class ProductDetailService
         }
         $query->with('image');
         $query->with('product');
+=======
+return $productDetail->id;
+}
+else
+return 0;
+}
 
-        if (isset($option['product_id'])) {
-            $query->where('product_id', '=', $option['product_id']);
-        }
-        if ($option['with_detail'] == 'true') {
-            $query->with('images.blob');
-            $query->with('product.image');
-        }
-        if (isset($option['search']) && $option['search'] != '') {
-            $query->join('products', 'product_details.product_id', '=', 'products.id')
-                ->where('products.name', 'LIKE', "%" . $option['search'] . "%")
-                ->where('product_details.option_value', 'LIKE', "%" . $option['search'] . "%", 'OR')
-                ->where('product_details.option_name', '=', $option['search'], 'OR')
-                ->where('product_details.unit', '=', $option['search'], 'OR')
-                ->get(['product_details.*']);
-        }
-        if ($orderBy) {
-            $query->orderBy($orderBy['column'], $orderBy['sort']);
-        }
-        return ProductDetailResource::collection($query->paginate($page_size, page: $page_index));
+public
+function getAll(
+    array $orderBy = [],
+    int $page_index = 0,
+    int $page_size = 10,
+    array $option = []
+)
+{
+    $query = ProductDetail::query();
+    // $query->orderBy('product_id', 'DESC');
+    if ($option['consumableOnly'] == 'true') {
+        $query->where('remaining_quantity', '>', '0');
     }
+    $query->with('image');
+>>>>>>> 41d2e61880e7cd27510565c27bed18ed960795c3
 
-    public
-    function getById(int $id)
-    {
-        $query = ProductDetail::query();
+    if (isset($option['with_product'])) {
         $query->with('product');
-        $query->with('images.blob');
-        $query->with('image');
-
-        return new ProductDetailResource($query->find($id));
     }
+
+    if (isset($option['product_id'])) {
+        $query->where('product_id', '=', $option['product_id']);
+    }
+    if ($option['with_detail'] == 'true') {
+        $query->with('images.blob');
+<<<<<<< HEAD
+        $query->with('image');
+=======
+        $query->with('product.image');
+    }
+    if (isset($option['search']) && $option['search'] != '') {
+        $query->join('products', 'product_details.product_id', '=', 'products.id')
+            ->where('products.name', 'LIKE', "%" . $option['search'] . "%", 'OR')
+            ->where('product_details.option_value', 'LIKE', "%" . $option['search'] . "%", 'OR')
+            ->where('product_details.option_name', '=', $option['search'], 'OR')
+            ->where('product_details.unit', '=', $option['search'], 'OR')
+            ->select(['product_details.*', 'products.name']);
+    }
+    if ($orderBy) {
+        $query->orderBy($orderBy['column'], $orderBy['sort']);
+    }
+    return ProductDetailResource::collection($query->paginate($page_size, page: $page_index));
+    }
+>>>>>>> 41d2e61880e7cd27510565c27bed18ed960795c3
+
+public
+function getById(int $id)
+{
+    $query = ProductDetail::query();
+    $query->with('product');
+    $query->with('images.blob');
+    $query->with('image');
+
+    return new ProductDetailResource($query->find($id));
+}
 }
