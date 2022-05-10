@@ -40,12 +40,12 @@
 	
 </head>
 
-<body class="animsition">
-
-	@include('home.partial.header')
-	@yield('content')
-	@include('home.partial.footer')
-
+<body >
+	<div class="animsition" ng-app="myApp" ng-controller="myController">
+		@include('home.partial.header')
+		@yield('content')
+		@include('home.partial.footer')
+	</div>
 
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">

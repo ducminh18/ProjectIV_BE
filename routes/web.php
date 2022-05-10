@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 /*
@@ -20,8 +22,8 @@ use Illuminate\Http\Request;
 
 
 
-Route::prefix('admin')->group(function() {
-    Route::get('', function() {
+Route::prefix('admin')->group(function () {
+    Route::get('', function () {
         return redirect(route('admin.home'));
     });
     Route::get('home', [AdminController::class, 'Index'])->name('admin.home');
@@ -31,3 +33,8 @@ Route::prefix('admin')->group(function() {
     Route::get('product-detail', [AdminController::class, 'ProductDetails']);
     Route::get('category', [AdminController::class, 'Category']);
 });
+
+
+Route::get('', [HomeController::class, 'index']);
+Route::get('/for-him', [ProductController::class, 'index']);
+Route::get('/detail-product', [ProductController::class, 'DetailProduct']);

@@ -1,5 +1,5 @@
 	<!-- Header -->
-	<header>
+	<header >
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 
@@ -189,17 +189,24 @@
 						<i class="zmdi zmdi-close"></i>
 					</div>
 				</div>
+
+				<div class="search_form flex-w ">
+					<div class="flex-c-m trans-04 ">
+						<i class="zmdi zmdi-search"></i>
+					</div>
+					<input ng-model="searchValue" class="plh3 search_form-input" type="text" placeholder="Search...">
+				</div>
 	
-				<div class="header-search-content flex-w js-pscroll">
-					<ul class="header-search-wrapitem w-full">
+				<div class="header-search-content flex-w" >
+					<ul class="header-search-wrapitem flex-w w-full js-pscroll" ng-repeat="item in dataSearch">
 						<li class="header-search-item flex-w flex-t m-b-12">
 							<div class="header-search-item-img">
-								<img src="FE/images/item-search-01.jpg" alt="IMG">
+								<img src="FE/images/products/@{{ item.default_image.name }}" alt="IMG">
 							</div>
 	
 							<div class="header-search-item-txt p-t-8">
 								<a href="#" class="header-search-item-name m-b-18 hov-cl1 trans-04">
-									White Shirt Pleat
+									@{{item.name}}
 								</a>
 	
 								<span class="header-search-item-info">
@@ -301,3 +308,8 @@
 			</div>
 		</div>
 	</div>
+
+@section('scripts')
+    <script src="/assets/admin/js/productExtend.js"></script>
+    <script src="/assets/admin/js/appController.js"></script>
+@endsection

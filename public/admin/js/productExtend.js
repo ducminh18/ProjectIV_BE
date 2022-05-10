@@ -86,6 +86,7 @@ extendController = ($scope, $http) => {
         $scope.editting = false;
         $scope.deleting = false;
     };
+
     $scope.save = () => {
         let file = document.getElementById("default_image.file_path").files[0];
         let item = {};
@@ -122,10 +123,12 @@ extendController = ($scope, $http) => {
             }
         }
     };
+
     $scope.showDelete = (id) => {
         $scope.id = id;
         $scope.deleting = true;
     };
+
     $scope.categories = [];
     $http.get("/api/admin/categories?page=1&limit=1000").then((res) => {
         if (res.data.status == true) {

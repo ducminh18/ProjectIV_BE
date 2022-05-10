@@ -15512,3 +15512,8 @@ iframe {
 .pointer-none {
     pointer-events: none;
 }
+
+/* .horizontal {
+    width: 100%;
+    height: 1px;
+} */

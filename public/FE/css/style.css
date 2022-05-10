@@ -21,3 +21,17 @@
     color: rgb(122, 122, 122);
     max-width: 50vw;
 }
+
+/* header-search */
+.wrap-header-search .search_form {
+    font-size: 15px;
+    border: 1px solid #666;
+    border-radius: 3px;
+    padding: 6px 8px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.wrap-header-search .search_form .search_form-input {
+    margin-left: 5px;
+}

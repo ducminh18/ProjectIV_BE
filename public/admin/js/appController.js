@@ -4,6 +4,7 @@ var extendController;
 const app = angular.module("myApp", []);
 app.controller("myController", function ($scope, $http) {
     $scope.data = [];
+    $scope.dataSearch = [];
     $scope.totalRecords = 0;
     $scope.page = 1;
     $scope.limit = 10;
@@ -18,7 +19,6 @@ app.controller("myController", function ($scope, $http) {
         $http.get(url).then((res) => {
             if (res.data.status == true) {
                 $scope.data = res.data.data;
-                console.log(res.data.data);
                 $scope.totalRecords = res.data.meta.total;
             }
         });
@@ -88,11 +88,25 @@ app.controller("myController", function ($scope, $http) {
     $scope.getList();
 
     $scope.search = () => {
-        $scope.getList();
+        const url = `/api/admin/${route}?page=${$scope.page}&limit=${
+            $scope.limit
+        }&column=${$scope.column}&sort=${$scope.sort}&search=${
+            $scope.searchValue || "null"
+        }`;
+        $http.get(url).then((res) => {
+            if (res.data.status == true) {
+                $scope.dataSearch = res.data.data;
+                $scope.totalRecords = res.data.meta.total;
+            }
+        });
     };
     if (extendController) {
         extendController($scope, $http);
     }
+
+    $(".search_form-input").on("keyup", function (e) {
+        $scope.search();
+    });
 });
 
 app.filter("page", function () {
