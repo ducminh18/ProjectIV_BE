@@ -22,6 +22,15 @@
     max-width: 50vw;
 }
 
+/* general */
+.price {
+    font-weight: 600;
+}
+.currency-symbol {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
 /* header-search */
 .wrap-header-search .search_form {
     font-size: 15px;

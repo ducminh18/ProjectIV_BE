@@ -53,7 +53,10 @@ Trang chủ
 								</a>
 
 								<span class="stext-105 cl3">
-									160.000đ
+									<span class="price">
+										160.000
+									</span>
+									<span class="currency-symbol">₫</span>
 								</span>
 							</div>
 
@@ -82,4 +85,5 @@ Trang chủ
 @section('scripts')
 	<script src="/admin/js/productExtend.js"></script>
 	<script src="/admin/js/appController.js"></script>
+	<script src="FE/js/utilities.js"></script>
 @endsection

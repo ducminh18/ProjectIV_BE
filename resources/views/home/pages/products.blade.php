@@ -76,31 +76,31 @@ Sản phẩm
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Popularity
+                                        Phổ biến
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Average rating
+                                        Tỉ lệ đánh giá
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                                        Newness
+                                        Mới nhất
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Price: Low to High
+                                        Giá: Thấp tới <i class="fa fa-contao" aria-hidden="true"></i>
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Price: High to Low
+                                        Giá: Cao tới thấp
                                     </a>
                                 </li>
                             </ul>
@@ -120,31 +120,31 @@ Sản phẩm
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        $0.00 - $50.00
+                                        0đ - 100.000đ
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        $50.00 - $100.00
+                                        100.000đ - 200.000đ
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        $100.00 - $150.00
+                                        200.000đ - 300.000đ
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        $150.00 - $200.00
+                                        300.000đ - 400.000đ
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        $200.00+
+                                        500.000đ +
                                     </a>
                                 </li>
                             </ul>
@@ -152,7 +152,7 @@ Sản phẩm
 
                         <div class="filter-col3 p-r-15 p-b-27">
                             <div class="mtext-102 cl2 p-b-15">
-                                Color
+                                Màu
                             </div>
 
                             <ul>
@@ -162,7 +162,7 @@ Sản phẩm
                                     </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Black
+                                        Đen
                                     </a>
                                 </li>
 
@@ -172,7 +172,7 @@ Sản phẩm
                                     </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                                        Blue
+                                        Xanh
                                     </a>
                                 </li>
 
@@ -182,7 +182,7 @@ Sản phẩm
                                     </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Grey
+                                        Bạc
                                     </a>
                                 </li>
 
@@ -192,7 +192,7 @@ Sản phẩm
                                     </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Green
+                                        Xanh
                                     </a>
                                 </li>
 
@@ -202,7 +202,7 @@ Sản phẩm
                                     </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        Red
+                                        Đỏ
                                     </a>
                                 </li>
 
@@ -212,7 +212,7 @@ Sản phẩm
                                     </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
-                                        White
+                                        Trắng
                                     </a>
                                 </li>
                             </ul>
@@ -230,10 +230,6 @@ Sản phẩm
 
                                 <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                     Lifestyle
-                                </a>
-
-                                <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                                    Denim
                                 </a>
 
                                 <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">

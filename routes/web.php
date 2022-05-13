@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::get('', [HomeController::class, 'index']);
-Route::get('/for-him', [ProductController::class, 'index']);
+Route::get('', [HomeController::class, 'Index']);
+Route::get('/checkout', [CheckoutController::class, 'Index']);
+Route::get('/for-him', [ProductController::class, 'Index']);
 Route::get('/detail-product', [ProductController::class, 'DetailProduct']);
