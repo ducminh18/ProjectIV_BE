@@ -1,5 +1,5 @@
 	<!-- Header -->
-	<header>
+	<header >
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 
@@ -47,7 +47,7 @@
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
@@ -161,7 +161,7 @@
 		</div>
 
 		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+		{{-- <div class="modal-search-header flex-c-t trans-04 js-hide-modal-search">
 			<div class="container-search-header">
 				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
 					<img src="FE/images/icons/icon-close2.png" alt="CLOSE">
@@ -173,6 +173,51 @@
 					</button>
 					<input class="plh3" type="text" name="search" placeholder="Search...">
 				</form>
+			</div>
+		</div> --}}
+
+		<div class="wrap-header-search js-panel-search">
+			<div class="s-full js-hide-search"></div>
+	
+			<div class="header-search flex-col-l p-l-65 p-r-25">
+				<div class="header-search-title flex-w flex-sb-m p-b-2">
+					<span class="mtext-103 cl2">
+						Tìm kiếm
+					</span>
+	
+					<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-search">
+						<i class="zmdi zmdi-close"></i>
+					</div>
+				</div>
+
+				<div class="search_form flex-w ">
+					<div class="flex-c-m trans-04 ">
+						<i class="zmdi zmdi-search"></i>
+					</div>
+					<input ng-model="searchValue" class="plh3 search_form-input" type="text" placeholder="Search...">
+				</div>
+	
+				<div class="header-search-content flex-w" >
+					<ul class="header-search-wrapitem flex-w w-full js-pscroll" ng-repeat="item in dataSearch">
+						<li class="header-search-item flex-w flex-t m-b-12">
+							<div class="header-search-item-img">
+								<img src="FE/images/products/@{{ item.default_image.name }}" alt="IMG">
+							</div>
+	
+							<div class="header-search-item-txt p-t-8">
+								<a href="#" class="header-search-item-name m-b-18 hov-cl1 trans-04">
+									@{{item.name}}
+								</a>
+	
+								<span class="header-search-item-info">
+									1 x 190.000đ
+								</span>
+							</div>
+						</li>
+	
+					</ul>
+
+				</div>
 			</div>
 		</div>
 	</header>
@@ -263,3 +308,8 @@
 			</div>
 		</div>
 	</div>
+
+@section('scripts')
+    <script src="/assets/admin/js/productExtend.js"></script>
+    <script src="/assets/admin/js/appController.js"></script>
+@endsection
