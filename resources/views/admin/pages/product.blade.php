@@ -35,7 +35,8 @@
                 <tr ng-repeat="item in data">
                     <th scope="row">@{{ $index + 1 }}</th>
                     <td ng-repeat="f in fields | visible">
-                        <span ng-if="f.type != 'file' && f.type != 'editor'"> @{{ item | value: f.field }}</span>
+                        <span ng-if="f.type != 'file' && f.type != 'editor' && f.type != 'number'"> @{{ item | value: f.field }}</span>
+                        <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
                         <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
@@ -86,7 +87,6 @@
                                     <label for="categories" class="form-label fw-bold">Loại sản phẩm</label>
                                     <select id="selectCate" data-ng-options="o.name for o in categories"
                                         class="form-select" data-ng-model="selectedCategory"></select>
-
                                 </div>
                                 <div ng-repeat="f in fields | editable" ng-class="f.type != 'editor' ? 'col-md-6' : ''"
                                     class="form-group mb-3 col-12">

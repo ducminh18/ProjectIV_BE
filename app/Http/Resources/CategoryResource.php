@@ -20,7 +20,6 @@ class CategoryResource extends JsonResource
             'name' => $this->name,
             'visible' => $this->visible,
             'products' => $this->whenLoaded('products'),
-            ...Category::tArray($this)
         ];
     }
 }

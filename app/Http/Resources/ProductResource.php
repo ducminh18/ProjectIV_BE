@@ -15,7 +15,7 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        $category = $this->whenLoaded(relationship:'category');
+        $category = $this->whenLoaded(relationship: 'category');
         return [
             'id' => $this->id,
             'provider_id' => $this->provider_id,
@@ -32,8 +32,7 @@ class ProductResource extends JsonResource
             'category' => new CategoryResource($this->whenLoaded('category')),
             'provider' => new CategoryResource($this->whenLoaded('provider')),
             'visible' => $this->visible,
-            'description' => $this->description,
-            ...Product::tArray($this)
+            'description' => $this->description
         ];
     }
 }
