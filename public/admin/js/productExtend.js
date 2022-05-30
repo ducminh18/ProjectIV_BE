@@ -29,8 +29,9 @@ extendController = ($scope, $http) => {
             hidden: false,
             field: "quantity",
             display: "Số lượng",
-            default: "",
-            type: "text",
+            default: 0,
+            type: "number",
+            readonly:true
         },
         {
             hidden: false,
@@ -53,7 +54,6 @@ extendController = ($scope, $http) => {
             default: "",
             type: "editor",
         },
-        // {hidden: true, field: 'visible', display: 'Hiển thị', default: true, type:'checkbox'},
     ];
     $scope.id = 0;
     $scope.item = {};
@@ -68,7 +68,7 @@ extendController = ($scope, $http) => {
         $scope.id = item.id;
         $scope.selectedCategory =
             $scope.categories.find((v) => v.id == item.category_id) ?? {};
-        for (let field of $scope.fields.filter((v) => !v.readonly)) {
+        for (let field of $scope.fields) {
             $scope.item[field.field] = item[field.field];
         }
         $scope.editting = true;
@@ -78,7 +78,7 @@ extendController = ($scope, $http) => {
     };
 
     $scope.showAddNew = () => {
-        for (let field of $scope.fields.filter((v) => !v.readonly)) {
+        for (let field of $scope.fields) {
             $scope.item[field.field] = field.default;
         }
         document.getElementById("default_image.file_path").value = "";
@@ -90,7 +90,7 @@ extendController = ($scope, $http) => {
     $scope.save = () => {
         let file = document.getElementById("default_image.file_path").files[0];
         let item = {};
-        for (let field of $scope.fields.filter((v) => !v.readonly)) {
+        for (let field of $scope.fields) {
             item[field.field] = $scope.item[field.field];
         }
         let index = document.getElementById("selectCate").selectedIndex;

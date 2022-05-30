@@ -48,6 +48,13 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
+            field: "total_quantity",
+            display: "Tổng số",
+            default: 0,
+            type: "text",
+        },
+        {
+            hidden: false,
             field: "default_image.file_path",
             display: "Ảnh",
             default: "",
@@ -59,13 +66,6 @@ extendController = ($scope, $http) => {
             field: "unit",
             display: "ĐVT",
             default: "",
-            type: "text",
-        },
-        {
-            hidden: false,
-            field: "total_quantity",
-            display: "Tổng số",
-            default: 0,
             type: "text",
         },
         {
