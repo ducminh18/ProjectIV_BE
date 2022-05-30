@@ -35,7 +35,6 @@ Route::middleware([])->prefix('admin')->group(function () {
             'status' => true,
             'data' => new UserResource(Auth::user()),
             'meta' => []
-
         ]);
     });
     Route::resource('products', ProductApiController::class)->except(['edit', 'create']);
@@ -59,7 +58,6 @@ Route::middleware([])->prefix('/')->group(function () {
             'code' => Response::HTTP_OK,
             'status' => true,
             'meta' => []
-
         ]);
     });
     Route::resource('products', ProductApiController::class)->except(['edit', 'create']);

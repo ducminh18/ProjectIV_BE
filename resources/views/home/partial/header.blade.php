@@ -7,7 +7,7 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<a href="/" class="logo">
 						<img src="https://theme.hstatic.net/1000401164/1000509982/14/logo.png?v=486" alt="IMG-LOGO">
 					</a>
 
@@ -16,11 +16,11 @@
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="/">Trang chủ</a>
-								<ul class="sub-menu">
+								{{-- <ul class="sub-menu">
 									<li><a href="index.html">Homepage 1</a></li>
 									<li><a href="home-02.html">Homepage 2</a></li>
 									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
+								</ul> --}}
 							</li>
 
 							<li>
@@ -226,8 +226,8 @@
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+		<div class="header-cart flex-col-l p-l-25 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m w-full p-b-8">
 				<span class="mtext-103 cl2">
 					Giỏ hàng của bạn
 				</span>
@@ -294,13 +294,8 @@
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html"
-							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							Xem giỏ hàng
-						</a>
-
-						<a href="shoping-cart.html"
-							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						<a href="/checkout"
+							class="flex-c-m w-full stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Thanh toán
 						</a>
 					</div>
