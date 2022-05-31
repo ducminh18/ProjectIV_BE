@@ -13,24 +13,25 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "size",
+            field: "color",
             display: "Màu sắc",
             default: "",
             type: "text",
         },
         {
             hidden: false,
-            field: "color",
+            field: "size",
             display: "Kích thước",
             default: "",
             type: "text",
         },
         {
-            hidden: false,
+            hidden: true,
             field: "in_price",
             display: "Giá nhập",
             default: 0,
             type: "text",
+            readonly: true
         },
         {
             hidden: false,
@@ -47,11 +48,12 @@ extendController = ($scope, $http) => {
             type: "text",
         },
         {
-            hidden: false,
+            hidden: true,
             field: "total_quantity",
             display: "Tổng số",
             default: 0,
             type: "text",
+            readonly: true
         },
         {
             hidden: false,

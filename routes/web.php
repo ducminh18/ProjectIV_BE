@@ -28,11 +28,14 @@ Route::prefix('admin')->group(function () {
         return redirect(route('admin.home'));
     });
     Route::get('home', [AdminController::class, 'Index'])->name('admin.home');
+    Route::get('login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('product', [AdminController::class, 'Product']);
     Route::post('product/{id}', [AdminController::class, 'ProductSave']);
     Route::get('product/{id}', [AdminController::class, 'ProductDetail']);
     Route::get('product-detail', [AdminController::class, 'ProductDetails']);
     Route::get('category', [AdminController::class, 'Category']);
+    Route::get('invoice', [AdminController::class, 'Invoices']);
+    Route::get('invoice/create', [AdminController::class, 'InvoiceCreate']);
 });
 
 

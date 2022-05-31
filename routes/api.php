@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware([])->prefix('admin')->group(function () {
+Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/user', function (Request $request) {
         return response()->json([
             'code' => Response::HTTP_OK,
@@ -39,7 +39,7 @@ Route::middleware([])->prefix('admin')->group(function () {
     });
     Route::resource('products', ProductApiController::class)->except(['edit', 'create']);
     Route::resource('product-details', ProductDetailApiController::class)->except(['edit', 'create']);
-    Route::resource('invoice', InvoiceApiController::class)->except(['edit', 'create']);
+    Route::resource('invoices', InvoiceApiController::class)->except(['edit', 'create']);
     Route::resource('invoice-details', InvoiceDetailApiController::class)->except(['edit', 'create']);
     Route::resource('carts', CartApiController::class)->except(['edit', 'create']);
     Route::post('carts/{id}', [CartApiController::class, 'checkOut'])->name('carts.checkout');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Invoice;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InvoiceResource extends JsonResource
@@ -17,10 +18,15 @@ class InvoiceResource extends JsonResource
         return [
             'id' => $this->id,
             'customer_id' => $this->customer_id,
-            'customer' => new CustomerResource($this->whenLoaded('customer')),
+            'customer_name' => $this->customer_name,
+            'address' => $this->address,
+            'phone_number' => $this->phone_number,
             'total' => $this->total,
             'paid' => $this->paid,
-            'created_at' => $this->created_at,
+            'status' => $this->status,
+            'status_name' => Invoice::getStatusName($this->status),
+            'note' => $this->note,
+            'created_at' => date('d/m/y H:i', strtotime($this->created_at)),
             'updated_at' => $this->updated_at,
             'details' => InvoiceDetailResource::collection($this->whenLoaded('details'))
         ];

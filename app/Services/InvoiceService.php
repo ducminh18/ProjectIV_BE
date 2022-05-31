@@ -16,13 +16,12 @@ class InvoiceService
     public function refresh($id)
     {
         $invoice = Invoice::find($id);
-        if ($invoice)
-        {
+        if ($invoice) {
             $invoice->total = InvoiceDetail::query()
-            ->where('invoice_id',$invoice->id)
-            ->sum('quantity*price');
+                ->where('invoice_id', $invoice->id)
+                ->sum('quantity*price');
             $invoice->save();
-            $this->customer_service->refresh($invoice->customer_id);    
+            $this->customer_service->refresh($invoice->customer_id);
         }
     }
 
@@ -30,11 +29,10 @@ class InvoiceService
     {
         $invoice = Invoice::find($id);
         $updated = Invoice::where('id', $id)
-        ->update($data);
-        if ($invoice->customer_id != $data['customer_id'])
-        {
+            ->update($data);
+        if (isset($data['customer_id']) && ($invoice->customer_id != $data['customer_id'])) {
             $this->customer_service->refresh($data['customer_id']);
-            $this->customer_service->refresh($invoice->customer_id );
+            $this->customer_service->refresh($invoice->customer_id);
         }
         return $updated > 0;
     }
@@ -42,8 +40,7 @@ class InvoiceService
     public function delete($id)
     {
         $invoice = Invoice::find($id);
-        if ($invoice)
-        {
+        if ($invoice) {
             $deleted = Invoice::destroy($id);
             $this->customer_service->refresh($invoice->customer_id);
         }
@@ -55,12 +52,10 @@ class InvoiceService
         $invoice = is_array($data) ?
             Invoice::create($data)
             : $data;
-        if($invoice->save()) 
-        {
+        if ($invoice->save()) {
             $this->customer_service->refresh($invoice->customer_id);
             return $invoice->id;
-        }
-        else return 0;
+        } else return 0;
     }
 
     public function getAll(
