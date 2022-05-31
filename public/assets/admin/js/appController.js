@@ -1,4 +1,7 @@
 "use strict";
+if (!localStorage.getItem("token")) {
+    window.location.href = "/admin/login";
+}
 
 var extendController;
 const app = angular.module("myApp", []);
@@ -17,8 +20,13 @@ app.controller("myController", function ($scope, $http) {
     if (extendController) {
         extendController($scope, $http);
     }
+    $scope.baseUrl = "";
+    // $scope.baseUrl = "";
     $scope.getList = () => {
-        const url = `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
+        const url =
+            $scope.baseUrl +
+            $scope.baseUrl +
+            `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
         $http.get(url).then((res) => {
             if (res.data.status == true) {
                 $scope.data = res.data.data;
@@ -37,7 +45,7 @@ app.controller("myController", function ($scope, $http) {
     };
 
     $scope.getById = (id) => {
-        const url = `/api/admin/${route}/${id}`;
+        const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
         $http.get(url).then((res) => {
             if (res.data.status == true) {
                 const index = $scope.data.findIndex((v) => v.id == id);
@@ -49,7 +57,7 @@ app.controller("myController", function ($scope, $http) {
     };
 
     $scope.update = (id, item) => {
-        const url = `/api/admin/${route}/${id}`;
+        const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
         $http.patch(url, item).then((res) => {
             if (res.data.status == true) {
                 $scope.getList();
@@ -58,15 +66,16 @@ app.controller("myController", function ($scope, $http) {
     };
 
     $scope.create = (item) => {
-        const url = `/api/admin/${route}`;
+        const url = $scope.baseUrl + `/api/admin/${route}`;
         $http.post(url, item).then((res) => {
             if (res.data.status == true) {
                 $scope.getList();
             }
         });
     };
+
     $scope.delete = (id) => {
-        const url = `/api/admin/${route}/${id}`;
+        const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
         $http.delete(url).then((res) => {
             if (res.data.status == true) {
                 $scope.getList();
@@ -161,4 +170,32 @@ app.config(function ($sceProvider) {
     // Completely disable SCE.  For demonstration purposes only!
     // Do not use in new projects or libraries.
     $sceProvider.enabled(false);
+});
+app.factory("BearerAuthInterceptor", function ($window, $q) {
+    return {
+        request: function (config) {
+            config.headers = config.headers || {};
+            const token = $window.localStorage.getItem("token");
+            if (token) {
+                config.headers.Authorization = "Bearer " + token;
+            }
+            return config || $q.when(config);
+        },
+        response: function (response) {
+            return response || $q.when(response);
+        },
+        responseError: function (res) {
+            if (res.status === 401) {
+                localStorage.removeItem("token");
+                window.location.href = "/admin/login";
+            }
+
+            return res;
+        },
+    };
+});
+
+// Register the previously created AuthInterceptor.
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push("BearerAuthInterceptor");
 });

@@ -99,14 +99,14 @@ extendController = ($scope, $http) => {
         }
         let index = document.getElementById("selectCate")?.selectedIndex ?? -1;
         if (index >= 0) $scope.selectedCategory = $scope.categories[index];
-        item.category_id = $scope.selectedCategory.id;
+        item.category_id = $scope.selectedCategory?.id;
         if (file != undefined && file != null) {
             $scope.upLoadFile(file, "/api/upload").then((res) => {
                 if (res.data.status == true) {
                     item.default_image = res.data.data.id;
                 }
                 item.description = editor.getData();
-                item.category_id = $scope.selectedCategory.id;
+                item.category_id = $scope.selectedCategory?.id;
                 if ($scope.editting) {
                     $scope.update($scope.id, item);
                 } else if ($scope.deleting) {
@@ -117,7 +117,7 @@ extendController = ($scope, $http) => {
             });
         } else {
             item.description = editor.getData();
-            item.category_id = $scope.selectedCategory.id;
+            item.category_id = $scope.selectedCategory?.id;
             if ($scope.editting) {
                 $scope.update($scope.id, item);
             } else if ($scope.deleting) {

@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use App\Services\InvoiceDetailService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -61,7 +62,8 @@ class InvoiceDetailApiController extends Controller
     {
         try {
             $data = $request->post();
-            $data['created_by']=20;
+
+            $data['created_by']= Auth::check() ? Auth::user()->id : 0;
             $validator = Validator::make($data,  InvoiceDetail::RULES);
             if ($validator->fails()) {
                 $response = response()->json([

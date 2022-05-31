@@ -48,6 +48,7 @@ class Handler extends ExceptionHandler
             'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
             'status' => false,
             'message' => $e->getMessage(),
+            'trace' => $e->getTrace()
         ]);
     }
 }
