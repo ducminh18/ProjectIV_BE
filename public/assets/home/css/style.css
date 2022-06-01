@@ -29,6 +29,25 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+img {
+	object-fit: cover;
+}
+
+.product_select {
+	padding: 10px;
+	color: black;
+	background-color: whitesmoke;
+}
+
+.product_select.active {
+	color: white;
+	background-color: pink;
+
+}
+
+.product_select:not(:last-child) {
+	margin-right: 1rem;
+}
 
 html,
 body {
@@ -36,6 +55,10 @@ body {
 	font-family: "Cairo", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+}
+
+a, span {
+	font-family:'Roboto', sans-serif;
 }
 
 h1,
@@ -1061,7 +1084,7 @@ ol {
 
 .breadcrumb__option a:after {
 	position: absolute;
-	right: -12px;
+	right: -17px;
 	top: 13px;
 	height: 1px;
 	width: 10px;
@@ -1644,6 +1667,7 @@ ol {
 }
 
 .product__pagination a:hover,
+.product__pagination .active,
 .blog__pagination a:hover {
 	background: #7fad39;
 	border-color: #7fad39;

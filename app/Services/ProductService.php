@@ -74,12 +74,16 @@ class ProductService
         }
         $query->with('image');
         $query->with('category');
-        if ($option['search']) {
-            $query->where('name', 'LIKE', "%" . $option['search'] . "%")
-                ->orWhere('code', 'LIKE', "%" . $option['search'] . "%");
+        if (isset($option['category']) && $option['category'] != null) {
+            $query->where('category_id', '=', $option['category']);
         }
-        if (isset($option['visible_only'])) {
-            $query->where('visible', $option['visible_only'] == "false" ? 0 : 1);
+        if ($option['search']) {
+            $option['search'] = str_replace(' ','|',$option['search']);
+            $query->where('name', 'RLIKE', $option['search'])
+                ->orWhere('code', 'RLIKE', $option['search']);
+        }
+        if ($option['visible_only'] != null &&  $option['visible_only'] == "true") {
+            $query->where('visible', 1);
         }
         if ($orderBy) {
             $query->orderBy($orderBy['column'], $orderBy['sort']);

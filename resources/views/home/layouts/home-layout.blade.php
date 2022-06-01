@@ -1,96 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-	<title>Cozastore</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="/FE/images/icons/favicon.png" />
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/fonts/iconic/css/material-design-iconic-font.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/fonts/linearicons-v1.0.0/icon-font.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/animate/animate.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/css-hamburgers/hamburgers.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/animsition/css/animsition.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/daterangepicker/daterangepicker.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/slick/slick.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/MagnificPopup/magnific-popup.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/FE/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/FE/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/FE/css/style.css">
-	<!--===============================================================================================-->
-	
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/assets/home/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/home/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/home/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/assets/home/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/assets/home/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/home/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/home/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/home/css/style.css" type="text/css">
 </head>
 
-<body >
-	<div class="animsition" ng-app="myApp" ng-controller="myController">
-		@include('home.partial.header')
-		@yield('content')
-		@include('home.partial.footer')
-	</div>
+<body ng-app="myApp" ng-controller="myController">
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="/assets/home/#"><img src="/assets/home/img/logo.png" alt=""></a>
+        </div>
+        <div class="humberger__menu__cart">
+            <ul>
+                {{-- <li><a href="/assets/home/#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
+                <li><a href="/assets/home/#"><i class="fa fa-shopping-bag"></i> <span>@{{cart.length}}</span></a></li>
+            </ul>
+            <div class="header__cart__price">item: <span>@{{totalCart | number}}đ</span></div>
+        </div>
+        <div class="humberger__menu__widget">
+            {{-- <div class="header__top__right__language">
+                <img src="/assets/home/img/language.png" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="/assets/home/#">Spanis</a></li>
+                    <li><a href="/assets/home/#">English</a></li>
+                </ul>
+            </div> --}}
+            <div class="header__top__right__auth">
+                <a href="/assets/home/#"><i class="fa fa-user"></i> Đăng nhập</a>
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="/">Trang chủ</a></li>
+                <li><a href="/products">Shop</a></li>
+                <li><a href="/contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="/assets/home/#"><i class="fa fa-facebook"></i></a>
+            <a href="/assets/home/#"><i class="fa fa-twitter"></i></a>
+            <a href="/assets/home/#"><i class="fa fa-linkedin"></i></a>
+            <a href="/assets/home/#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i>  juice@tt.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
 
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/bootstrap/js/popper.js"></script>
-	<script src="/FE/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-	<script src="/FE/vendor/select2/select2.min.js"></script>
+	@include("home/partial/header")
 
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/daterangepicker/moment.min.js"></script>
-	<script src="/FE/vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/slick/slick.min.js"></script>
-	<script src="/FE/js/slick-custom.js"></script>
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/parallax100/parallax100.js"></script>
+	@yield('content')
 
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	@include("home/partial/footer")
 
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/isotope/isotope.pkgd.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/sweetalert/sweetalert.min.js"></script>
-
-	<!--===============================================================================================-->
-	<script src="/FE/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
-	<!--===============================================================================================-->
+    <!-- Js Plugins -->
+    <script src="/assets/home/js/jquery-3.3.1.min.js"></script>
+    <script src="/assets/home/js/bootstrap.min.js"></script>
+    <script src="/assets/home/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/home/js/jquery-ui.min.js"></script>
+    <script src="/assets/home/js/jquery.slicknav.js"></script>
+    <script src="/assets/home/js/mixitup.min.js"></script>
+    <script src="/assets/home/js/owl.carousel.min.js"></script>
+    <script src="/assets/home/js/main.js"></script>
 	<script src="/assets/angular.min.js"></script>
-	<script src="/admin/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="/admin/js/scripts.js"></script>
-	<script src="/FE/js/main.js"></script>
-    @yield('scripts')
+
+	@yield('scripts')
 </body>
 
 </html>

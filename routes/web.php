@@ -41,5 +41,8 @@ Route::prefix('admin')->group(function () {
 
 Route::get('', [HomeController::class, 'Index']);
 Route::get('/checkout', [CheckoutController::class, 'Index']);
-Route::get('/for-him', [ProductController::class, 'Index']);
-Route::get('/detail-product', [ProductController::class, 'DetailProduct']);
+Route::get('/products', [HomeController::class, 'Shop']);
+Route::get('/products/{id}', [HomeController::class, 'DetailProduct']);
+Route::get('/cart', [HomeController::class, 'Cart']);
+Route::get('/checkout', [HomeController::class, 'Checkout']);
+Route::get('/contact', [HomeController::class, 'Contact']);

@@ -1,5 +1,5 @@
     <!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="hero hero-normal">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -31,14 +31,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="assets/home/img/hero/banner-home-6.webp">
-                        <div class="hero__text">
-                            <h2 style="color: white">Nước ép trái cây <br />100% Organic</h2>
-                            <a href="/products" class="primary-btn">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/assets/home/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Juice Shop</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Trang chủ </a>
+                            <span>@{{href}}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Breadcrumb Section End -->

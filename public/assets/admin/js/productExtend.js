@@ -35,7 +35,7 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "default_image.file_path",
+            field: "image.file_path",
             display: "Ảnh",
             default: "",
             type: "file",
@@ -65,7 +65,7 @@ extendController = ($scope, $http) => {
     }
 
     $scope.showEdit = (item) => {
-        const file = document.getElementById("default_image.file_path");
+        const file = document.querySelector("input[type=file]");
         if (file != null) file.value = "";
         $scope.id = item.id;
         for (let field of $scope.fields.filter((v) => !v.readonly)) {
@@ -83,14 +83,14 @@ extendController = ($scope, $http) => {
         for (let field of $scope.fields.filter((v) => !v.readonly)) {
             $scope.item[field.field] = field.default;
         }
-        const file = document.getElementById("default_image.file_path");
+        const file = document.querySelector("input[type=file]");
         if (file != null) value = "";
         editor.setData("");
         $scope.editting = false;
         $scope.deleting = false;
     };
     $scope.save = () => {
-        const fileE = document.getElementById("default_image.file_path");
+        const fileE = document.querySelector("input[type=file]");
         let file;
         if (fileE != null) file = fileE.files[0];
         let item = {};
