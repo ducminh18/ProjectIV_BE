@@ -49,7 +49,7 @@
                             <li><a href="/cart"><i class="fa fa-shopping-bag"></i>
                                     <span>@{{ cart.length }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>@{{ totalCart | number }}đ</span></div>
+                        <div class="header__cart__price">ST: <span>@{{ totalCart | number }}đ</span></div>
                     </div>
                 </div>
             </div>
