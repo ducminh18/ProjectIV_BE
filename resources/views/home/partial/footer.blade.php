@@ -8,7 +8,7 @@
                             <a href="/"><img src="/assets/home/img/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: Mỹ Hòa, Hưng Yên</li>
+                            <li>Address: Mỹ Hòa, Phố Nối, Hưng Yên</li>
                             <li>Phone: +84 911.111.111</li>
                             <li>Email:  juice@tt.com</li>
                         </ul>
