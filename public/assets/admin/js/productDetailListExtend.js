@@ -6,11 +6,18 @@ extendController = ($scope, $http) => {
         {
             hidden: false,
             field: "product.name",
-            column : 'product_id',
+            column: "product_id",
             display: "Tên sản phẩm",
             default: "",
             type: "text",
             readonly: true,
+        },
+        {
+            hidden: false,
+            field: "color",
+            display: "Màu sắc",
+            default: "",
+            type: "text",
         },
         {
             hidden: false,
@@ -40,14 +47,6 @@ extendController = ($scope, $http) => {
             display: "Số lượng còn",
             default: "",
             type: "text",
-        },
-        {
-            hidden: true,
-            field: "total_quantity",
-            display: "Tổng số",
-            default: 0,
-            type: "text",
-            readonly: true,
         },
         {
             hidden: false,

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceService
 {
@@ -30,10 +31,14 @@ class InvoiceService
         $invoice = Invoice::find($id);
         $updated = Invoice::where('id', $id)
             ->update($data);
-        if (isset($data['customer_id']) && ($invoice->customer_id != $data['customer_id'])) {
-            $this->customer_service->refresh($data['customer_id']);
-            $this->customer_service->refresh($invoice->customer_id);
+        if ($updated && ($data['status'] != 0 && $data['status'] != 3) && ($invoice == 0 || $invoice == 3) )
+        {
+            DB::statement("UPDATE product_details SET remaining_quantity = remaining_quantity - (SELECT quantity FROM invoice_details WHERE invoice_details.invoice_id = {$invoice->id} AND invoice_details.product_detail_id = product_details.id) WHERE id IN (SELECT product_detail_id FROM invoice_details WHERE invoice_id = {$invoice->id})");
         }
+        // if (isset($data['customer_id']) && ($invoice->customer_id != $data['customer_id'])) {
+        //     $this->customer_service->refresh($data['customer_id']);
+        //     $this->customer_service->refresh($invoice->customer_id);
+        // }
         return $updated > 0;
     }
 

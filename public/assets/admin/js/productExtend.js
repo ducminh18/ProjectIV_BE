@@ -10,13 +10,13 @@ extendController = ($scope, $http) => {
             default: "",
             type: "text",
         },
-        {
-            hidden: false,
-            field: "code",
-            display: "Mã",
-            default: "",
-            type: "text",
-        },
+        // {
+        //     hidden: false,
+        //     field: "code",
+        //     display: "Mã",
+        //     default: "",
+        //     type: "text",
+        // },
         {
             hidden: false,
             field: "category.name",
