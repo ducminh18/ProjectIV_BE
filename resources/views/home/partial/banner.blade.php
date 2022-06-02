@@ -1,18 +1,26 @@
-    <!-- Banner Begin -->
-    <div class="banner">
+    <!-- Banner -->
+    <div class="sec-banner bg0 p-t-80 p-b-50">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="/assets/home/img/banner/banner-1.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="/assets/home/img/banner/banner-2.jpg" alt="">
+                <div ng-repeat="cate in categories" class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                    <!-- block -->
+                    <div class="block wrap-pic-w" style="height: 10rem">
+                        <a href="/products?category=@{{ cate.id }}"
+                            class="block-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                            <div class="block-txt-child1 flex-col-l">
+                                <span class="block-name ltext-102 trans-04 p-b-8" style="font-weight: 700">
+                                    @{{ cate.name }}
+                                </span>
+                            </div>
+
+                            <div class="block-txt-child2 p-b-4 trans-05">
+                                <div class="block-link stext-101 cl0 trans-09">
+                                    Xem ngay
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Banner End -->

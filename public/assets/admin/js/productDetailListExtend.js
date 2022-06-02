@@ -17,7 +17,7 @@ extendController = ($scope, $http) => {
             display: "Màu sắc",
             default: "",
             type: "text",
-            readonly : true
+            readonly : false
         },
         {
             hidden: false,

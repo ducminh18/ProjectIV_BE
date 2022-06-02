@@ -138,53 +138,19 @@ app.controller("myController", function ($scope, $http, $location) {
         $scope.getList();
     };
     $scope.$watch("data", function (value) {
-        setTimeout(() => {
-            $(".set-bg").each(function () {
-                var bg = $(this).data("setbg");
-                $(this).css("background-image", "url(" + bg + ")");
-            });
-        }, 200);
+        setTimeout(() => {}, 200);
     });
 
     $scope.categories = [];
     $http
-        .get(baseUrl + "/api/admin/categories?page=1&limit=1000&visible_only=true")
+        .get(
+            baseUrl +
+                "/api/admin/categories?page=1&limit=1000&visible_only=true"
+        )
         .then((res) => {
             if (res.data.status == true) {
                 $scope.categories = res.data.data;
-                setTimeout(() => {
-                    $(".categories__slider").owlCarousel({
-                        loop: true,
-                        margin: 0,
-                        items: 4,
-                        dots: false,
-                        nav: true,
-                        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-                        animateOut: 'fadeOut',
-                        animateIn: 'fadeIn',
-                        smartSpeed: 1200,
-                        autoHeight: false,
-                        autoplay: true,
-                        responsive: {
-                
-                            0: {
-                                items: 1,
-                            },
-                
-                            480: {
-                                items: 2,
-                            },
-                
-                            768: {
-                                items: 3,
-                            },
-                
-                            992: {
-                                items: 4,
-                            }
-                        }
-                    });
-                }, 200);
+                setTimeout(() => {}, 200);
             }
         });
     $scope.addCart = function (value, quantity = 1) {

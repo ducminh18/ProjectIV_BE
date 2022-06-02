@@ -1,44 +1,85 @@
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>Loại đồ uống</span>
+
+    <!-- Slider -->
+    <section class="section-slide">
+        <div class="wrap-slick1">
+            <div class="slick1">
+                <div class="item-slick1" style="background-image: url(/assets/home/images/slide-01.jpg);">
+                    <div class="container h-full">
+                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+                                <span class="ltext-101 cl2 respon2">
+                                    Women Collection 2018
+                                </span>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
+                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+                                    NEW SEASON
+                                </h2>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+                                <a href="/assets/home/product.html"
+                                    class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                    Shop Now
+                                </a>
+                            </div>
                         </div>
-                        <ul ng-repeat="cate in categories">
-                            <li><a href="/products?category=@{{ cate.id }}">@{{ cate.name }}</a></li>
-                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="/products">
-                                <input type="text" name="search" placeholder="Bạn cần tìm gì?">
-                                <button type="submit" class="site-btn">Tìm</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
+
+                <div class="item-slick1" style="background-image: url(/assets/home/images/slide-02.jpg);">
+                    <div class="container h-full">
+                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+                            <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
+                                <span class="ltext-101 cl2 respon2">
+                                    Men New-Season
+                                </span>
                             </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+84 911.111.111</h5>
-                                <span>support 24/7 time</span>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn"
+                                data-delay="800">
+                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+                                    Jackets & Coats
+                                </h2>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
+                                <a href="/assets/home/product.html"
+                                    class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                    Shop Now
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="assets/home/img/hero/banner-home-6.webp">
-                        <div class="hero__text">
-                            <h2 style="color: white">Nước ép trái cây <br />100% Organic</h2>
-                            <a href="/products" class="primary-btn">Mua ngay</a>
+                </div>
+
+                <div class="item-slick1" style="background-image: url(/assets/home/images/slide-03.jpg);">
+                    <div class="container h-full">
+                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+                            <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
+                                data-delay="0">
+                                <span class="ltext-101 cl2 respon2">
+                                    Men Collection 2018
+                                </span>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight"
+                                data-delay="800">
+                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+                                    New arrivals
+                                </h2>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
+                                <a href="/assets/home/product.html"
+                                    class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                    Shop Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
