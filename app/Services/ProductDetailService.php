@@ -45,14 +45,13 @@ class ProductDetailService
         return $deleted;
     }
 
-    public function create(array |ProductDetail $data)
+    public function create(array  $data)
     {
-        $productDetail = is_array($data) ?
-            ProductDetail::create($data)
-            : $data;
-        if ($productDetail->save()) {
+        $productDetail =
+            ProductDetail::create($data);
+        if ($productDetail != null) {
             $product = Product::find($productDetail->product_id);
-            if ($product) {
+            if ($product != null) {
                 $query = ProductDetail::query()
                     ->where('product_id', '=', $product->id);
                 $product->quantity = $query->sum('remaining_quantity');
