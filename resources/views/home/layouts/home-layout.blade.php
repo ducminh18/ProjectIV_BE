@@ -61,6 +61,7 @@
                 <li class="active"><a href="/">Trang chủ</a></li>
                 <li><a href="/products">Shop</a></li>
                 <li><a href="/contact">Liên hệ</a></li>
+                <li><a href="/invoice">Đơn hàng</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>

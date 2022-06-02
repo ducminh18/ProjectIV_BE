@@ -7,6 +7,7 @@ use App\Http\Resources\InvoiceDetailResource;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use App\Models\ProductDetail;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceDetailService
 {
@@ -55,17 +56,21 @@ class InvoiceDetailService
         $productDetail = ProductDetail::find($data['product_detail_id']);
         if ($productDetail == null) return 0;
         $data['price'] = $productDetail->out_price;
-        $invoiceDetail =
+        $invoiceDetail  = InvoiceDetail::where('invoice_id', $data['invoice_id'])->where('product_detail_id', $data['product_detail_id'])->first();
+        if ($invoiceDetail == null)
+        {
+            $invoiceDetail =
             InvoiceDetail::create($data);
-        if ($invoiceDetail->save()) {
-            $invoice = Invoice::find($invoiceDetail->invoice_id);
-            if ($invoice) {
-                $query = InvoiceDetail::query()
-                    ->where('invoice_id', '=', $invoice->id);
-                $invoice->quantity = $query->sum('remaining_quantity');
-                $invoice->option_count = $query->count();
-                $invoice->save();
-            }
+            $total = $invoiceDetail->quantity * $invoiceDetail->price;
+        }
+        else
+        {
+            $invoiceDetail->quantity += $data['quantity'];
+            $invoiceDetail->save();
+            $total = $data['quantity'] * $data['price'];
+        }
+        if ($invoiceDetail != null) {
+            DB::statement("UPDATE `invoices` SET `total` = `total` + {$total} WHERE `id` = ".$invoiceDetail->invoice_id);
             return $invoiceDetail->id;
         } else return 0;
     }
@@ -97,7 +102,8 @@ class InvoiceDetailService
         $query = InvoiceDetail::query()
             ->where('id', $id)
             ->with('invoice')
-            ->with('productDetail');
+            ->with('productDetail.product.image')
+            ->with('productDetail.image');
         return new InvoiceDetailResource($query->find($id));
     }
 }

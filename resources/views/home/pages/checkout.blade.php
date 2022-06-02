@@ -24,27 +24,27 @@
                         <div class="col-lg-8 col-md-6">
                             <div class="checkout__input">
                                 <p>Tên khách hàng<span>*</span></p>
-                                <input required type="text" ng-model="customer.name">
+                                <input required type="text" name="name" ng-model="customer.name">
                             </div>
                             <div class="checkout__input">
                                 <p>Số điện thoại<span>*</span></p>
-                                <input required type="text" ng-model="customer.phone">
+                                <input required type="text" name="phone_number" ng-model="customer.phone">
                             </div>
                             <div class="checkout__input">
                                 <p>Tỉnh/Thành phố<span>*</span></p>
-                                <input required type="text" ng-model="customer.town">
+                                <input required type="text"  name="town" ng-model="customer.town">
                             </div>
                             <div class="checkout__input">
                                 <p>Quận/Huyện<span>*</span></p>
-                                <input required type="text" ng-model="customer.district">
+                                <input required type="text"  name="district" ng-model="customer.district">
                             </div>
                             <div class="checkout__input">
                                 <p>Xã/Phường<span>*</span></p>
-                                <input required type="text" ng-model="customer.commune">
+                                <input required type="text"  name="commune" ng-model="customer.commune">
                             </div>
                             <div class="checkout__input">
                                 <p>Địa chỉ<span>*</span></p>
-                                <input required type="text" ng-model="customer.address">
+                                <input required type="text"  name="address" ng-model="customer.address">
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="acc">
@@ -57,7 +57,7 @@
                             </p>
                             <div ng-if="createAccount" class="checkout__input">
                                 <p>Email<span>*</span></p>
-                                <input type="email"  ng-model="customer.email">
+                                <input type="email"  name="email"  ng-model="customer.email">
                             </div>
                             <div ng-if="createAccount" class="checkout__input">
                                 <p>Mật khẩu<span>*</span></p>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Ghi chú<span>*</span></p>
-                                <input type="text" placeholder="">
+                                <input  name="note" type="text" placeholder="">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">

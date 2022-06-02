@@ -82,7 +82,8 @@ class InvoiceService
     public function getById(int $id)
     {
         $query = Invoice::query();
-        $query->with('details.productDetail');
+        $query->with('details.productDetail.product.image');
+        $query->with('details.productDetail.image');
         $query->with('customer');
         return new InvoiceResource($query->find($id));
     }

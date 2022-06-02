@@ -23,6 +23,7 @@
                             <li><a href="/cart">Giỏ hàng</a></li>
                             <li><a href="/checkout">Thanh toán</a></li>
                             <li><a href="/contact">Liên hệ</a></li>
+                            <li><a href="/invoice">Đơn hàng</a></li>
                         </ul>
                     </div>
                 </div>

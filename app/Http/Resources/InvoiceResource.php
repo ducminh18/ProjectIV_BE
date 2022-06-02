@@ -3,7 +3,9 @@
 namespace App\Http\Resources;
 
 use App\Models\Invoice;
+use App\Models\InvoiceDetail;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceResource extends JsonResource
 {

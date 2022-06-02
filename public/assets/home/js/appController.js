@@ -21,6 +21,7 @@ app.controller("myController", function ($scope, $http, $location) {
     $scope.totalCart = 0;
     $scope.cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
     $scope.baseUrl = baseUrl;
+    $scope.getDataOnInit = true;
     let sent = 0;
     $scope.$watchCollection("cart", function (newCol, oldCol, value) {
         $scope.totalCart = 0;
@@ -76,11 +77,13 @@ app.controller("myController", function ($scope, $http, $location) {
 
     $scope.getById = (id) => {
         const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
-        $http.get(url).then((res) => {
+        return $http.get(url).then((res) => {
             if (res.data.status == true) {
                 const index = $scope.data.findIndex((v) => v.id == id);
                 if (index > 0) {
                     $scope.data[index] = res.data.data;
+                } else {
+                    $scope.data.push(res.data.data);
                 }
             }
         });
@@ -127,7 +130,8 @@ app.controller("myController", function ($scope, $http, $location) {
         }
         $scope.getList();
     };
-    $scope.getList();
+
+    if ($scope.getDataOnInit) $scope.getList();
 
     $scope.search = (val) => {
         $scope.searchValue = val;

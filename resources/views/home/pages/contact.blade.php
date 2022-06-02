@@ -16,7 +16,7 @@
                     <p style="font-size: 24px;">@{{message}}</p>
                 </div>
                 <div class="col-12">
-                    <p style="font-size: 24px;">Mã đơn hàng của bạn là : <strong>@{{invoiceId}}</strong></p>
+                    <p style="font-size: 24px;">Mã đơn hàng của bạn là : <strong>@{{invoiceId}}</strong> <a href="/invoice?invoice=@{{invoiceId}}">Xem đơn hàng</a></p>
                 </div>
             </div>
             <div class="row">

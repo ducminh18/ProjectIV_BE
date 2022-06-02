@@ -121,7 +121,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	/* color: #ffffff; */
 }
 
 ul,
@@ -2150,6 +2150,9 @@ ol {
 	font-size: 16px;
 	color: #b2b2b2;
 	border-radius: 4px;
+}
+.checkout__input input:read-only {
+	color: black;
 }
 
 .checkout__input input.checkout__input__add {

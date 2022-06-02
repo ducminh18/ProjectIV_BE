@@ -46,3 +46,4 @@ Route::get('/products/{id}', [HomeController::class, 'DetailProduct']);
 Route::get('/cart', [HomeController::class, 'Cart']);
 Route::get('/checkout', [HomeController::class, 'Checkout']);
 Route::get('/contact', [HomeController::class, 'Contact']);
+Route::get('/invoice', [HomeController::class, 'Invoice']);

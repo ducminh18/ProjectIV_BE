@@ -64,7 +64,8 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="/products" class="primary-btn cart-btn">Tiếp tục mua hàng</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right" style="opacity: 0;"><span class="icon_loading"></span>
+                        <a href="#" class="primary-btn cart-btn cart-btn-right" style="opacity: 0;"><span
+                                class="icon_loading"></span>
                             Upadate Cart</a>
                     </div>
                 </div>
