@@ -89,7 +89,8 @@ app.controller("myController", function ($scope, $http) {
         }
     };
 
-    $scope.order = (column) => {
+    $scope.order = (field) => {
+        const column = field.column ?? field.field;
         if ($scope.column != column) {
             $scope.column = column;
         } else {
