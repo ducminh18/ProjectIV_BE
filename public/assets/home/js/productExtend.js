@@ -21,11 +21,24 @@ extendController = function ($scope, $http, $location) {
     $scope.sort = "desc";
     $scope.href = "Shop";
     $scope.extendQuerys = "visible_only=true&consumable_only=true";
-    $scope.searchValue = params.search??'';
-    $scope.$watch(
-        "location.search()",
+    $scope.searchValue = params.search ?? "";
+    $scope.$watchCollection(
+        "data",
         function () {
-            console.log($location.search());
+            $(".latest-product__slider").owlCarousel({
+                loop: true,
+                margin: 0,
+                items: 1,
+                dots: false,
+                nav: true,
+                navText: [
+                    "<span class='fa fa-angle-left'><span/>",
+                    "<span class='fa fa-angle-right'><span/>",
+                ],
+                smartSpeed: 1200,
+                autoHeight: false,
+                autoplay: true,
+            });
         },
         true
     );

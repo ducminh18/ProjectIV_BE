@@ -60,15 +60,14 @@ extendController = function ($scope, $http, $location) {
         }
     });
     $scope.$watch("data", function (value) {
-        const index = $scope.data.findIndex(v => v.id == productId);
-        if (index >= 0) $scope.data.splice(index, 1)
+        const index = $scope.data.findIndex((v) => v.id == productId);
+        if (index >= 0) $scope.data.splice(index, 1);
         else $scope.data.pop();
     });
     $scope.$watch("detail", function (value) {
-        $scope.price = value?.out_price??0;
+        $scope.price = value?.out_price ?? 0;
     });
     $scope.setDetail = (d) => {
         $scope.detail = d;
-    }
+    };
 };
-

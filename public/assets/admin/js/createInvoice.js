@@ -7,6 +7,7 @@ extendController = ($scope, $http) => {
         { name: "Đã duyệt", id: 1 },
         { name: "Đang giao", id: 2 },
         { name: "Từ chối", id: 3 },
+        { name: "Hoàn thành", id: 4 },
     ];
 
     $scope.fields = [

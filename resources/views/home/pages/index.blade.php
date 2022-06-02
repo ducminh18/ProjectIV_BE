@@ -12,8 +12,8 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div style="height: 50px;" ng-repeat="cate in categories"
+                    <div class="col-lg-3" ng-repeat="cate in categories">
+                        <div style="height: 50px; background-color: whitesmoke !important;"
                             class="d-flex justify-content-center align-items-center">
                             <h5><a style="color:black !important;font-size:18px;font-weight: 700;"
                                     href="/products?category=@{{ cate.id }}">@{{ cate.name }}</a></h5>

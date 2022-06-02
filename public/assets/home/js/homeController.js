@@ -1,6 +1,5 @@
 const route = "products";
 extendController = function ($scope, $http) {
-
     $scope.change = () => {
         console.log($scope.file);
     };

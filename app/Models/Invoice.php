@@ -46,6 +46,8 @@ class Invoice extends AuditedEntity
                 return "Đang giao";
             case 3:
                 return "Từ chối";
+            case 4:
+                return "Hoàn thành";
             default:
                 return "Đang duyệt";
         }
