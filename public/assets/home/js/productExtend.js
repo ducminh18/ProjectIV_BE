@@ -4,10 +4,9 @@ extendController = function ($scope, $http, $location) {
         get: (searchParams, prop) => searchParams.get(prop),
     });
     $scope.categories = [];
-    {
-        const categoryId = params.category;
-        if (categoryId) $scope.extendQuerys = "category=" + categoryId;
-    }
+    $scope.extendQuerys = "visible_only=true&consumable_only=true";
+    const categoryId = params.category;
+    if (categoryId) $scope.extendQuerys = "category=" + categoryId + "&";
     $http
         .get(baseUrl + "/api/admin/categories?page=1&limit=1000")
         .then((res) => {
@@ -20,7 +19,6 @@ extendController = function ($scope, $http, $location) {
     $scope.column = "created_at";
     $scope.sort = "desc";
     $scope.href = "Shop";
-    $scope.extendQuerys = "visible_only=true&consumable_only=true";
     $scope.searchValue = params.search ?? "";
     $scope.$watchCollection(
         "data",
