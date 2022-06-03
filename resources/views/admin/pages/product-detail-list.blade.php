@@ -35,13 +35,14 @@
                 <tr ng-repeat="item in data">
                     <th scope="row">@{{ $index + 1 }}</th>
                     <td ng-repeat="f in fields | visible">
-                        <span ng-if="f.type != 'file' && f.type != 'editor'"> @{{ item | value: f.field }}</span>
+                        <span ng-if="f.type != 'file' && f.type != 'editor' && f.type != 'number'"> @{{ item | value: f.field }}</span>
+                        <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
                         <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
                     </td>
                     <td>
-                        <a href="/admin/product-detail/@{{ item.id }}" class="btn btn-success m-1">Xem</a>
+                        <a href="/admin/product/@{{ item.product.id }}" class="btn btn-success m-1">Xem</a>
                         <button ng-click="showEdit(item)" type="button" class="btn btn-info m-1" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                             Sửa

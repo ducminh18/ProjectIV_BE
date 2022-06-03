@@ -31,6 +31,7 @@ extendController = ($scope, $http) => {
             display: "Số lượng",
             default: "",
             type: "text",
+            readonly: true
         },
         {
             hidden: false,
