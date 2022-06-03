@@ -1,7 +1,4 @@
 "use strict";
-if (!localStorage.getItem("token")) {
-    window.location.href = "/admin/login";
-}
 
 var extendController;
 const baseUrl = "";
@@ -73,7 +70,7 @@ app.controller("myController", function ($scope, $http, $location) {
             transformRequest: angular.identity,
             headers: { "Content-Type": undefined },
         });
-    };
+    }; 
 
     $scope.getById = (id) => {
         const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
