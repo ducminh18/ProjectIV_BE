@@ -35,6 +35,11 @@ class InvoiceService
             {
                 DB::statement("UPDATE product_details SET remaining_quantity = remaining_quantity - (SELECT quantity FROM invoice_details WHERE invoice_details.invoice_id = {$invoice->id} AND invoice_details.product_detail_id = product_details.id) WHERE id IN (SELECT product_detail_id FROM invoice_details WHERE invoice_id = {$invoice->id})");
             }
+            else if ($updated && ($data['status'] == 0 || $data['status'] == 3) && ($invoice->status != 0 && $invoice->status != 3))
+            {
+                DB::statement("UPDATE product_details SET remaining_quantity = remaining_quantity + (SELECT quantity FROM invoice_details WHERE invoice_details.invoice_id = {$invoice->id} AND invoice_details.product_detail_id = product_details.id) WHERE id IN (SELECT product_detail_id FROM invoice_details WHERE invoice_id = {$invoice->id})");
+                DB::statement("UPDATE products SET quantity = (SELECT SUM(remaining_quantity) FROM product_details WHERE product_details.product_id = products.id)");
+            }
         return $updated > 0;
     }
 
