@@ -1,4 +1,5 @@
 const route = "products";
+var $grid;
 extendController = function ($scope, $http, $location) {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
@@ -23,21 +24,30 @@ extendController = function ($scope, $http, $location) {
     $scope.$watchCollection(
         "data",
         function () {
-            $(".latest-product__slider").owlCarousel({
-                loop: true,
-                margin: 0,
-                items: 1,
-                dots: false,
-                nav: true,
-                navText: [
-                    "<span class='fa fa-angle-left'><span/>",
-                    "<span class='fa fa-angle-right'><span/>",
-                ],
-                smartSpeed: 1200,
-                autoHeight: false,
-                autoplay: true,
-            });
+            setTimeout(() => {}, 200);
         },
         true
     );
+    $scope.showModal = (item) => {
+        $scope.currentProd = item;
+        $http.get(baseUrl + '/api/product-details?limit=999&product_id=' + item.id).then(res => {
+            if (res.data.status == true)
+            {
+                $scope.currentProd.details = res.data.data;
+            }
+        })
+        $(".js-modal1").addClass("show-modal1");
+    };
+    $scope.hideModal = () => {
+        $(".js-modal1").removeClass("show-modal1");
+    };
+    $scope.sortByTime = function () {
+        $grid.isotope({ sortBy: "createTime", sortAscending: false });
+    };
+    $scope.ascPrice = function () {
+        $grid.isotope({ sortBy: "price", sortAscending: true });
+    };
+    $scope.descPrice = function () {
+        $grid.isotope({ sortBy: "price", sortAscending: false });
+    };
 };

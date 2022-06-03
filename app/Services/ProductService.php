@@ -78,7 +78,7 @@ class ProductService
             $query->where('category_id', '=', $option['category']);
         }
         if ($option['search']) {
-            $option['search'] = str_replace(' ','|',$option['search']);
+            $option['search'] = str_replace(' ', '|', $option['search']);
             $query->where('name', 'RLIKE', $option['search'])
                 ->orWhere('code', 'RLIKE', $option['search']);
         }
@@ -98,6 +98,7 @@ class ProductService
         $query->with('details.image');
         $query->with('images.blob');
         $query->with('image');
+        $query->with('category');
 
         return new ProductResource($query->find($id));
     }

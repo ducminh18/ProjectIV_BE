@@ -37,6 +37,7 @@ extendController = ($scope, $http) => {
         {
             hidden: false,
             field: "status_name",
+            column : "status",
             display: "Trạng thái",
             default: "",
             type: "text",

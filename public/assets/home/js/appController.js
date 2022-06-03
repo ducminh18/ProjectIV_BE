@@ -122,11 +122,12 @@ app.controller("myController", function ($scope, $http, $location) {
         }
     };
 
-    $scope.order = (column) => {
+    $scope.order = (column, sort) => {
         if ($scope.column != column) {
             $scope.column = column;
         } else {
-            $scope.sort = $scope.sort == "asc" ? "desc" : "asc";
+            if (sort) $scope.sort = sort;
+            else $scope.sort = $scope.sort == "asc" ? "desc" : "asc";
         }
         $scope.getList();
     };
@@ -150,7 +151,6 @@ app.controller("myController", function ($scope, $http, $location) {
         .then((res) => {
             if (res.data.status == true) {
                 $scope.categories = res.data.data;
-                setTimeout(() => {}, 200);
             }
         });
     $scope.addCart = function (value, quantity = 1) {
@@ -168,6 +168,13 @@ app.controller("myController", function ($scope, $http, $location) {
                 product: value,
             });
         }
+        if (!window.location.pathname.includes("cart")) {
+            swal(
+                `${value.product.name} ${value.size} ${value.color} `,
+                "Đã thêm vào giỏ hàng",
+                "success"
+            );
+        }
     };
 
     $scope.deleteCart = function (value, quantity = 1) {
@@ -177,8 +184,11 @@ app.controller("myController", function ($scope, $http, $location) {
         if (itemIndex >= 0) {
             const item = $scope.cart[itemIndex];
             if (item.quantity == quantity) $scope.cart.splice(itemIndex, 1);
-            else item.quantity -= quantity;
-            $scope.cart[itemIndex] = { ...item };
+            else {
+                item.quantity -= quantity;
+
+                $scope.cart[itemIndex] = { ...item };
+            }
         }
     };
 });

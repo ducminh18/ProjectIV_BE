@@ -1,4 +1,4 @@
-@extends('home.layouts.home-layout')
+@extends('home.layouts.home-v4-layout')
 @section('title')
     Sản phẩm
 @endsection
@@ -7,108 +7,123 @@
 @endsection
 
 @section('content')
-    @include('home/partial/extend_header')
-    <!-- Product Section Begin -->
-    <section class="product spad">
+    <!-- Product -->
+    <div class="bg0 m-t-23 p-b-140">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        <div class="sidebar__item">
-                            <h4>Loại</h4>
-                            <ul>
-                                <li ng-repeat="cate in categories"><a
-                                        href="/products?category=@{{ cate.id }}">@{{ cate.name }}</a></li>
-                            </ul>
-                        </div>
-                        <div class="sidebar__item">
-                            <div class="latest-product__text">
-                                <h4>Mới nhất</h4>
-                                <div class="latest-product__slider owl-carousel">
-                                    <div class="latest-prdouct__slider__item">
-                                        <a ng-repeat="x in data.slice(0,3)" href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic w-50">
-                                                <img src="@{{ baseUrl + '/api/files/' + x.image.file_path }}" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>@{{ x.name }}</h6>
-                                                <span>@{{ x.min_price | number }}đ</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div ng-if="data.length > 3" class="latest-prdouct__slider__item">
-                                        <a ng-repeat="x in data.slice(3,3)" href="#" class="latest-product__item">
-                                            <div class="latest-product__item__pic w-50">
-                                                <img src="@{{ baseUrl + '/api/files/' + x.image.file_path }}" alt="">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>@{{ x.name }}</h6>
-                                                <span>@{{ x.min_price | number }}đ</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+            <div class="flex-w flex-sb-m p-b-52">
+                <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                        Tất cả
+                    </button>
+
+                    <button ng-repeat="cate in categories" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+                        data-filter=".@{{ cate.id }}">
+                        @{{ cate.name }}
+                    </button>
+                </div>
+
+                <div class="flex-w flex-c-m m-tb-10">
+                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                        <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+                        <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                        Lọc
+                    </div>
+
+                    <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+                        <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+                        <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                        Tìm kiếm
+                    </div>
+                </div>
+
+                <!-- Search product -->
+                <div class="dis-none panel-search w-full p-t-10 p-b-15">
+                    <div class="bor8 dis-flex p-l-15">
+                        <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" ng-click="search(searchValue)">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+
+                        <input ng-model="searchValue" class="mtext-107 cl2 size-114 plh2 p-r-15" type="text"
+                            name="search-product" placeholder="Tìm kiếm">
+                    </div>
+                </div>
+
+                <!-- Filter -->
+                <div class="dis-none panel-filter w-full p-t-10">
+                    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                        <div class="filter-col1 p-r-15 p-b-27">
+                            <div class="mtext-102 cl2 p-b-15">
+                                Sắp xếp
                             </div>
+
+                            <ul>
+                                <li class="p-b-6">
+                                    <a href="javascript:;" class="filter-link stext-106 trans-04">
+                                        Mặc định
+                                    </a>
+                                </li>
+
+                                <li class="p-b-6">
+                                    <a ng-click="sortByTime()" href="javascript:;" class="filter-link stext-106 trans-04">
+                                        Ngày ra mắt
+                                    </a>
+                                </li>
+
+                                <li class="p-b-6">
+                                    <a ng-click="ascPrice()" href="javascript:;" class="filter-link stext-106 trans-04">
+                                        Giá : Tăng dần
+                                    </a>
+                                </li>
+
+                                <li class="p-b-6">
+                                    <a ng-click="descPrice()" href="javascript:;" class="filter-link stext-106 trans-04">
+                                        Giá : Giảm dần
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-7">
-                    <div class="">
-                        <div class="section-title product__discount__title">
-                            <h2>Sản phẩm</h2>
+            </div>
+
+            <div class="row isotope-grid">
+                <div data-price="@{{ item.min_price }}" data-ct="@{{ item.created_time }}" ng-repeat="item in data"
+                    class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @{{ item.category_id }}">
+                    <!-- Block2 -->
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <img height="400px" style="object-fit: cover" src="@{{ baseUrl + '/api/files/' + item.image.file_path }}" alt="IMG-PRODUCT">
+
+                            <a href="products/@{{ item.id }}"
+                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                Xem ngay
+                            </a>
                         </div>
-                    </div>
-                    <div class="filter__item">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select onchange="console.log(event)">
-                                        <option value="">Mặc định</option>
-                                        <option value="created_at">Ngày ra mắt</option>
-                                    </select>
-                                </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    @{{ item.name }}
+                                </a>
+
+                                <span class="stext-105 cl3">
+                                    @{{ item.min_price | number }}đ
+                                </span>
                             </div>
-                            <div class="col-lg-4 col-md-4">
-                                <div class="filter__found">
-                                    <h6><span>@{{ data.length }}</span> Sản phẩm</h6>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-3">
-                                {{-- <div class="filter__option">
-                                    <span class="icon_grid-2x2"></span>
-                                    <span class="icon_ul"></span>
-                                </div> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div ng-repeat="item in data" class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="@{{ baseUrl + 'api/files/' + item.image.file_path }}">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="/products/@{{ item.id }}"><i class="fa fa-search"></i></a>
-                                        </li>
-                                        <li><a href="javascript:;" ng-click="addCart(item.default_detail)"><i
-                                                    class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">@{{ item.name }}</a></h6>
-                                    <h5>@{{ item.min_price | number }}đ</h5>
-                                </div>
+
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                <a ng-click="item.default_detail.product = item;addCart(item.default_detail)"
+                                    href="javascript:;" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
+                                    style="font-size: 20px">
+                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="product__pagination">
-                        <a href="javascript:;" ng-repeat="i in [] | page: page : totalRecords: limit" ng-click="loadPage(i)"
-                            ng-class="i == page ? 'page-item active' : 'page-item'">@{{ i }}</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Product Section End -->
+    </div>
 @endsection
 @section('scripts')
     <script src="/assets/home/js/productExtend.js"></script>

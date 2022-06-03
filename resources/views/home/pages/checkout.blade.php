@@ -1,11 +1,13 @@
-@extends('home.layouts.home-layout')
+@extends('home.layouts.home-v4-layout')
 @section('title')
     Thanh toán
 @endsection
 @section('page-title')
     Thanh toán
 @endsection
-
+@section('css-link')
+    <link rel="stylesheet" href="/assets/home/css/style.css">
+@endsection
 @section('content')
     @include('home/partial/extend_header')
     <!-- Checkout Section Begin -->

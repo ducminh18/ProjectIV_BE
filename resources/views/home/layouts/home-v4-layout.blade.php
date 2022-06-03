@@ -36,12 +36,13 @@
     <link rel="stylesheet" type="text/css" href="/assets/home/css/main.css">
     <!--===============================================================================================-->
     <script src="/assets/angular.min.js"></script>
+    @yield('css-link')
 </head>
 
 <body class="animsition" ng-app="myApp" ng-controller="myController">
 
     <!-- Header -->
-    <header>
+    <header class="header-v4">
         <!-- Header desktop -->
         <div class="container-menu-desktop">
             <!-- Topbar -->
@@ -52,22 +53,22 @@
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
-                        <a href="/assets/home/#" class="flex-c-m trans-04 p-lr-25">
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
                             VN
                         </a>
 
-                        <a href="/assets/home/#" class="flex-c-m trans-04 p-lr-25">
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
                             VND
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="wrap-menu-desktop">
+            <div class="wrap-menu-desktop how-shadow1">
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a href="/assets/home/#" class="logo">
+                    <a href="#" class="logo">
                         <img src="/assets/home/images/icons/logo-01.png" alt="IMG-LOGO">
                     </a>
 
@@ -75,14 +76,15 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="/">Tra chủ</a>
+                                <a href="/">Home</a>
+                            </li>
+
+                            <li class="">
+                                <a href="/products">Shop</a>
                             </li>
 
                             <li>
-                                <a href="/products">Shop</a>
-                            </li>
-                            <li>
-                                <a href="/track-order">Đơn hàng</a>
+                                <a href="/trach-order">Đơn hàng</a>
                             </li>
 
                             <li>
@@ -110,7 +112,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="/assets/home/index.html"><img src="/assets/home/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+                <a href="index.html"><img src="/assets/home/images/icons/logo-01.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -120,15 +122,9 @@
                 </div>
 
                 <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                    data-notify="2">
+                    data-notify="@{{ cart.length }}">
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
-
-                <a href="/assets/home/#"
-                    class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-                    data-notify="0">
-                    <i class="zmdi zmdi-favorite-outline"></i>
-                </a>
             </div>
 
             <!-- Button show menu -->
@@ -145,17 +141,17 @@
             <ul class="topbar-mobile">
                 <li>
                     <div class="left-top-bar">
-                        Free shipping for standard order over $100
+                        Miễn phí vận chuyển đơn hàng từ 500K
                     </div>
                 </li>
 
                 <li>
                     <div class="right-top-bar flex-w h-full">
-                        <a href="/assets/home/#" class="flex-c-m p-lr-10 trans-04">
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
                             VN
                         </a>
 
-                        <a href="/assets/home/#" class="flex-c-m p-lr-10 trans-04">
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
                             VND
                         </a>
                     </div>
@@ -165,18 +161,16 @@
             <ul class="main-menu-m">
                 <li>
                     <a href="/">Trang chủ</a>
-                    <span class="arrow-main-menu-m">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </span>
                 </li>
 
                 <li>
-                    <a href="/products">Shop</a>
+                    <a href="/products">Sản phẩm</a>
                 </li>
 
                 <li>
-                    <a href="/trach-order" class="label1 rs1" data-label1="hot">Đơn hàng</a>
+                    <a href="/track-order">Đơn hàng</a>
                 </li>
+
                 <li>
                     <a href="/contact">Liên hệ</a>
                 </li>
@@ -217,10 +211,10 @@
 
             <div class="header-cart-content flex-w js-pscroll">
                 <ul class="header-cart-wrapitem w-full">
-                    <li ng-repeat="c in cart" class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img ng-if="c.product.image" src="@{{ baseUrl + 'api/files/' + c.product.image.file_path }}" alt="IMG">
-                            <img ng-if="!c.product.image" src="@{{ baseUrl + 'api/files/' + c.product.product.image.file_path }}" alt="IMG">
+                    <li ng-repeat="c in cart track by $index" class="header-cart-item flex-w flex-t m-b-12">
+                        <div class="header-cart-item-img" ng-click="deleteCart(c.product)">
+                            <img ng-if="c.product.image" src="@{{ baseUrl + '/api/files/' + c.product.image.file_path }}" alt="IMG">
+                            <img ng-if="!c.product.image" src="@{{ baseUrl + '/api/files/' + c.product.product.image.file_path }}" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">
@@ -258,6 +252,8 @@
 
     @yield('content')
 
+
+
     @include('home/partial/footer')
 
 
@@ -268,173 +264,6 @@
         </span>
     </div>
 
-    <!-- Modal1 -->
-    <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-        <div class="overlay-modal1 js-hide-modal1"></div>
-
-        <div class="container">
-            <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-                <button class="how-pos3 hov3 trans-04 js-hide-modal1">
-                    <img src="/assets/home/images/icons/icon-close.png" alt="CLOSE">
-                </button>
-
-                <div class="row">
-                    <div class="col-md-6 col-lg-7 p-b-30">
-                        <div class="p-l-25 p-r-30 p-lr-0-lg">
-                            <div class="wrap-slick3 flex-sb flex-w">
-                                <div class="wrap-slick3-dots"></div>
-                                <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-                                <div class="slick3 gallery-lb">
-                                    <div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-                                        <div class="wrap-pic-w pos-relative">
-                                            <img src="/assets/home/images/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                                href="/assets/home/images/product-detail-01.jpg">
-                                                <i class="fa fa-expand"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-                                        <div class="wrap-pic-w pos-relative">
-                                            <img src="/assets/home/images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                                href="/assets/home/images/product-detail-02.jpg">
-                                                <i class="fa fa-expand"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-                                        <div class="wrap-pic-w pos-relative">
-                                            <img src="/assets/home/images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                                href="/assets/home/images/product-detail-03.jpg">
-                                                <i class="fa fa-expand"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-5 p-b-30">
-                        <div class="p-r-50 p-t-5 p-lr-0-lg">
-                            <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                                Lightweight Jacket
-                            </h4>
-
-                            <span class="mtext-106 cl2">
-                                $58.79
-                            </span>
-
-                            <p class="stext-102 cl3 p-t-23">
-                                Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat
-                                ornare feugiat.
-                            </p>
-
-                            <!--  -->
-                            <div class="p-t-33">
-                                <div class="flex-w flex-r-m p-b-10">
-                                    <div class="size-203 flex-c-m respon6">
-                                        Size
-                                    </div>
-
-                                    <div class="size-204 respon6-next">
-                                        <div class="rs1-select2 bor8 bg0">
-                                            <select class="js-select2" name="time">
-                                                <option>Choose an option</option>
-                                                <option>Size S</option>
-                                                <option>Size M</option>
-                                                <option>Size L</option>
-                                                <option>Size XL</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex-w flex-r-m p-b-10">
-                                    <div class="size-203 flex-c-m respon6">
-                                        Color
-                                    </div>
-
-                                    <div class="size-204 respon6-next">
-                                        <div class="rs1-select2 bor8 bg0">
-                                            <select class="js-select2" name="time">
-                                                <option>Choose an option</option>
-                                                <option>Red</option>
-                                                <option>Blue</option>
-                                                <option>White</option>
-                                                <option>Grey</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex-w flex-r-m p-b-10">
-                                    <div class="size-204 flex-w flex-m respon6-next">
-                                        <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-minus"></i>
-                                            </div>
-
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number"
-                                                name="num-product" value="1">
-
-                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-plus"></i>
-                                            </div>
-                                        </div>
-
-                                        <button
-                                            class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                            Add to cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--  -->
-                            <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                                <div class="flex-m bor9 p-r-10 m-r-11">
-                                    <a href="/assets/home/#"
-                                        class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-                                        data-tooltip="Add to Wishlist">
-                                        <i class="zmdi zmdi-favorite"></i>
-                                    </a>
-                                </div>
-
-                                <a href="/assets/home/#"
-                                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                                    data-tooltip="Facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-
-                                <a href="/assets/home/#"
-                                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                                    data-tooltip="Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-
-                                <a href="/assets/home/#"
-                                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                                    data-tooltip="Google Plus">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!--===============================================================================================-->
     <script src="/assets/home/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -452,6 +281,49 @@
                 dropdownParent: $(this).next('.dropDownSelect2')
             });
         })
+        var $grid;
+        var $topeContainer = $(".isotope-grid");
+        var $filter = $(".filter-tope-group");
+
+        // filter items on button click
+        $filter.each(function() {
+            $filter.off("click");
+            $filter.on("click", "button", function() {
+                var filterValue = $(this).attr("data-filter");
+                $topeContainer.isotope({
+                    filter: filterValue
+                });
+            });
+        });
+
+        var isotopeButton = $(".filter-tope-group button");
+
+        $(isotopeButton).each(function() {
+            $(this).off("click");
+            $(this).on("click", function() {
+                for (var i = 0; i < isotopeButton.length; i++) {
+                    $(isotopeButton[i]).removeClass("how-active1");
+                }
+                $(this).addClass("how-active1");
+            });
+        });
+        $(window).on("load", function() {
+            $grid = $topeContainer.each(function() {
+                $(this).isotope({
+                    itemSelector: ".isotope-item",
+                    layoutMode: "fitRows",
+                    percentPosition: true,
+                    animationEngine: "best-available",
+                    masonry: {
+                        columnWidth: ".isotope-item",
+                    },
+                    getSortData: {
+                        price: "[data-price]",
+                        createTime: "[data-ct]",
+                    },
+                });
+            });
+        });
     </script>
     <!--===============================================================================================-->
     <script src="/assets/home/vendor/daterangepicker/moment.min.js"></script>
@@ -482,38 +354,6 @@
     <script src="/assets/home/vendor/isotope/isotope.pkgd.min.js"></script>
     <!--===============================================================================================-->
     <script src="/assets/home/vendor/sweetalert/sweetalert.min.js"></script>
-    <script>
-        $('.js-addwish-b2').on('click', function(e) {
-            e.preventDefault();
-        });
-
-        
-        $('.js-addwish-b2').each(function() {
-            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-            $(this).on('click', function() {
-                swal(nameProduct, "Đã thêm vào giỏ hàng.", "success");
-            });
-        });
-        $('.js-addwish-detail').each(function() {
-            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-            $(this).on('click', function() {
-                swal(nameProduct, "is added to wishlist !", "success");
-
-                $(this).addClass('js-addedwish-detail');
-                $(this).off('click');
-            });
-        });
-
-        /*---------------------------------------------*/
-
-        $('.js-addcart-detail').each(function() {
-            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-            $(this).on('click', function() {
-                swal(nameProduct, "is added to cart !", "success");
-            });
-        });
-    </script>
     <!--===============================================================================================-->
     <script src="/assets/home/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script>
@@ -533,9 +373,7 @@
     </script>
     <!--===============================================================================================-->
     <script src="/assets/home/js/main.js"></script>
-    <script></script>
     @yield('scripts')
-
 </body>
 
 </html>
