@@ -28,15 +28,22 @@ Route::prefix('admin')->group(function () {
         return redirect(route('admin.home'));
     });
     Route::get('home', [AdminController::class, 'Index'])->name('admin.home');
+    Route::get('login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('product', [AdminController::class, 'Product']);
     Route::post('product/{id}', [AdminController::class, 'ProductSave']);
     Route::get('product/{id}', [AdminController::class, 'ProductDetail']);
     Route::get('product-detail', [AdminController::class, 'ProductDetails']);
     Route::get('category', [AdminController::class, 'Category']);
+    Route::get('invoice', [AdminController::class, 'Invoices']);
+    Route::get('invoice/create', [AdminController::class, 'InvoiceCreate']);
 });
 
 
 Route::get('', [HomeController::class, 'Index']);
 Route::get('/checkout', [CheckoutController::class, 'Index']);
-Route::get('/for-him', [ProductController::class, 'Index']);
-Route::get('/detail-product', [ProductController::class, 'DetailProduct']);
+Route::get('/products', [HomeController::class, 'Shop']);
+Route::get('/products/{id}', [HomeController::class, 'DetailProduct']);
+Route::get('/cart', [HomeController::class, 'Cart']);
+Route::get('/checkout', [HomeController::class, 'Checkout']);
+Route::get('/contact', [HomeController::class, 'Contact']);
+Route::get('/track-order', [HomeController::class, 'Invoice']);

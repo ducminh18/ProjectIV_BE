@@ -12,7 +12,7 @@ class CategoryService
     {
         if (Auth::check())
         {
-            $data['updated_by'] = Auth::user()->id;
+            $data['last_updated_by'] = Auth::user()->id;
         }
         $updated = Category::where('id', $id)
         ->update($data);

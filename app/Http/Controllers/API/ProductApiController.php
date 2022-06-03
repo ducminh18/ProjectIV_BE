@@ -34,6 +34,8 @@ class ProductApiController extends Controller
                         'search' => $request->get('search') ?? null,
                         'with_detail' => $request->get('with_detail') ?? false,
                         'with_images' => $request->get('with_images') ?? false,
+                        'category' => $request->get('category'),
+                        'visible_only' =>  $request->get('visible_only'),
                     ]
                 );
             $response = response()->json([
@@ -70,13 +72,13 @@ class ProductApiController extends Controller
                 ]);
             } else {
                 $data['created_by'] = 20;
-                    $result = $this->product_service->create($data);
-                    $response = response()->json([
-                        'code' => Response::HTTP_OK,
-                        'status' => $result > 0,
-                        'data' => $result,
-                        'meta' => []
-                    ]);
+                $result = $this->product_service->create($data);
+                $response = response()->json([
+                    'code' => Response::HTTP_OK,
+                    'status' => $result > 0,
+                    'data' => $result,
+                    'meta' => []
+                ]);
             }
         } catch (\Throwable $th) {
             $response = response()->json([

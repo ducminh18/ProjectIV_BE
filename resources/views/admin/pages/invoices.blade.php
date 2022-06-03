@@ -1,17 +1,16 @@
 @extends('admin/layout/admin-layout')
 @section('title')
-    Admin - DS chi tiết sản phẩm
+    Admin - Sản phẩm
 @endsection
 @section('page-title')
-    Danh sách chi tiết sản phẩm
+    Đơn đặt hàng
 @endsection
 @section('main-content')
     <div ng-app="myApp" ng-controller="myController">
         <div class="mb-3 border-1 rounded-1 d-flex justify-content-between">
-            <button ng-click="showAddNew()" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">
+            <a ng-click="showAddNew()" type="button" class="btn btn-primary" href="/admin/invoice/create">
                 Thêm
-            </button>
+            </a>
             <div>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Tìm kiếm" ng-model="searchValue"
@@ -35,21 +34,17 @@
                 <tr ng-repeat="item in data">
                     <th scope="row">@{{ $index + 1 }}</th>
                     <td ng-repeat="f in fields | visible">
-                        <span ng-if="f.type != 'file' && f.type != 'editor' && f.type != 'number' && f.type != 'checkbox'">
+                        <span ng-if="f.type != 'file' && f.type != 'editor' && f.type != 'number'">
                             @{{ item | value: f.field }}</span>
-                        <input ng-if='f.type == "checkbox"' ng-model="item[f.field]" type="checkbox"
-                            onclick="return false;">
-
                         <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
                         <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
                     </td>
                     <td>
-                        <a href="/admin/product/@{{ item.product.id }}" class="btn btn-success m-1">Xem</a>
                         <button ng-click="showEdit(item)" type="button" class="btn btn-info m-1" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
-                            Sửa
+                            Chi tiết
                         </button>
                         <button ng-click="showDelete(item.id)" type="button" class="btn btn-danger m-1"
                             data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -78,8 +73,7 @@
             <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel"> @{{ deleting ? 'Xác nhận' : 'Thông tin chi tiết sản
-phẩm ' }} </h5>
+                        <h5 class="modal-title" id="staticBackdropLabel"> @{{ deleting ? 'Xác nhận' : 'Thông tin loại sản phẩm ' }} </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -89,10 +83,9 @@ phẩm ' }} </h5>
                         <div ng-if="!deleting" class="container-fluid">
                             <div class="row">
                                 <div class="mb-3 col-md-6 col-12">
-                                    <label for="select" class="form-label fw-bold">Sản phẩm</label>
-                                    <select id="select" data-ng-options="o.name for o in products" class="form-select"
-                                        data-ng-model="selectedProduct"></select>
-
+                                    <label for="select" class="form-label fw-bold">Trạng thái</label>
+                                    <select id="select" data-ng-options="o.name for o in status" class="form-select"
+                                        data-ng-model="selectedStatus"></select>
                                 </div>
                                 <div ng-repeat="f in fields | editable" ng-class="f.type != 'editor' ? 'col-md-6' : ''"
                                     class="form-group mb-3 col-12">
@@ -106,7 +99,33 @@ phẩm ' }} </h5>
                                     <div ng-if="f.type == 'editor'" class="editor">
                                     </div>
                                 </div>
-                                @{{ file }}
+                                <div class="g-0 col-12">
+                                    <hr>
+                                </div>
+                                <div class="col-12">
+                                    <table class="table table-striped table-active">
+                                        <thead class="table-danger">
+                                            <tr>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Kích thước</th>
+                                                <th>Màu sắc</th>
+                                                <th>Số lượng</th>
+                                                <th>Giá tiền</th>
+                                                <th>Tổng số</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="i in inoivceDetails">
+                                                <td>@{{ i.productDetail.product.name }}</td>
+                                                <td>@{{ i.productDetail.size }}</td>
+                                                <td>@{{ i.productDetail.color }}</td>
+                                                <td>@{{ i.quantity }}</td>
+                                                <td>@{{ i.price |number }}đ</td>
+                                                <td>@{{ i.price * i.quantity |number }}đ</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +133,7 @@ phẩm ' }} </h5>
                         <button type="button" aria-label="Close" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
                         </button>
                         <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-primary"
-                            ng-click="save()">@{{ deleting ? 'Xác nhận' : 'Lưu' }}
+                            ng-click="save()">@{{ deleting ? "Xác nhận" : "Lưu" }}
                         </button>
                     </div>
                 </div>
@@ -124,6 +143,6 @@ phẩm ' }} </h5>
 @endsection
 
 @section('scripts')
-    <script src="/assets/admin/js/productDetailListExtend.js"></script>
+    <script src="/assets/admin/js/invoiceExtend.js"></script>
     <script src="/assets/admin/js/appController.js"></script>
 @endsection

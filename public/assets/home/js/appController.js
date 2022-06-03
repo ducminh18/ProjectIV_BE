@@ -1,8 +1,12 @@
 "use strict";
+if (!localStorage.getItem("token")) {
+    window.location.href = "/admin/login";
+}
 
 var extendController;
+const baseUrl = "";
 const app = angular.module("myApp", []);
-app.controller("myController", function ($scope, $http) {
+app.controller("myController", function ($scope, $http, $location) {
     $scope.data = [];
     $scope.totalRecords = 0;
     $scope.page = 1;
@@ -14,17 +18,52 @@ app.controller("myController", function ($scope, $http) {
     $scope.searchValue = "";
     $scope.deleting = false;
     $scope.extendQuerys = "";
-    if (extendController) {
-        extendController($scope, $http);
-    }
-    $scope.getList = () => {
-        const url = `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
+    $scope.totalCart = 0;
+    $scope.cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
+    $scope.baseUrl = baseUrl;
+    $scope.getDataOnInit = true;
+    let sent = 0;
+    $scope.$watchCollection("cart", function (newCol, oldCol, value) {
+        $scope.totalCart = 0;
+        if (newCol && newCol instanceof Array) {
+            newCol.forEach((i) => {
+                $scope.totalCart += i.quantity * i.product.out_price;
+            });
+        }
+        localStorage.setItem("cart", JSON.stringify($scope.cart));
+    });
+    $scope.cart.forEach((i) => {
+        sent++;
+        const url =
+            $scope.baseUrl +
+            `/api/admin/product-details/${i.product_detail_id}`;
         $http.get(url).then((res) => {
             if (res.data.status == true) {
-                $scope.data = res.data.data;
-                $scope.totalRecords = res.data.meta.total;
+                i.product = res.data.data;
+            }
+            sent--;
+            if (sent == 0) {
+                $scope.cart = [...$scope.cart];
+                localStorage.setItem("cart", JSON.stringify($scope.cart));
             }
         });
+    });
+    if (extendController) {
+        extendController($scope, $http, $location);
+    }
+    $scope.getList = () => {
+        if (route) {
+            const url =
+                $scope.baseUrl +
+                $scope.baseUrl +
+                `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
+            $http.get(url).then((res) => {
+                if (res.data.status == true) {
+                    $scope.data = res.data.data;
+                    $scope.totalRecords = res.data.meta.total;
+                }
+            });
+        }
     };
     $scope.upLoadFile = function (file, uploadUrl) {
         var fd = new FormData();
@@ -37,19 +76,21 @@ app.controller("myController", function ($scope, $http) {
     };
 
     $scope.getById = (id) => {
-        const url = `/api/admin/${route}/${id}`;
-        $http.get(url).then((res) => {
+        const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
+        return $http.get(url).then((res) => {
             if (res.data.status == true) {
                 const index = $scope.data.findIndex((v) => v.id == id);
                 if (index > 0) {
                     $scope.data[index] = res.data.data;
+                } else {
+                    $scope.data.push(res.data.data);
                 }
             }
         });
     };
 
     $scope.update = (id, item) => {
-        const url = `/api/admin/${route}/${id}`;
+        const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
         $http.patch(url, item).then((res) => {
             if (res.data.status == true) {
                 $scope.getList();
@@ -58,15 +99,16 @@ app.controller("myController", function ($scope, $http) {
     };
 
     $scope.create = (item) => {
-        const url = `/api/admin/${route}`;
+        const url = $scope.baseUrl + `/api/admin/${route}`;
         $http.post(url, item).then((res) => {
             if (res.data.status == true) {
                 $scope.getList();
             }
         });
     };
+
     $scope.delete = (id) => {
-        const url = `/api/admin/${route}/${id}`;
+        const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
         $http.delete(url).then((res) => {
             if (res.data.status == true) {
                 $scope.getList();
@@ -80,17 +122,75 @@ app.controller("myController", function ($scope, $http) {
         }
     };
 
-    $scope.order = (column) => {
+    $scope.order = (column, sort) => {
         if ($scope.column != column) {
             $scope.column = column;
         } else {
-            $scope.sort = $scope.sort == "asc" ? "desc" : "asc";
+            if (sort) $scope.sort = sort;
+            else $scope.sort = $scope.sort == "asc" ? "desc" : "asc";
         }
         $scope.getList();
     };
-    $scope.getList();
 
-    $scope.search = $scope.getList;
+    if ($scope.getDataOnInit) $scope.getList();
+
+    $scope.search = (val) => {
+        $scope.searchValue = val;
+        $scope.getList();
+    };
+    $scope.$watch("data", function (value) {
+        setTimeout(() => {}, 200);
+    });
+
+    $scope.categories = [];
+    $http
+        .get(
+            baseUrl +
+                "/api/admin/categories?page=1&limit=1000&visible_only=true"
+        )
+        .then((res) => {
+            if (res.data.status == true) {
+                $scope.categories = res.data.data;
+            }
+        });
+    $scope.addCart = function (value, quantity = 1) {
+        const itemIndex = $scope.cart.findIndex(
+            (v) => v.product_detail_id == value.id
+        );
+        if (itemIndex >= 0) {
+            const item = $scope.cart[itemIndex];
+            item.quantity += quantity;
+            $scope.cart[itemIndex] = { ...item };
+        } else {
+            $scope.cart.push({
+                product_detail_id: value.id,
+                quantity: quantity,
+                product: value,
+            });
+        }
+        if (!window.location.pathname.includes("cart")) {
+            swal(
+                `${value.product.name} ${value.size} ${value.color} `,
+                "Đã thêm vào giỏ hàng",
+                "success"
+            );
+        }
+    };
+
+    $scope.deleteCart = function (value, quantity = 1) {
+        const itemIndex = $scope.cart.findIndex(
+            (v) => v.product_detail_id == value.id
+        );
+        if (itemIndex >= 0) {
+            const item = $scope.cart[itemIndex];
+            if (item.quantity == quantity) $scope.cart.splice(itemIndex, 1);
+            else {
+                item.quantity -= quantity;
+
+                $scope.cart[itemIndex] = { ...item };
+            }
+        }
+    };
 });
 
 app.filter("page", function () {
@@ -161,4 +261,32 @@ app.config(function ($sceProvider) {
     // Completely disable SCE.  For demonstration purposes only!
     // Do not use in new projects or libraries.
     $sceProvider.enabled(false);
+});
+app.factory("BearerAuthInterceptor", function ($window, $q) {
+    return {
+        request: function (config) {
+            config.headers = config.headers || {};
+            const token = $window.localStorage.getItem("token");
+            if (token) {
+                config.headers.Authorization = "Bearer " + token;
+            }
+            return config || $q.when(config);
+        },
+        response: function (response) {
+            return response || $q.when(response);
+        },
+        responseError: function (res) {
+            if (res.status === 401) {
+                localStorage.removeItem("token");
+                window.location.href = "/admin/login";
+            }
+
+            return res;
+        },
+    };
+});
+
+// Register the previously created AuthInterceptor.
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push("BearerAuthInterceptor");
 });

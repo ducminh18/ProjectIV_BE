@@ -7,6 +7,7 @@ use App\Http\Resources\InvoiceDetailResource;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use App\Models\ProductDetail;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceDetailService
 {
@@ -22,7 +23,7 @@ class InvoiceDetailService
         $invoiceDetail = InvoiceDetail::find($id);
         $productDetail = ProductDetail::find($invoiceDetail->product_detail_id);
         $product = $productDetail->product;
-        $invoiceDetail->price = $data['price']??$productDetail->out_price;
+        $invoiceDetail->price = $data['price'] ?? $productDetail->out_price;
         $invoiceDetail->quantity = $data['quantity'];
         // if ($data['status'] == Status::Accepted && $invoiceDetail->status == Status::Pending)
         // {
@@ -44,27 +45,32 @@ class InvoiceDetailService
     {
         $invoiceDetail = InvoiceDetail::find($id);
         $deleted = InvoiceDetail::destroy($id);
-        if ($deleted > 0)
-        {
+        if ($deleted > 0) {
             $this->invoice_service->refresh($invoiceDetail->invoice_id);
         }
         return $deleted;
     }
 
-    public function create(array|InvoiceDetail $data)
+    public function create(array $data)
     {
-        $invoiceDetail = is_array($data) ?
-            InvoiceDetail::create($data)
-            : $data;
-        if ($invoiceDetail->save()) {
-            $invoice = Invoice::find($invoiceDetail->invoice_id);
-            if ($invoice) {
-                $query = InvoiceDetail::query()
-                    ->where('invoice_id', '=', $invoice->id);
-                $invoice->quantity = $query->sum('remaining_quantity');
-                $invoice->option_count = $query->count();
-                $invoice->save();
-            }
+        $productDetail = ProductDetail::find($data['product_detail_id']);
+        if ($productDetail == null) return 0;
+        $data['price'] = $productDetail->out_price;
+        $invoiceDetail  = InvoiceDetail::where('invoice_id', $data['invoice_id'])->where('product_detail_id', $data['product_detail_id'])->first();
+        if ($invoiceDetail == null)
+        {
+            $invoiceDetail =
+            InvoiceDetail::create($data);
+            $total = $invoiceDetail->quantity * $invoiceDetail->price;
+        }
+        else
+        {
+            $invoiceDetail->quantity += $data['quantity'];
+            $invoiceDetail->save();
+            $total = $data['quantity'] * $data['price'];
+        }
+        if ($invoiceDetail != null) {
+            DB::statement("UPDATE `invoices` SET `total` = `total` + {$total} WHERE `id` = ".$invoiceDetail->invoice_id);
             return $invoiceDetail->id;
         } else return 0;
     }
@@ -82,10 +88,9 @@ class InvoiceDetailService
         if ($option['with_detail'] == 'true') {
             $query->with('invoice');
             $query->with('productDetail');
+            $query->with('productDetail.product');
+            $query->with('productDetail.image');
         }
-        // if ($option['search']) {
-        //     $query->where('invoices.name', 'LIKE', "%".$option['search']."%");
-        // }
         if ($orderBy) {
             $query->orderBy($orderBy['column'], $orderBy['sort']);
         }
@@ -95,9 +100,10 @@ class InvoiceDetailService
     public function getById(int $id)
     {
         $query = InvoiceDetail::query()
-        ->where('id', $id)
-        ->with('invoice')
-        ->with('productDetail');
+            ->where('id', $id)
+            ->with('invoice')
+            ->with('productDetail.product.image')
+            ->with('productDetail.image');
         return new InvoiceDetailResource($query->find($id));
     }
 }

@@ -7,6 +7,7 @@ use App\Model\Product;
 use App\Models\ProductDetail;
 use App\Services\ProductDetailService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -64,7 +65,9 @@ class ProductDetailApiController extends Controller
     {
         try {
             $data = $request->post();
-            $data['created_by']=20;
+            $data['created_by']=Auth::user()->id;
+            $data['in_price'] = 0;
+            $data['total_quantity'] = 0;
             $validator = Validator::make($data,  ProductDetail::RULES);
             if ($validator->fails()) {
                 $response = response()->json([

@@ -25,13 +25,13 @@ extendController = ($scope, $http) => {
             default: "",
             type: "text",
         },
-        {
-            hidden: false,
-            field: "in_price",
-            display: "Giá nhập",
-            default: 0,
-            type: "number",
-        },
+        // {
+        //     hidden: false,
+        //     field: "in_price",
+        //     display: "Giá nhập",
+        //     default: 0,
+        //     type: "number",
+        // },
         {
             hidden: false,
             field: "out_price",
@@ -43,12 +43,12 @@ extendController = ($scope, $http) => {
             hidden: false,
             field: "remaining_quantity",
             display: "Số lượng còn",
-            default: "",
-            type: "text",
+            default: 0,
+            type: "number",
         },
         {
             hidden: false,
-            field: "default_image.file_path",
+            field: "image.file_path",
             display: "Ảnh",
             default: "",
             type: "file",
@@ -59,13 +59,6 @@ extendController = ($scope, $http) => {
             field: "unit",
             display: "ĐVT",
             default: "",
-            type: "text",
-        },
-        {
-            hidden: false,
-            field: "total_quantity",
-            display: "Tổng số",
-            default: 0,
             type: "text",
         },
         {
@@ -86,7 +79,7 @@ extendController = ($scope, $http) => {
     $scope.extendQuerys =
         "with_product=true&" + (idInput ? "product_id=" + idInput.value : "");
     $scope.showEdit = (item) => {
-        const file = document.getElementById("default_image.file_path");
+        const file = document.querySelector("image.file_path");
         if (file != null) value = "";
         $scope.id = item.id;
         $scope.selectedProduct =
@@ -103,13 +96,13 @@ extendController = ($scope, $http) => {
         for (let field of $scope.fields.filter((v) => !v.readonly)) {
             $scope.item[field.field] = field.default;
         }
-        const file = document.getElementById("default_image.file_path");
+        const file = document.getElementById("image.file_path");
         if (file != null) value = "";
         $scope.editting = false;
         $scope.deleting = false;
     };
     $scope.save = () => {
-        const fileE = document.getElementById("default_image.file_path");
+        const fileE = document.getElementById("image.file_path");
         let file;
         if (fileE != null) file = fileE.files[0];
         let item = {};
@@ -118,7 +111,7 @@ extendController = ($scope, $http) => {
         }
         item.product_id = productId;
         if (file != undefined && file != null) {
-            $scope.upLoadFile(file, "/api/upload").then((res) => {
+            $scope.upLoadFile(file,$scope.baseUrl + "/api/upload").then((res) => {
                 if (res.data.status == true) {
                     item.default_image = res.data.data.id;
                 }
@@ -159,6 +152,6 @@ function formSubmit(e) {
     description.value = editor.getData();
 }
 
-const description = document.getElementById('product_description');
+const description = document.getElementById("product_description");
 const productForm = document.getElementById("product_form");
 productForm.addEventListener("submit", formSubmit);

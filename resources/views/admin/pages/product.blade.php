@@ -25,7 +25,7 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th style="cursor: pointer;" ng-repeat="f in fields | visible" ng-click="order(f.field)" scope="col">
+                    <th style="cursor: pointer;" ng-repeat="f in fields | visible" ng-click="order(f)" scope="col">
                         @{{ f.display }}
                     </th>
                     <th style="cursor: default;"></th>
@@ -35,7 +35,9 @@
                 <tr ng-repeat="item in data">
                     <th scope="row">@{{ $index + 1 }}</th>
                     <td ng-repeat="f in fields | visible">
-                        <span ng-if="f.type != 'file' && f.type != 'editor' && f.type != 'number'"> @{{ item | value: f.field }}</span>
+                        <span ng-if="f.type != 'file' && f.type != 'editor' && f.type != 'number' && f.type!='checkbox'"> @{{ item | value: f.field }}</span>
+                        <input ng-if='f.type == "checkbox"' ng-model="item[f.field]" type="checkbox"  onclick="return false;">
+
                         <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>

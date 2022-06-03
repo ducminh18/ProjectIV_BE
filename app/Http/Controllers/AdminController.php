@@ -61,4 +61,22 @@ class AdminController extends Controller
     {
         return view('admin/pages/product-detail-list');
     }
+    function Login(Request $request)
+    {
+        return view('admin/pages/login');
+    }
+
+    public function Invoices()
+    {
+        return view('admin/pages/invoices');
+    }
+    public function InvoiceCreate()
+    {
+        return view('admin/pages/create_invoice');
+    }
+
+    public function Receipts()
+    {
+        return view('admin/pages/receipts');
+    }
 }
