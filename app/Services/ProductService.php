@@ -98,10 +98,6 @@ class ProductService
         $query->with('details.image');
         $query->with('images.blob');
         $query->with('image');
-<<<<<<< HEAD
-=======
-        $query->with('category');
->>>>>>> b00a4753dbf353c97d4ad7badcd398724a36d351
 
         return new ProductResource($query->find($id));
     }
