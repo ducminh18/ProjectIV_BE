@@ -48,7 +48,7 @@
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
                     <div class="left-top-bar">
-                        Miễn phí vận chuyển cho đơn hàng từ 500K
+                        Miễn phí vận chuyển cho đơn hàng từ 499K
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
@@ -75,11 +75,11 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="/">Tra chủ</a>
+                                <a href="/">Trang chủ</a>
                             </li>
 
                             <li>
-                                <a href="/products">Shop</a>
+                                <a href="/products">Sản phẩm</a>
                             </li>
                             <li>
                                 <a href="/track-order">Đơn hàng</a>

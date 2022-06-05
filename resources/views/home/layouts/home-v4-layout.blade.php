@@ -76,11 +76,11 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="/">Home</a>
+                                <a href="/">Trang chủ</a>
                             </li>
 
                             <li class="">
-                                <a href="/products">Shop</a>
+                                <a href="/products">Sản phẩm</a>
                             </li>
 
                             <li>
