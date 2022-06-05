@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Home</title>
+    <title>LA ROCHE POSAY - Mỹ phẩm chính hãng</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/assets/home/images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="/assets/home/images/icons/favicon1.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/assets/home/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -49,7 +49,7 @@
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
                     <div class="left-top-bar">
-                        Miễn phí vận chuyển cho đơn hàng từ 500K
+                        Miễn phí vận chuyển cho đơn hàng từ 499K
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
@@ -69,7 +69,7 @@
 
                     <!-- Logo desktop -->
                     <a href="/" class="logo">
-                        <img src="/assets/home/images/icons/logo-01.png" alt="IMG-LOGO">
+                        <img src="/assets/home/images/icons/logo-new.png" alt="IMG-LOGO">
                     </a>
 
                     <!-- Menu desktop -->
@@ -141,7 +141,7 @@
             <ul class="topbar-mobile">
                 <li>
                     <div class="left-top-bar">
-                        Miễn phí vận chuyển đơn hàng từ 500K
+                        Miễn phí vận chuyển đơn hàng từ 499K
                     </div>
                 </li>
 
