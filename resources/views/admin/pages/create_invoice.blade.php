@@ -6,7 +6,7 @@
     Sản phẩm
 @endsection
 @section('main-content')
-    <div ng-app="myApp" ng-controller="myController">
+    <div>
         <input type="hidden" id="product_id">
         <div class="container">
             <form id="product_form" ng-submit='saveInovoice()' class="d-flex flex-column">

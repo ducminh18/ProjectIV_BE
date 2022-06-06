@@ -6,7 +6,7 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>Loại đồ uống</span>
+                            <span>Loại sản phẩm</span>
                         </div>
                         <ul ng-repeat="cate in categories">
                             <li><a href="/products?category=@{{ cate.id }}">@{{ cate.name }}</a></li>
@@ -26,16 +26,13 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+84 911.111.111</h5>
-                                <span>support 24/7 time</span>
+                                <h5>+84 912.345.678</h5>
+                                <span>Hỗ trợ 24/7</span>
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="assets/home/img/hero/banner-home-6.webp">
-                        <div class="hero__text">
-                            <h2 style="color: white">Nước ép trái cây <br />100% Organic</h2>
-                            <a href="/products" class="primary-btn">Mua ngay</a>
-                        </div>
+                    <div style="height: auto !important" class="hero__item">
+                        <img src="/assets/home/img/hero/banner-newata-1.jpg" alt="" class="w-100">
                     </div>
                 </div>
             </div>

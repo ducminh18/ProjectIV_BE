@@ -14,8 +14,8 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "size",
-            display: "Kích thước",
+            field: "color",
+            display: "Màu sắc",
             default: "",
             type: "text",
         },

@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="/assets/home/img/banner/banner-2.jpg" alt="">
+                        <img src="/assets/home/img/banner/banner-2.png" alt="">
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
     Danh sách chi tiết sản phẩm
 @endsection
 @section('main-content')
-    <div ng-app="myApp" ng-controller="myController">
+    <div>
         <div class="mb-3 border-1 rounded-1 d-flex justify-content-between">
             <button ng-click="showAddNew()" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">

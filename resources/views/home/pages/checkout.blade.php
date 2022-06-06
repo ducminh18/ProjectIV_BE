@@ -32,21 +32,21 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Tỉnh/Thành phố<span>*</span></p>
-                                <input required type="text"  name="town" ng-model="customer.town">
+                                <input required type="text" name="town" ng-model="customer.town">
                             </div>
                             <div class="checkout__input">
                                 <p>Quận/Huyện<span>*</span></p>
-                                <input required type="text"  name="district" ng-model="customer.district">
+                                <input required type="text" name="district" ng-model="customer.district">
                             </div>
                             <div class="checkout__input">
                                 <p>Xã/Phường<span>*</span></p>
-                                <input required type="text"  name="commune" ng-model="customer.commune">
+                                <input required type="text" name="commune" ng-model="customer.commune">
                             </div>
                             <div class="checkout__input">
                                 <p>Địa chỉ<span>*</span></p>
-                                <input required type="text"  name="address" ng-model="customer.address">
+                                <input required type="text" name="address" ng-model="customer.address">
                             </div>
-                            <div class="checkout__input__checkbox">
+                            {{-- <div class="checkout__input__checkbox">
                                 <label for="acc">
                                     Tạo tài khoản mới?
                                     <input type="checkbox" id="acc" ng-model="createAccount">
@@ -57,7 +57,7 @@
                             </p>
                             <div ng-if="createAccount" class="checkout__input">
                                 <p>Email<span>*</span></p>
-                                <input type="email"  name="email"  ng-model="customer.email">
+                                <input type="email" name="email" ng-model="customer.email">
                             </div>
                             <div ng-if="createAccount" class="checkout__input">
                                 <p>Mật khẩu<span>*</span></p>
@@ -65,16 +65,18 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Ghi chú<span>*</span></p>
-                                <input  name="note" type="text" placeholder="">
-                            </div>
+                                <input name="note" type="text" placeholder="">
+                            </div> --}}
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
                                 <h4>Đơn hàng của bạn</h4>
                                 <div class="checkout__order__products">Sản phẩm <span>Tiền</span></div>
                                 <ul>
-                                    <li ng-repeat="c in cart track by $index">@{{ c.product.product.name + ' ' + c.product.size }}
-                                        <span>@{{ c.quantity * c.product.out_price | number }}đ</span></li>
+                                    <li ng-repeat="c in cart track by $index" class="d-flex">
+                                        <span title="@{{ c.product.product.name + ' ' + c.product.color }} x @{{c.quantity}}" style="overflow: hidden; text-overflow:ellipsis; white-space:nowrap">@{{ c.product.product.name + ' ' + c.product.color }} x @{{c.quantity}}</span>
+                                        <span>@{{ c.quantity * c.product.out_price | number }}đ</span>
+                                    </li>
                                 </ul>
                                 <div class="checkout__order__subtotal">Tạm tính <span>@{{ totalCart | number }}đ</span></div>
                                 <div class="checkout__order__total">Tổng tiền <span>@{{ totalCart | number }}đ</span></div>

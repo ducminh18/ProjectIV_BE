@@ -5,12 +5,12 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="/"><img src="/assets/home/img/logo.png" alt=""></a>
+                            <a href="/"><h3>BALO Shop</h3></a>
                         </div>
                         <ul>
-                            <li>Address: Mỹ Hòa, Phố Nối, Hưng Yên</li>
-                            <li>Phone: +84 911.111.111</li>
-                            <li>Email:  juice@tt.com</li>
+                            <li>Address: Trung Hưng, Yên Mỹ, Hưng Yên</li>
+                            <li>Phone:   +84 912.345.678</li>
+                            <li>Email:   Balostore@ht.com</li>
                         </ul>
                     </div>
                 </div>

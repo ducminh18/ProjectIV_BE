@@ -29,14 +29,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware([])->prefix('admin')->group(function () {
-    Route::get('/user', function (Request $request) {
+    Route::get('user', function (Request $request) {
         return response()->json([
             'code' => Response::HTTP_OK,
             'status' => true,
             'data' => new UserResource(Auth::user()),
             'meta' => []
         ]);
-    });
+    })->middleware(['admin']);
     Route::resource('products', ProductApiController::class)->except(['edit', 'create']);
     Route::resource('product-details', ProductDetailApiController::class)->except(['edit', 'create']);
     Route::resource('invoices', InvoiceApiController::class)->except(['edit', 'create']);

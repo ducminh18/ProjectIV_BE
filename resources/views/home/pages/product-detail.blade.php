@@ -38,7 +38,7 @@
 
                         <div class="mb-3">
                             <a ng-repeat="d in product.details" href="javascript:;" ng-class="d.id == detail.id ? 'active' : ''" class="product_select"
-                                ng-click="setDetail(d)">@{{ d.size }}</span></a>
+                                ng-click="setDetail(d)">@{{ d.color }}</span></a>
                         </div>
                         <div class="product__details__quantity">
                             <div class="quantity">

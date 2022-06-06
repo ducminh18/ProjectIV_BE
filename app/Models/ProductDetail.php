@@ -33,7 +33,6 @@ class ProductDetail extends FullAuditedEntity
         ...parent::FILLABLE,
         "id",
         "color",
-        "size",
         "out_price",
         "in_price",
         "remaining_quantity",

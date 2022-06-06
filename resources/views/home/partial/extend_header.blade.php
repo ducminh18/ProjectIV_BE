@@ -6,7 +6,7 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>Loại đồ uống</span>
+                            <span>Loại sản phẩm</span>
                         </div>
                         <ul ng-repeat="cate in categories">
                             <li><a href="/products?category=@{{ cate.id }}">@{{ cate.name }}</a></li>
@@ -26,8 +26,8 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+84 911.111.111</h5>
-                                <span>support 24/7 time</span>
+                                <h5>+84 912.345.678</h5>
+                                <span>Hỗ trợ 24/7</span>
                             </div>
                         </div>
                     </div>
@@ -38,12 +38,12 @@
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/assets/home/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" style="height: 500px !important;" data-setbg="/assets/home/img/breadcrumb.webp">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Juice Shop</h2>
+                        <h2>Balo shop</h2>
                         <div class="breadcrumb__option">
                             <a href="/">Trang chủ </a>
                             <span>@{{href}}</span>

@@ -24,20 +24,20 @@
                     <div class="contact__widget">
                         <span class="icon_phone"></span>
                         <h4>Số điện thoại</h4>
-                        <p>+84 911.111.111</p>
+                        <p>+84 912.345.678</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Địa chỉ</h4>
-                        <p>Mỹ Hào, Phố Nối, Hưng Yên</p>
+                        <p>Trung Hưng, Yên Mỹ, Hưng Yên</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
-                        <h4>Open time</h4>
+                        <h4>Mở cửa</h4>
                         <p>08:00 đến 21:00</p>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Email</h4>
-                        <p>juice@tt.com</p>
+                        <p>balostore@ht.com</p>
                     </div>
                 </div>
             </div>

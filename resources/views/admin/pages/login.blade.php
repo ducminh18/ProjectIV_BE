@@ -12,7 +12,7 @@
         <script src="/assets/angular.min.js"></script>
     </head>
     <body class="bg-primary">
-        <div id="layoutAuthentication" ng-app="myApp" ng-controller="myController">
+        <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">

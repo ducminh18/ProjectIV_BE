@@ -6,8 +6,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> juice@tt.com</li>
-                                <li>Miễn phí ship cho đơn từ 250K</li>
+                                <li><i class="fa fa-envelope"></i> balostore@ht.com</li>
+                                <li>Miễn phí ship cho đơn từ 500K</li>
                             </ul>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/"><img src="/assets/home/img/logo.png" alt=""></a>
+                        <a href="/"><h3>BALO Shop</h3></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
