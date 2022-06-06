@@ -67,7 +67,6 @@
                                     <div class="rs1-select2 bor8 bg0">
                                         <select id="size" onchange="scope.selectSize(event.currentTarget.value)"
                                             class="js-select2" name="size">
-
                                         </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
