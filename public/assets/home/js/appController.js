@@ -70,7 +70,7 @@ app.controller("myController", function ($scope, $http, $location) {
             transformRequest: angular.identity,
             headers: { "Content-Type": undefined },
         });
-    }; 
+    };
 
     $scope.getById = (id) => {
         const url = $scope.baseUrl + `/api/admin/${route}/${id}`;
@@ -167,7 +167,7 @@ app.controller("myController", function ($scope, $http, $location) {
         }
         if (!window.location.pathname.includes("cart")) {
             swal(
-                `${value.product.name} ${value.size} ${value.color} `,
+                `${value.product.name} ${value.size??''} ${value.color??''} `,
                 "Đã thêm vào giỏ hàng",
                 "success"
             );

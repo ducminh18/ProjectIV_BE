@@ -128,8 +128,8 @@ extendController = function ($scope, $http, $location) {
         colorSelect.append(document.createElement("option"));
         $scope.colors.forEach((c) => {
             const opt = document.createElement("option");
-            opt.value = c;
-            opt.innerHTML = c;
+            opt.value = c??"Mắc định";
+            opt.innerHTML = c??"Mắc định";
             colorSelect.append(opt);
         });
         colorSelect.value = $scope.item.color;
@@ -152,8 +152,8 @@ extendController = function ($scope, $http, $location) {
         sizeSelect.append(document.createElement("option"));
         $scope.sizes.forEach((s) => {
             const opt = document.createElement("option");
-            opt.value = s;
-            opt.innerHTML = s;
+            opt.value = s??"Mắc định";
+            opt.innerHTML = s??"Mắc định";
             sizeSelect.append(opt);
         });
         sizeSelect.value = $scope.item.size;
