@@ -21,7 +21,8 @@ class Category extends AuditedEntity
     protected $fillable = [
         ...parent::FILLABLE,
         'name',
-        'visible'
+        'visible',
+        'blob_id'
     ];
     protected $casts = [
         'visible' => 'boolean',
@@ -30,5 +31,10 @@ class Category extends AuditedEntity
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id', 'id');
+    }
+
+    public function image()
+    {
+        return $this->hasOne(Blob::class, 'id', 'blob_id');
     }
 }

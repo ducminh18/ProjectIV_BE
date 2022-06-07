@@ -18,7 +18,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 </head>
 
-<body>
+<body  ng-app="myApp" ng-controller="myController">
     @include('admin/layout/admin-navbar')
     <div id="layoutSidenav">
         @include('admin/layout/admin-sidebar')

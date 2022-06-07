@@ -31,7 +31,7 @@ extendController = ($scope, $http) => {
             display: "Số lượng",
             default: "",
             type: "text",
-            readonly: true
+            readonly: true,
         },
         {
             hidden: false,
@@ -101,20 +101,22 @@ extendController = ($scope, $http) => {
         if (index >= 0) $scope.selectedCategory = $scope.categories[index];
         item.category_id = $scope.selectedCategory?.id;
         if (file != undefined && file != null) {
-            $scope.upLoadFile(file, "/api/upload").then((res) => {
-                if (res.data.status == true) {
-                    item.default_image = res.data.data.id;
-                }
-                item.description = editor.getData();
-                item.category_id = $scope.selectedCategory?.id;
-                if ($scope.editting) {
-                    $scope.update($scope.id, item);
-                } else if ($scope.deleting) {
-                    $scope.delete($scope.id);
-                } else {
-                    $scope.create(item);
-                }
-            });
+            $scope
+                .upLoadFile(file, $scope.baseUrl + "/api/upload")
+                .then((res) => {
+                    if (res.data.status == true) {
+                        item.default_image = res.data.data.id;
+                    }
+                    item.description = editor.getData();
+                    item.category_id = $scope.selectedCategory?.id;
+                    if ($scope.editting) {
+                        $scope.update($scope.id, item);
+                    } else if ($scope.deleting) {
+                        $scope.delete($scope.id);
+                    } else {
+                        $scope.create(item);
+                    }
+                });
         } else {
             item.description = editor.getData();
             item.category_id = $scope.selectedCategory?.id;

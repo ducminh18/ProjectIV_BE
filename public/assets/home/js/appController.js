@@ -151,11 +151,13 @@ app.controller("myController", function ($scope, $http, $location) {
             }
         });
     $scope.addCart = function (value, quantity = 1) {
-        value.product.details = null;
-        value.product.default_detail = null;
+        if (value?.product) {
+            value.product.details = null;
+            value.product.default_detail = null;
+        }
         const itemIndex = $scope.cart.findIndex(
             (v) => v.product_detail_id == value.id
-            );
+        );
         if (itemIndex >= 0) {
             const item = $scope.cart[itemIndex];
             item.quantity += quantity;

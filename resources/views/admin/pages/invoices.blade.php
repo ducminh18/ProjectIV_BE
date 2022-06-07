@@ -6,7 +6,7 @@
     Đơn đặt hàng
 @endsection
 @section('main-content')
-    <div ng-app="myApp" ng-controller="myController">
+    <div>
         <div class="mb-3 border-1 rounded-1 d-flex justify-content-between">
             <a ng-click="showAddNew()" type="button" class="btn btn-primary" href="/admin/invoice/create">
                 Thêm

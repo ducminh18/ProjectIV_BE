@@ -4,7 +4,8 @@
             <div class="row">
                 <div ng-repeat="cate in categories" class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                     <!-- block -->
-                    <div class="block wrap-pic-w" style="height: 10rem">
+                    <div class="block wrap-pic-w h-100" >
+                        <img style="height: 100%; object-fit: cover;" src="@{{baseUrl +'/api/files/'+cate.image.file_path}}" alt="">
                         <a href="/products?category=@{{ cate.id }}"
                             class="block-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block-txt-child1 flex-col-l">

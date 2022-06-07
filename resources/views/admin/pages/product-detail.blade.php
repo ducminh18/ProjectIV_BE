@@ -6,7 +6,7 @@
     Sản phẩm
 @endsection
 @section('main-content')
-    <div ng-app="myApp" ng-controller="myController">
+    <div>
         <input type="hidden" id="product_id" value="{{ $product->id }}">
         <div class="container">
             <form id="product_form" action="" method="post" class="d-flex flex-column" enctype="multipart/form-data">

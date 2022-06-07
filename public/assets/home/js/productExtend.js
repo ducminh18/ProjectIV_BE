@@ -7,7 +7,6 @@ extendController = function ($scope, $http, $location) {
     $scope.categories = [];
     $scope.extendQuerys = "visible_only=true&consumable_only=true";
     const categoryId = params.category;
-    if (categoryId) $scope.extendQuerys = "category=" + categoryId + "&";
     $http
         .get(baseUrl + "/api/admin/categories?page=1&limit=1000")
         .then((res) => {
@@ -24,18 +23,36 @@ extendController = function ($scope, $http, $location) {
     $scope.$watchCollection(
         "data",
         function () {
-            setTimeout(() => {}, 200);
+            setTimeout(() => {
+                document.querySelectorAll("[data-filter]").forEach((elemnt) => {
+                    elemnt.onclick = function (e) {
+                        document
+                            .querySelectorAll("[data-filter].how-active1")
+                            .forEach((el) =>
+                                el.classList.remove("how-active1")
+                            );
+                        elemnt.classList.add("how-active1");
+                    };
+                });
+                if (categoryId)
+                    document
+                        .querySelector(`[data-filter=".${categoryId}"]`)
+                        .click();
+            }, 500);
         },
         true
     );
     $scope.showModal = (item) => {
         $scope.currentProd = item;
-        $http.get(baseUrl + '/api/product-details?limit=999&product_id=' + item.id).then(res => {
-            if (res.data.status == true)
-            {
-                $scope.currentProd.details = res.data.data;
-            }
-        })
+        $http
+            .get(
+                baseUrl + "/api/product-details?limit=999&product_id=" + item.id
+            )
+            .then((res) => {
+                if (res.data.status == true) {
+                    $scope.currentProd.details = res.data.data;
+                }
+            });
         $(".js-modal1").addClass("show-modal1");
     };
     $scope.hideModal = () => {

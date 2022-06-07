@@ -10,12 +10,11 @@ class CategoryService
 {
     public function update($id, array $data)
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $data['last_updated_by'] = Auth::user()->id;
         }
         $updated = Category::where('id', $id)
-        ->update($data);
+            ->update($data);
         return $updated > 0;
     }
 
@@ -26,14 +25,13 @@ class CategoryService
 
     public function create(array|Category $data)
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $data['created_by'] = Auth::user()->id;
         }
         $category = is_array($data) ?
             Category::create($data)
             : $data;
-        if($category->save()) return $category->id;
+        if ($category->save()) return $category->id;
         else return 0;
     }
 
@@ -45,22 +43,23 @@ class CategoryService
     ) {
         $query = Category::query();
         if (isset($option['search']) && $option['search'] != '') {
-            $query->where('name','LIKE', '%'.$option['search'].'%');
+            $query->where('name', 'LIKE', '%' . $option['search'] . '%');
         }
-        if (isset($option['visible_only']) && $option['visible_only'] == 'true')
-        {
+        if (isset($option['visible_only']) && $option['visible_only'] == 'true') {
             $query->where('visible', true);
         }
         if ($orderBy) {
             $query->orderBy($orderBy['column'], $orderBy['sort']);
         }
+        $query->with('image');
         $query->orderBy('id', 'desc');
-    return CategoryResource::collection($query->paginate($page_size, page: $page_index));
+        return CategoryResource::collection($query->paginate($page_size, page: $page_index));
     }
 
     public function getById(int $id)
     {
         $query = Category::query();
+        $query->with('image');
         return new CategoryResource($query->find($id));
     }
 }

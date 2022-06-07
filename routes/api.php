@@ -36,7 +36,7 @@ Route::middleware([])->prefix('admin')->group(function () {
             'data' => new UserResource(Auth::user()),
             'meta' => []
         ]);
-    });
+    })->middleware(['admin']);
     Route::resource('products', ProductApiController::class)->except(['edit', 'create']);
     Route::resource('product-details', ProductDetailApiController::class)->except(['edit', 'create']);
     Route::resource('invoices', InvoiceApiController::class)->except(['edit', 'create']);

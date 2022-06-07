@@ -18,8 +18,9 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'image' => new BlobResource($this->whenLoaded('image')),
             'visible' => $this->visible,
-            'products' => $this->whenLoaded('products'),
+            'products' => ProductResource::collection($this->whenLoaded('products')),
         ];
     }
 }

@@ -22,6 +22,18 @@ app.controller("myController", function ($scope, $http) {
     }
     $scope.baseUrl = "";
     // $scope.baseUrl = "";
+    $http.get($scope.baseUrl + "/api/admin/user").then(
+        (res) => {
+            if (res.data.status == true) {
+                $scope.user = res.data.data;
+            } else {
+                window.location.href = "/admin/login";
+            }
+        },
+        (error) => {
+            window.location.href = "/admin/login";
+        }
+    );
     $scope.getList = () => {
         const url =
             $scope.baseUrl +

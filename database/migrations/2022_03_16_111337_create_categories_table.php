@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->string('name')->fulltext();
             $table->boolean('visible')->default(true);
+            $table->unsignedBigInteger('blog_id')->nullable();
             Category::Migration($table);
         });
     }
