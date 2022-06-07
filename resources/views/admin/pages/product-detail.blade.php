@@ -18,10 +18,6 @@
                 <div class="row">
                     <input type="hidden" value="{{ $product->id }}" name="id">
                     <div class="mb-3 fw-bold form-group col-12 col-md-6">
-                        <label for="">Code</label>
-                        <input class="form-control" type="text" name="code" value="{{ $product->code }}">
-                    </div>
-                    <div class="mb-3 fw-bold form-group col-12 col-md-6">
                         <label for="">Tên sản phẩm</label>
                         <input class="form-control" type="text" name="name" value="{{ $product->name }}">
                     </div>
