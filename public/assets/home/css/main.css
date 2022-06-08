@@ -2395,6 +2395,7 @@ input.num-product::-webkit-inner-spin-button {
     font-family: "Roboto", sans-serif;
     font-size: 28px;
     line-height: 1.2857;
+    color: rgb(36, 150, 226);
 }
 
 .ltext-102 {
@@ -2460,6 +2461,7 @@ input.num-product::-webkit-inner-spin-button {
     font-size: 60px;
     line-height: 1.1;
     text-transform: uppercase;
+    color: rgb(36, 150, 226);
 }
 
 .ltext-202 {
