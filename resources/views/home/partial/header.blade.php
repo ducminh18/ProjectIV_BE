@@ -38,7 +38,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li><a href="/">Trang chủ</a></li>
-                            <li><a href="/products">Shop</a></li>
+                            <li><a href="/products">Sản phẩm</a></li>
                             <li><a href="/contact">Liên hệ</a></li>
                             <li><a href="/invoice">Đơn hàng</a></li>
                         </ul>

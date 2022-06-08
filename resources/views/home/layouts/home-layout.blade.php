@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Home</title>
+    <title>Thời trang MANDO</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/assets/home/images/icons/favicon.png" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000401164/1000509982/14/favicon.png?v=486" type="image/png">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/assets/home/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -48,7 +48,7 @@
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
                     <div class="left-top-bar">
-                        Miễn phí vận chuyển cho đơn hàng từ 500K
+                        Miễn phí vận chuyển cho đơn hàng từ 499K
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
@@ -68,18 +68,18 @@
 
                     <!-- Logo desktop -->
                     <a href="/" class="logo">
-                        <img src="/assets/home/images/icons/logo-01.png" alt="IMG-LOGO">
+                        <img src="/assets/home/images/icons/logo.png" alt="IMG-LOGO">
                     </a>
 
                     <!-- Menu desktop -->
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="/">Tra chủ</a>
+                                <a href="/">Trang chủ</a>
                             </li>
 
                             <li>
-                                <a href="/products">Shop</a>
+                                <a href="/products">Sản phẩm</a>
                             </li>
                             <li>
                                 <a href="/track-order">Đơn hàng</a>
@@ -110,7 +110,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="/assets/home/index.html"><img src="/assets/home/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+                <a href="/assets/home/index.html"><img src="/assets/home/images/icons/logo.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -171,11 +171,11 @@
                 </li>
 
                 <li>
-                    <a href="/products">Shop</a>
+                    <a href="/products">Sản phẩm</a>
                 </li>
 
                 <li>
-                    <a href="/trach-order" class="label1 rs1" data-label1="hot">Đơn hàng</a>
+                    <a href="/track-order" class="label1 rs1" data-label1="hot">Đơn hàng</a>
                 </li>
                 <li>
                     <a href="/contact">Liên hệ</a>

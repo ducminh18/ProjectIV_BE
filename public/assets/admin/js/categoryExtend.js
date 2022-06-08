@@ -29,7 +29,7 @@ extendController = ($scope, $http) => {
     };
 
     $scope.showAddNew = () => {
-        $scope.name = "";
+        $scope.item.name = "";
         $scope.visible = true;
         $scope.editting = false;
         $scope.deleting = false;
