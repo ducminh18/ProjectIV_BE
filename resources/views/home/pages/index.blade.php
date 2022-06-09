@@ -36,7 +36,7 @@
                                 </a>
 
                                 <span class="stext-105 cl3">
-                                    @{{ item.min_price | number }}đ
+                                    @{{ item.min_price | number }}₫
                                 </span>
                             </div>
 

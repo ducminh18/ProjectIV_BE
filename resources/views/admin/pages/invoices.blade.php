@@ -36,7 +36,7 @@
                     <td ng-repeat="f in fields | visible">
                         <span ng-if="f.type != 'file' && f.type != 'editor' && f.type != 'number'">
                             @{{ item | value: f.field }}</span>
-                        <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}</span>
+                        <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}₫</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
                         <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
