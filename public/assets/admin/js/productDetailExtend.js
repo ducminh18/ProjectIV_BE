@@ -6,7 +6,7 @@ extendController = ($scope, $http) => {
         {
             hidden: false,
             field: "product.name",
-            column : 'product_id',
+            column: "product_id",
             display: "Tên sản phẩm",
             default: "",
             type: "text",
@@ -59,6 +59,14 @@ extendController = ($scope, $http) => {
     $scope.id = 0;
     $scope.item = {};
     $scope.selectedProduct = {};
+
+    $http
+        .get($scope.baseUrl + "/api/admin/products/" + productId)
+        .then((res) => {
+            if (res.data.status == true) {
+                $scope.product = res.data.data;
+            }
+        });
     for (let field of $scope.fields.filter((v) => !v.readonly)) {
         $scope.item[field.field] = field.default;
     }
@@ -125,11 +133,13 @@ extendController = ($scope, $http) => {
         $scope.deleting = true;
     };
     $scope.products = [];
-    $http.get("/api/admin/products?page=1&limit=1000").then((res) => {
-        if (res.data.status == true) {
-            $scope.products = res.data.data;
-        }
-    });
+    $http
+        .get($scope.baseUrl + "/api/admin/products?page=1&limit=1000")
+        .then((res) => {
+            if (res.data.status == true) {
+                $scope.products = res.data.data;
+            }
+        });
     $scope.change = () => {
         console.log($scope.file);
     };
@@ -139,6 +149,6 @@ function formSubmit(e) {
     description.value = editor.getData();
 }
 
-const description = document.getElementById('product_description');
+const description = document.getElementById("product_description");
 const productForm = document.getElementById("product_form");
 productForm.addEventListener("submit", formSubmit);

@@ -5,7 +5,7 @@ extendController = function ($scope, $http) {
     };
     $scope.page = 1;
     $scope.limit = 4;
-    $scope.column = "quantity";
+    $scope.column = "created_at";
     $scope.sort = "desc";
     $scope.extendQuerys = "visible_only=true&consumable_only=true";
 };

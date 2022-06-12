@@ -7,7 +7,7 @@
 @endsection
 @section('main-content')
     <div ng-app="myApp" ng-controller="myController">
-        <input type="hidden" id="product_id" value="{{ $product->id }}">
+        <input type="hidden" id="product_id" ng-model="product.id }}">
         <div class="container">
             <form id="product_form" action="" method="post" class="d-flex flex-column" enctype="multipart/form-data">
                 @csrf
@@ -16,33 +16,33 @@
                     <input type="submit" class="d-none" id="save" value="save">
                 </div>
                 <div class="row">
-                    <input type="hidden" value="{{ $product->id }}" name="id">
+                    <input type="hidden" ng-model="product.id }}" name="id">
                     <div class="mb-3 fw-bold form-group col-12 col-md-6">
                         <label for="">Code</label>
-                        <input class="form-control" type="text" name="code" value="{{ $product->code }}">
+                        <input class="form-control" type="text" name="code" value="product.code">
                     </div>
                     <div class="mb-3 fw-bold form-group col-12 col-md-6">
                         <label for="">Tên sản phẩm</label>
-                        <input class="form-control" type="text" name="name" value="{{ $product->name }}">
+                        <input class="form-control" type="text" name="name" ng-model="product.name">
                     </div>
                     <div class="mb-3 fw-bold form-group col-12 col-md-6">
                         <label for="">Số lượng</label>
-                        <input class="form-control" type="text" readonly value="{{ $product->quantity }}">
+                        <input class="form-control" type="text" readonly ng-model="product.quantity">
                     </div>
                     <div class="mb-3 fw-bold form-group col-12 col-md-6">
                         <label for="">Số lựa chọn</label>
-                        <input readonly class="form-control" type="text" value="{{ $product->option_count }}">
+                        <input readonly class="form-control" type="text" ng-model="product.option_count">
                     </div>
                     <div class="mb-3 fw-bold form-group col-12 col-md-6 d-flex flex-column">
                         <label for="">Ảnh</label>
                         <input name="file" type="file" class="form-control">
                         <img style="object-fit: contain; max-height: 30vh"
-                            src="/api/files/{{ $product->image->file_path }}" />
+                            src="@{{baseUrl}}/api/files/@{{ product.image.file_path }}" />
                     </div>
                     <div class="mb-3 fw-bold form-group col-12">
                         <label for="">Mô tả</label>
                         <input type="hidden" name="description" id="product_description">
-                        <div class="editor">{!! $product->description !!}</div>
+                        <div class="editor" ng-bind-html="product.desciption"></div>
                     </div>
                 </div>
             </form>
@@ -65,7 +65,7 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th style="cursor: pointer;" ng-repeat="f in fields | visible" ng-click="order(f.field)" scope="col">
+                    <th style="cursor: pointer;" ng-repeat="f in fields | visible" ng-click="order(f)" scope="col">
                         @{{ f.display }}
                     </th>
                     <th style="cursor: default;"></th>
@@ -78,7 +78,7 @@
                         <span ng-if="f.type != 'file' && f.type != 'editor'"> @{{ item | value: f.field }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
-                        <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
+                        <img height="100" ng-if="f.type == 'file'" src="@{{baseUrl}}/api/files/@{{ item | value: f.field }}" />
                     </td>
                     <td>
                         <button ng-click="showEdit(item)" type="button" class="btn btn-info m-1" data-bs-toggle="modal"
@@ -154,7 +154,7 @@ phẩm ' }} </h5>
 
 @section('scripts')
     <script>
-        const productId = {{ $product->id }}
+        const productId = {{ $id }}
     </script>
     <script src="/assets/admin/js/productDetailExtend.js"></script>
     <script src="/assets/admin/js/appController.js"></script>

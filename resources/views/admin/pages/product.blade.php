@@ -41,7 +41,7 @@
                         <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
-                        <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
+                        <img height="100" ng-if="f.type == 'file'" src="@{{baseUrl}}/api/files/@{{ item | value: f.field }}" />
                     </td>
                     <td>
                         <a href="/admin/product/@{{ item.id }}" class="btn btn-success m-1">Xem</a>

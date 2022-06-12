@@ -17,11 +17,10 @@ app.controller("myController", function ($scope, $http) {
     $scope.searchValue = "";
     $scope.deleting = false;
     $scope.extendQuerys = "";
+    $scope.baseUrl = "https://localhost:44394";
     if (extendController) {
         extendController($scope, $http);
     }
-    $scope.baseUrl = "";
-    // $scope.baseUrl = "";
     $http.get($scope.baseUrl + "/api/admin/user").then(
         (res) => {
             if (res.data.status == true) {
@@ -51,7 +50,7 @@ app.controller("myController", function ($scope, $http) {
         var fd = new FormData();
         fd.append("file", file);
 
-        return $http.post(uploadUrl, fd, {
+        return $http.post($scope.baseUrl + uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: { "Content-Type": undefined },
         });

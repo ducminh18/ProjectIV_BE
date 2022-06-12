@@ -13,7 +13,8 @@ extendController = ($scope, $http) => {
     $scope.fields = [
         {
             hidden: false,
-            field: "productDetail.product.name",
+            field: "product_detail.product.name",
+            column: "",
             display: "Tên sản phẩm",
             default: "",
             type: "text",
@@ -21,7 +22,8 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "productDetail.color",
+            field: "product_detail.color",
+            column: "",
             display: "Màu sắc",
             default: "",
             readonly: true,
@@ -29,7 +31,8 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "productDetail.size",
+            field: "product_detail.size",
+            column: "",
             display: "Kích thước",
             default: "",
             readonly: true,
@@ -37,7 +40,8 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "productDetail.out_price",
+            field: "price",
+            column: "",
             display: "Giá bán",
             default: 0,
             readonly: true,
@@ -52,7 +56,8 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "productDetail.remaining_quantity",
+            field: "product_detail.remaining_quantity",
+            column: "",
             display: "Số lượng còn",
             default: "",
             readonly: true,
@@ -60,7 +65,8 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "productDetail.default_image.file_path",
+            field: "product_detail.default_image.file_path",
+            column: "",
             display: "Ảnh",
             default: "",
             type: "file",
@@ -68,7 +74,8 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "productDetail.unit",
+            field: "product_detail.unit",
+            column: "",
             display: "ĐVT",
             default: "",
             readonly: true,
@@ -99,7 +106,7 @@ extendController = ($scope, $http) => {
     $scope.save = () => {
         if ($scope.deleting) {
             const detail = $scope.details[$scope.id];
-            $scope.invoice.total -= detail.quantity * detail.productDetail.out_price;
+            $scope.invoice.total -= detail.quantity * detail.product_detail.out_price;
             $scope.details.splice($scope.id, 1);
         } else {
             $scope.addDetail();
@@ -135,17 +142,17 @@ extendController = ($scope, $http) => {
         const radio = document.querySelector("tr input[type=radio]:checked");
         const id = radio.value;
         if ($scope.newDetail.quantity && radio != null) {
-            const productDetail = $scope.data.find((i) => {
+            const product_detail = $scope.data.find((i) => {
                 return i.id == id;
             });
             $scope.details.push({
-                productDetail: productDetail,
+                product_detail: product_detail,
                 product_detail_id: id,
                 quantity: $scope.newDetail.quantity,
-                price: productDetail.out_price,
+                price: product_detail.out_price,
             });
             $scope.invoice.total +=
-                productDetail.out_price * $scope.newDetail.quantity;
+                product_detail.out_price * $scope.newDetail.quantity;
         }
     };
 };

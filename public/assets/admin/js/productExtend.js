@@ -20,6 +20,7 @@ extendController = ($scope, $http) => {
         {
             hidden: false,
             field: "category.name",
+            column : "category_id",
             display: "Tên loại",
             default: "",
             type: "text",
@@ -36,6 +37,7 @@ extendController = ($scope, $http) => {
         {
             hidden: false,
             field: "image.file_path",
+            column : "default_image",
             display: "Ảnh",
             default: "",
             type: "file",
@@ -132,7 +134,7 @@ extendController = ($scope, $http) => {
         $scope.deleting = true;
     };
     $scope.categories = [];
-    $http.get("/api/admin/categories?page=1&limit=1000").then((res) => {
+    $http.get($scope.baseUrl + "/api/admin/categories?page=1&limit=1000").then((res) => {
         if (res.data.status == true) {
             $scope.categories = res.data.data;
         }

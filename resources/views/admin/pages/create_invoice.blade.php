@@ -26,7 +26,7 @@
                     </div>
                     <div class="mb-3 fw-bold form-group col-12">
                         <label for="" class="mb-1">Địa chỉ</label>
-                        <input class="form-control" type="text" name="address"ng-model="invoice.address">
+                        <input class="form-control" type="text" name="address" ng-model="invoice.address">
                     </div>
                     <div class="mb-3 col-md-6 col-12">
                         <label for="select" class="form-label fw-bold">Trạng thái</label>
@@ -62,7 +62,7 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th style="cursor: pointer;" ng-repeat="f in fields | visible" ng-click="order(f.field)" scope="col">
+                    <th style="cursor: pointer;" ng-repeat="f in fields | visible" ng-click="order(f)" scope="col">
                         @{{ f.display }}
                     </th>
                     <th style="cursor: default;"></th>
@@ -75,7 +75,8 @@
                         <span ng-if="f.type != 'file' && f.type != 'editor'"> @{{ item | value: f.field }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
-                        <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
+                        <img height="100" ng-if="f.type == 'file'"
+                            src="@{{ baseUrl }}/api/files/@{{ item | value: f.field }}" />
                     </td>
                     <td>
                         <button ng-click="showDelete($index)" type="button" class="btn btn-danger m-1"
@@ -111,33 +112,37 @@ phẩm ' }} </h5>
                                             <tr>
                                                 <th></th>
                                                 <th scope="col">STT</th>
-                                                <th style="cursor: pointer;" ng-click="order('product_id')"
+                                                <th style="cursor: pointer;" ng-click="order({column : 'product_id'})"
                                                     scope="col">
                                                     Tên sản phẩm
                                                 </th>
-                                                <th scope="col" style="cursor: pointer;" ng-click="order('color')">
+                                                <th scope="col" style="cursor: pointer;"
+                                                    ng-click="order({column :'color'})">
                                                     Màu sắc
                                                 </th>
-                                                <th scope="col" style="cursor: pointer;" ng-click="order('size')">
+                                                <th scope="col" style="cursor: pointer;" ng-click="order({column :'size'})">
                                                     Kích thước
                                                 </th>
-                                                <th scope="col" style="cursor: pointer;" ng-click="order('out_price')">
+                                                <th scope="col" style="cursor: pointer;"
+                                                    ng-click="order({column :'out_price'})">
                                                     Giá bán
                                                 </th>
-                                                <th scope="col" style="cursor: pointer;" ng-click="order('remaining_quantity')">
+                                                <th scope="col" style="cursor: pointer;"
+                                                    ng-click="order({column :'remaining_quantity'})">
                                                     Số lượng còn
                                                 </th>
                                                 <th scope="col">
                                                     Ảnh
                                                 </th>
-                                                <th scope="col" style="cursor: pointer;" ng-click="order('unit')">
+                                                <th scope="col" style="cursor: pointer;" ng-click="order({column :'unit'})">
                                                     ĐVT
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr onclick="rowSelect(event)" ng-repeat="item in data">
-                                                <th><input type="radio" name="" id="@{{item.id}}" value="@{{item.id}}"></th>
+                                                <th><input type="radio" name="" id="@{{ item.id }}"
+                                                        value="@{{ item.id }}"></th>
                                                 <th scope="row" class="ng-binding">1</th>
                                                 <td>
                                                     <span>
@@ -165,7 +170,8 @@ phẩm ' }} </h5>
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <img height="100px" ng-if="item.default_image" src="/api/files/@{{ item.default_image.file_path }}" alt="">
+                                                    <img height="100px" ng-if="item.default_image"
+                                                        src="/api/files/@{{ item.default_image.file_path }}" alt="">
                                                 </td>
                                                 <td>
                                                     <span>
@@ -183,7 +189,7 @@ phẩm ' }} </h5>
                         <button type="button" aria-label="Close" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
                         </button>
                         <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-primary"
-                        ng-click="save()">@{{ deleting ? 'Xóa' : 'Thêm' }}
+                            ng-click="save()">@{{ deleting ? 'Xóa' : 'Thêm' }}
                         </button>
                     </div>
                 </div>
