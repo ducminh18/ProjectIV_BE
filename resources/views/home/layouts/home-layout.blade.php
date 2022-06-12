@@ -229,7 +229,7 @@
                             </a>
 
                             <span class="header-cart-item-info">
-                                @{{ c.quantity * c.product.out_price | number }}đ
+                                @{{ c.quantity * c.product.out_price | number }}₫
                             </span>
                         </div>
                     </li>
@@ -237,7 +237,7 @@
 
                 <div class="w-full">
                     <div class="header-cart-total w-full p-tb-40">
-                        Tổng : @{{ totalCart | number }}đ
+                        Tổng : @{{ totalCart | number }}₫
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">

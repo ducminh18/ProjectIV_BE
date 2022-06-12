@@ -61,11 +61,11 @@
                                 </div>
                                 <div class="checkout__input">
                                     <p>Đã thanh toán<span>*</span></p>
-                                    <input readonly type="text" value="@{{ invoice.paid | number }}đ">
+                                    <input readonly type="text" value="@{{ invoice.paid | number }}₫">
                                 </div>
                                 <div class="checkout__input">
                                     <p>Tổng<span>*</span></p>
-                                    <input readonly type="text" value="@{{ invoice.total | number }}đ">
+                                    <input readonly type="text" value="@{{ invoice.total | number }}₫">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                                         @{{ item.product_detail.size }}
                                     </td>
                                     <td class="shoping__cart__price">
-                                        @{{ item.price | number }}đ
+                                        @{{ item.price | number }}₫
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
@@ -119,7 +119,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        @{{ item.quantity * item.price | number }}đ
+                                        @{{ item.quantity * item.price | number }}₫
                                     </td>
                                 </tr>
                             </tbody>

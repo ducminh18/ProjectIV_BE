@@ -9,6 +9,7 @@
     <meta name="author" content="" />
     <title>@yield('title')</title>
     <link href="/assets/admin/css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000401164/1000509982/14/favicon.png?v=486" type="image/png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/assets/angular.min.js"></script>
     <script src="/assets/admin/js/scripts.js"></script>

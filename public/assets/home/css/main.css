@@ -36,6 +36,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
+@font-face {
+    font-family: Quicksand;
+    src: url("../fonts/Poppins/Quicksand.ttf");
+}
 
 @font-face {
     font-family: Poppins-Regular;
@@ -2405,7 +2409,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .ltext-103 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 700;
     font-size: 36px;
     line-height: 1.1;

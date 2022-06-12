@@ -37,7 +37,7 @@
                                     <td>@{{ c.product.product.name }}</td>
                                     <td>@{{ c.product.size }}</td>
                                     <td>@{{ c.product.color }}</td>
-                                    <td>@{{ c.product.out_price | number }}đ</td>
+                                    <td>@{{ c.product.out_price | number }}₫</td>
                                     <td style="width: 150px">
                                         <div class="wrap-num-product flex-w m-l-auto m-r-0">
                                             <div ng-click="deleteCart(c.product)"
@@ -54,7 +54,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>@{{ c.product.out_price * c.quantity | number }}đ</td>
+                                    <td>@{{ c.product.out_price * c.quantity | number }}₫</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -76,7 +76,7 @@
 
                             <div class="size-209">
                                 <span class="mtext-110 cl2">
-                                    @{{ totalCart | number }}đ
+                                    @{{ totalCart | number }}₫
                                 </span>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
 
                             <div class="size-209 p-t-1">
                                 <span class="mtext-110 cl2">
-                                    @{{ totalCart | number }}đ
+                                    @{{ totalCart | number }}₫
                                 </span>
                             </div>
                         </div>

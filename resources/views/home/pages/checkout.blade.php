@@ -59,11 +59,11 @@
                                 <div class="checkout__order__products">Sản phẩm <span>Tiền</span></div>
                                 <ul>
                                     <li ng-repeat="c in cart track by $index">@{{ c.product.product.name + ' ' + c.product.size }}
-                                        <span>@{{ c.quantity * c.product.out_price | number }}đ</span>
+                                        <span>@{{ c.quantity * c.product.out_price | number }}₫</span>
                                     </li>
                                 </ul>
-                                <div class="checkout__order__subtotal">Tạm tính <span>@{{ totalCart | number }}đ</span></div>
-                                <div class="checkout__order__total">Tổng tiền <span>@{{ totalCart | number }}đ</span></div>
+                                <div class="checkout__order__subtotal">Tạm tính <span>@{{ totalCart | number }}₫</span></div>
+                                <div class="checkout__order__total">Tổng tiền <span>@{{ totalCart | number }}₫</span></div>
                                 <p>Cảm ơn bạn đã tin tưởng sử dụng dịnh vụ của chúng tôi.</p>
                                 <button style="font-family: 'Roboto'" type="submit" class="site-btn">Đặt hàng</button>
                             </div>

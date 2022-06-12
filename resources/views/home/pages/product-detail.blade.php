@@ -53,7 +53,7 @@
                         </h4>
 
                         <span class="mtext-106 cl2">
-                            @{{ price | number }}đ
+                            @{{ price | number }}₫
                         </span>
 
                         <!--  -->
