@@ -134,7 +134,7 @@ extendController = ($scope, $http) => {
         $scope.deleting = true;
     };
     $scope.categories = [];
-    $http.get("/api/admin/categories?page=1&limit=1000").then((res) => {
+    $http.get(baseUrl +"/api/admin/categories?page=1&limit=1000").then((res) => {
         if (res.data.status == true) {
             $scope.categories = res.data.data;
         }

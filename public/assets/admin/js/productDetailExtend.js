@@ -69,6 +69,12 @@ extendController = ($scope, $http) => {
             type: "checkbox",
         },
     ];
+    $http.get(baseUrl + '/api/admin/products/' + productId).then(res => {
+        if (res.data.status == true)
+        {
+            $scope.product = res.data.data;
+        } 
+    })
     $scope.id = 0;
     $scope.item = {};
     $scope.selectedProduct = {};
@@ -138,7 +144,7 @@ extendController = ($scope, $http) => {
         $scope.deleting = true;
     };
     $scope.products = [];
-    $http.get("/api/admin/products?page=1&limit=1000").then((res) => {
+    $http.get(baseUrl +"/api/admin/products?page=1&limit=1000").then((res) => {
         if (res.data.status == true) {
             $scope.products = res.data.data;
         }

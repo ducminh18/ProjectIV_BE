@@ -1,7 +1,7 @@
 "use strict";
 
 var extendController;
-const baseUrl = "";
+const baseUrl = "https://localhost:44394";
 const app = angular.module("myApp", []);
 app.controller("myController", function ($scope, $http, $location) {
     $scope.data = [];

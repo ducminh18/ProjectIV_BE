@@ -164,6 +164,6 @@
     </section>
 @endsection
 @section('scripts')
-    <script src="/assets/home/js/productDetailController.js"></script>
+    <script src="/assets/home/js/product_detailController.js"></script>
     <script src="/assets/home/js/appController.js"></script>
 @endsection

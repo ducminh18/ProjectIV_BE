@@ -98,14 +98,14 @@
                             <tbody>
                                 <tr ng-repeat="item in invoice.details track by $index">
                                     <td class="shoping__cart__item">
-                                        <img ng-if="item.productDetail.image" height="100" width="100"
-                                            src="@{{ baseUrl + 'api/files/' + item.productDetail.image.file_path }}" alt="">
-                                        <img ng-if="!item.productDetail.image" height="100" width="100"
-                                            src="@{{ baseUrl + 'api/files/' + item.productDetail.product.image.file_path }}" alt="">
-                                        <h5>@{{ item.productDetail.product.name }}</h5>
+                                        <img ng-if="item.product_detail.image" height="100" width="100"
+                                            src="@{{ baseUrl + 'api/files/' + item.product_detail.image.file_path }}" alt="">
+                                        <img ng-if="!item.product_detail.image" height="100" width="100"
+                                            src="@{{ baseUrl + 'api/files/' + item.product_detail.product.image.file_path }}" alt="">
+                                        <h5>@{{ item.product_detail.product.name }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        @{{ item.productDetail.size }}
+                                        @{{ item.product_detail.size }}
                                     </td>
                                     <td class="shoping__cart__price">
                                         @{{ item.price | number }}đ

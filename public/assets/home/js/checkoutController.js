@@ -10,7 +10,7 @@ extendController = ($scope, $http) => {
         if ($scope.deleting) {
             const detail = $scope.details[$scope.id];
             $scope.invoice.total -=
-                detail.quantity * detail.productDetail.out_price;
+                detail.quantity * detail.product_detail.out_price;
             $scope.details.splice($scope.id, 1);
         } else {
             $scope.addDetail();

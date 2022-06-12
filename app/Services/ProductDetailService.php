@@ -80,7 +80,7 @@ class ProductDetailService
         $query->with('image');
 
         if (isset($option['with_product'])) {
-            $query->with('product');
+            $query->with('product.image');
         }
 
         if (isset($option['product_id'])) {

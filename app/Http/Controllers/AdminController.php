@@ -50,7 +50,7 @@ class AdminController extends Controller
         $product = $this->productService->getById($id);
         if ($product)
         {
-            return view('admin/pages/product-detail', ['product' => $product]);
+            return view('admin/pages/product-detail', ['id' => $id]);
         }
         else
         {

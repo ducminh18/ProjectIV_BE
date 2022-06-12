@@ -8,7 +8,7 @@
                     </h4>
 
                     <ul>
-                        <li ng-reqeat="cate in categories" class="p-b-10">
+                        <li ng-repeat="cate in categories" class="p-b-10">
                             <a href="/products?category=@{{ cate.id }}" class="stext-107 cl7 hov-cl1 trans-04">
                                 @{{ cate.name }}
                             </a>

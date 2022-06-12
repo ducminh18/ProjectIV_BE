@@ -38,7 +38,7 @@ extendController = function ($scope, $http, $location) {
                     document
                         .querySelector(`[data-filter=".${categoryId}"]`)
                         .click();
-            }, 500);
+            }, 1000);
         },
         true
     );

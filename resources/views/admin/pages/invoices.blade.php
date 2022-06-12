@@ -39,7 +39,7 @@
                         <span ng-if="f.type == 'number'"> @{{ item | value: f.field | number }}</span>
                         <div ng-bind-html="item[f.field]" ng-if="f.type == 'editor'" class="ql-contaienr">
                         </div>
-                        <img height="100" ng-if="f.type == 'file'" src="/api/files/@{{ item | value: f.field }}" />
+                        <img height="100" ng-if="f.type == 'file'" src="@{{baseUrl}}/api/files/@{{ item | value: f.field }}" />
                     </td>
                     <td>
                         <button ng-click="showEdit(item)" type="button" class="btn btn-info m-1" data-bs-toggle="modal"
@@ -116,9 +116,9 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="i in inoivceDetails">
-                                                <td>@{{ i.productDetail.product.name }}</td>
-                                                <td>@{{ i.productDetail.size }}</td>
-                                                <td>@{{ i.productDetail.color }}</td>
+                                                <td>@{{ i.product_detail.product.name }}</td>
+                                                <td>@{{ i.product_detail.size }}</td>
+                                                <td>@{{ i.product_detail.color }}</td>
                                                 <td>@{{ i.quantity }}</td>
                                                 <td>@{{ i.price |number }}đ</td>
                                                 <td>@{{ i.price * i.quantity |number }}đ</td>

@@ -5,6 +5,7 @@ if (!localStorage.getItem("token")) {
 
 var extendController;
 const app = angular.module("myApp", []);
+const baseUrl = "https://localhost:44394";
 app.controller("myController", function ($scope, $http) {
     $scope.data = [];
     $scope.totalRecords = 0;
@@ -20,7 +21,7 @@ app.controller("myController", function ($scope, $http) {
     if (extendController) {
         extendController($scope, $http);
     }
-    $scope.baseUrl = "";
+    $scope.baseUrl = "https://localhost:44394";
     // $scope.baseUrl = "";
     $http.get($scope.baseUrl + "/api/admin/user").then(
         (res) => {
@@ -37,10 +38,9 @@ app.controller("myController", function ($scope, $http) {
     $scope.getList = () => {
         const url =
             $scope.baseUrl +
-            $scope.baseUrl +
             `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
         $http.get(url).then((res) => {
-            if (res.data.status == true) {
+            if (res.data?.status == true) {
                 $scope.data = res.data.data;
                 $scope.totalRecords = res.data.meta.total;
             }
