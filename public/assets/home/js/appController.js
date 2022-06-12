@@ -1,7 +1,7 @@
 "use strict";
 
 var extendController;
-const baseUrl = "";
+const baseUrl = "https://localhost:44394";
 const app = angular.module("myApp", []);
 app.controller("myController", function ($scope, $http, $location) {
     $scope.data = [];
@@ -51,7 +51,6 @@ app.controller("myController", function ($scope, $http, $location) {
     $scope.getList = () => {
         if (route) {
             const url =
-                $scope.baseUrl +
                 $scope.baseUrl +
                 `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
             $http.get(url).then((res) => {
@@ -142,7 +141,7 @@ app.controller("myController", function ($scope, $http, $location) {
     $scope.categories = [];
     $http
         .get(
-            baseUrl +
+            $scope.baseUrl +
                 "/api/admin/categories?page=1&limit=1000&visible_only=true"
         )
         .then((res) => {
@@ -167,7 +166,9 @@ app.controller("myController", function ($scope, $http, $location) {
         }
         if (!window.location.pathname.includes("cart")) {
             swal(
-                `${value.product.name} ${value.size??''} ${value.color??''} `,
+                `${value.product.name} ${value.size ?? ""} ${
+                    value.color ?? ""
+                } `,
                 "Đã thêm vào giỏ hàng",
                 "success"
             );

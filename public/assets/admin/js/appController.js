@@ -25,7 +25,6 @@ app.controller("myController", function ($scope, $http) {
     $scope.getList = () => {
         const url =
             $scope.baseUrl +
-            $scope.baseUrl +
             `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
         $http.get(url).then((res) => {
             if (res.data.status == true) {

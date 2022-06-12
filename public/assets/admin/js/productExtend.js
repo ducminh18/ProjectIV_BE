@@ -101,7 +101,7 @@ extendController = ($scope, $http) => {
         if (index >= 0) $scope.selectedCategory = $scope.categories[index];
         item.category_id = $scope.selectedCategory?.id;
         if (file != undefined && file != null) {
-            $scope.upLoadFile(file, "/api/upload").then((res) => {
+            $scope.upLoadFile(file, $scope.baseUrl + "/api/upload").then((res) => {
                 if (res.data.status == true) {
                     item.default_image = res.data.data.id;
                 }
@@ -132,7 +132,7 @@ extendController = ($scope, $http) => {
         $scope.deleting = true;
     };
     $scope.categories = [];
-    $http.get("/api/admin/categories?page=1&limit=1000").then((res) => {
+    $http.get($scope.baseUrl + "/api/admin/categories?page=1&limit=1000").then((res) => {
         if (res.data.status == true) {
             $scope.categories = res.data.data;
         }

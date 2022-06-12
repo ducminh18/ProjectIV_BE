@@ -126,7 +126,7 @@ extendController = ($scope, $http) => {
         $scope.editting = false;
     };
     $scope.products = [];
-    $http.get("/api/admin/products?page=1&limit=1000").then((res) => {
+    $http.get($scope.baseUrl + "/api/admin/products?page=1&limit=1000").then((res) => {
         if (res.data.status == true) {
             $scope.products = res.data.data;
         }

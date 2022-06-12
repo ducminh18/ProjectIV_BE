@@ -8,7 +8,7 @@ extendController = function ($scope, $http, $location) {
     const paths = location.pathname.trim("/").split("/");
     const productId = paths[paths.length - 1];
     if (!isNaN(Number(productId))) {
-        $http.get(baseUrl + "/api/admin/products/" + productId).then((res) => {
+        $http.get($scope.baseUrl +  "/api/admin/products/" + productId).then((res) => {
             if (res.data.status == true) {
                 $scope.product = res.data.data;
                 $scope.sizes = $scope.product.details

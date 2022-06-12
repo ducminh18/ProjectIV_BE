@@ -119,7 +119,7 @@ extendController = ($scope, $http) => {
             item.product_id = $scope.selectedProduct.id;
         }
         if (file != undefined && file != null) {
-            $scope.upLoadFile(file, "/api/upload").then((res) => {
+            $scope.upLoadFile(file, $scope.baseUrl + "/api/upload").then((res) => {
                 if (res.data.status == true) {
                     item.default_image = res.data.data.id;
                 }
@@ -148,7 +148,7 @@ extendController = ($scope, $http) => {
         $scope.editting = false;
     };
     $scope.products = [];
-    $http.get("/api/admin/products?page=1&limit=1000").then((res) => {
+    $http.get($scope.baseUrl + "/api/admin/products?page=1&limit=1000").then((res) => {
         if (res.data.status == true) {
             $scope.products = res.data.data;
         }
