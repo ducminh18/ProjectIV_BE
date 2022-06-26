@@ -8,3 +8,7 @@
 @section('main-content')
     
 @endsection
+@section('scripts')
+    <script>const route = ''</script>
+    <script src="/assets/admin/js/appController.js"></script>
+@endsection

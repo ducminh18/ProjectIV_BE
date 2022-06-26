@@ -93,6 +93,8 @@ extendController = ($scope, $http) => {
             $scope.item[field.field] = item[field.field];
         }
         $scope.editting = true;
+        $scope.item.default_image = item.default_image;
+
         $scope.deleting = false;
     };
 
@@ -119,19 +121,22 @@ extendController = ($scope, $http) => {
             item.product_id = $scope.selectedProduct.id;
         }
         if (file != undefined && file != null) {
-            $scope.upLoadFile(file, $scope.baseUrl + "/api/upload").then((res) => {
-                if (res.data.status == true) {
-                    item.default_image = res.data.data.id;
-                }
-                if ($scope.editting) {
-                    $scope.update($scope.id, item);
-                } else if ($scope.deleting) {
-                    $scope.delete($scope.id);
-                } else {
-                    $scope.create(item);
-                }
-            });
+            $scope
+                .upLoadFile(file, $scope.baseUrl + "/api/upload")
+                .then((res) => {
+                    if (res.data.status == true) {
+                        item.default_image = res.data.data.id;
+                    }
+                    if ($scope.editting) {
+                        $scope.update($scope.id, item);
+                    } else if ($scope.deleting) {
+                        $scope.delete($scope.id);
+                    } else {
+                        $scope.create(item);
+                    }
+                });
         } else {
+            item.default_image = $scope.item.default_image;
             item.product_id = $scope.selectedProduct.id;
             if ($scope.editting) {
                 $scope.update($scope.id, item);
@@ -148,11 +153,13 @@ extendController = ($scope, $http) => {
         $scope.editting = false;
     };
     $scope.products = [];
-    $http.get($scope.baseUrl + "/api/admin/products?page=1&limit=1000").then((res) => {
-        if (res.data.status == true) {
-            $scope.products = res.data.data;
-        }
-    });
+    $http
+        .get($scope.baseUrl + "/api/admin/products?page=1&limit=1000")
+        .then((res) => {
+            if (res.data.status == true) {
+                $scope.products = res.data.data;
+            }
+        });
     $scope.change = () => {
         console.log($scope.file);
     };

@@ -219,8 +219,8 @@
                 <ul class="header-cart-wrapitem w-full">
                     <li ng-repeat="c in cart" class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img">
-                            <img ng-if="c.product.image" src="@{{ baseUrl + 'api/files/' + c.product.image.file_path }}" alt="IMG">
-                            <img ng-if="!c.product.image" src="@{{ baseUrl + 'api/files/' + c.product.product.image.file_path }}" alt="IMG">
+                            <img ng-if="c.product.image" src="@{{ baseUrl + '/api/files/' + c.product.image.file_path }}" alt="IMG">
+                            <img ng-if="!c.product.image" src="@{{ baseUrl + '/api/files/' + c.product.product.image.file_path }}" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">

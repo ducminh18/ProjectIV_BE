@@ -150,6 +150,10 @@ app.controller("myController", function ($scope, $http, $location) {
             }
         });
     $scope.addCart = function (value, quantity = 1) {
+        if (value.product) {
+            value.product.details = undefined;
+            value.product.default_detail = undefined;
+        }
         const itemIndex = $scope.cart.findIndex(
             (v) => v.product_detail_id == value.id
         );

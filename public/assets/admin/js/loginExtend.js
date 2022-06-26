@@ -2,8 +2,11 @@
 
 var extendController;
 const app = angular.module("myApp", []);
+const baseUrl = "https://localhost:44394";
+
 app.controller("myController", function ($scope, $http) {
     $scope.data = {};
+    $scope.baseUrl = baseUrl;
     $scope.login = function() {
         const url = $scope.baseUrl + `/api/admin/login`;
         $http.post(url, $scope.data).then((res) => {

@@ -3,6 +3,7 @@ if (!localStorage.getItem("token")) {
     window.location.href = "/admin/login";
 }
 
+const baseUrl = "https://localhost:44394";
 var extendController;
 const app = angular.module("myApp", []);
 app.controller("myController", function ($scope, $http) {
@@ -17,17 +18,36 @@ app.controller("myController", function ($scope, $http) {
     $scope.searchValue = "";
     $scope.deleting = false;
     $scope.extendQuerys = "";
+    $scope.baseUrl = baseUrl;
     if (extendController) {
         extendController($scope, $http);
     }
-    $scope.baseUrl = "";
-    // $scope.baseUrl = "";
+
+    $http.get($scope.baseUrl + "/api/admin/user").then(
+        (res) => {
+            if (res.data.status) {
+                $scope.user = res.data.data;
+            } else {
+                localStorage.removeItem("token");
+                window.location.href = "/admin/login";
+            }
+        },
+        (error) => {
+            localStorage.removeItem("token");
+            window.location.href = "/admin/login";
+        }
+    );
+
     $scope.getList = () => {
         const url =
             $scope.baseUrl +
             `/api/admin/${route}?page=${$scope.page}&limit=${$scope.limit}&column=${$scope.column}&sort=${$scope.sort}&search=${$scope.searchValue}&${$scope.extendQuerys}`;
         $http.get(url).then((res) => {
             if (res.data.status == true) {
+                const formater = new Intl.DateTimeFormat();
+                res.data.data.forEach((item) => {
+                    item.created_at = formater.format(new Date(item.created_at));
+                });
                 $scope.data = res.data.data;
                 $scope.totalRecords = res.data.meta.total;
             }

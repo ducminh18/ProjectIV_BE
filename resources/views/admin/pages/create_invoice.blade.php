@@ -6,7 +6,7 @@
     Sản phẩm
 @endsection
 @section('main-content')
-    <div ng-app="myApp" ng-controller="myController">
+    <div >
         <input type="hidden" id="product_id">
         <div class="container">
             <form id="product_form" ng-submit='saveInovoice()' class="d-flex flex-column">
@@ -137,7 +137,7 @@ phẩm ' }} </h5>
                                         </thead>
                                         <tbody>
                                             <tr onclick="rowSelect(event)" ng-repeat="item in data">
-                                                <th><input type="radio" name="" id="@{{item.id}}" value="@{{item.id}}"></th>
+                                                <th><input type="radio" name="product" id="@{{item.id}}" value="@{{item.id}}"></th>
                                                 <th scope="row" class="ng-binding">1</th>
                                                 <td>
                                                     <span>
@@ -165,7 +165,7 @@ phẩm ' }} </h5>
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <img height="100px" ng-if="item.default_image" src="@{{baseUrl }}/api/files/@{{ item.default_image.file_path }}" alt="">
+                                                    <img height="100px" ng-if="item.image" src="@{{baseUrl }}/api/files/@{{ item.image.file_path }}" alt="">
                                                 </td>
                                                 <td>
                                                     <span>
