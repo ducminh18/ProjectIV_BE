@@ -42,7 +42,7 @@
                             data-setbg="@{{ baseUrl }}/api/files/@{{ item.image.file_path }}">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="/products/@{{ item.id }}"><i class="fa fa-search"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="#" ng-click="item.default_detail.product = item;addCart(item.default_detail);"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">

@@ -28,7 +28,7 @@
                             <tbody>
                                 <tr ng-repeat="item in cart track by $index">
                                     <td class="shoping__cart__item">
-                                        <img height="100" width="100" src="@{{ baseUrl + 'api/files/' + item.product.image.file_path }}" alt="">
+                                        <img height="100" width="100" src="@{{ baseUrl + '/api/files/' + item.product.image.file_path }}" alt="">
                                         <h5>@{{ item.product.product.name }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">

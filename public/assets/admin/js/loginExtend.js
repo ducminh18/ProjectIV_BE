@@ -1,44 +1,47 @@
 "use strict";
 
 var extendController;
+const baseUrl = "https://localhost:44394";
+
 const app = angular.module("myApp", []);
 app.controller("myController", function ($scope, $http) {
     $scope.data = {};
-    $scope.login = function() {
-        const url =$scope.baseUrl +  `/api/admin/login`;
+    $scope.baseUrl = baseUrl;
+    $scope.login = function () {
+        const url = $scope.baseUrl + `/api/admin/login`;
         $http.post(url, $scope.data).then((res) => {
             if (res.data.status == true) {
-                localStorage.setItem('token',res.data.meta.token);
-                window.location.href = "/admin"
+                localStorage.setItem("token", res.data.meta.token);
+                window.location.href = "/admin";
             }
         });
-    }
+    };
 });
 
 app.config(function ($sceProvider) {
     $sceProvider.enabled(false);
 });
 
-app.factory('BearerAuthInterceptor', function ($window, $q) {
+app.factory("BearerAuthInterceptor", function ($window, $q) {
     return {
-        request: function(config) {
+        request: function (config) {
             config.headers = config.headers || {};
-            const token = $window.localStorage.getItem('token');
+            const token = $window.localStorage.getItem("token");
             if (token) {
-                config.headers.Authorization = 'Bearer ' + token;
+                config.headers.Authorization = "Bearer " + token;
             }
             return config || $q.when(config);
         },
-        response: function(response) {
+        response: function (response) {
             if (response.status === 401) {
                 //  Redirect user to login page / signup Page.
             }
             return response || $q.when(response);
-        }
+        },
     };
 });
 
 // Register the previously created AuthInterceptor.
 app.config(function ($httpProvider) {
-    $httpProvider.interceptors.push('BearerAuthInterceptor');
+    $httpProvider.interceptors.push("BearerAuthInterceptor");
 });

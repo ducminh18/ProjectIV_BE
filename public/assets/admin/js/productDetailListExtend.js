@@ -6,7 +6,7 @@ extendController = ($scope, $http) => {
         {
             hidden: false,
             field: "product.name",
-            column : 'product_id',
+            column: "product_id",
             display: "Tên sản phẩm",
             default: "",
             type: "text",
@@ -94,6 +94,8 @@ extendController = ($scope, $http) => {
             $scope.item[field.field] = item[field.field];
         }
         $scope.editting = true;
+        $scope.item.default_image = item.default_image;
+
         $scope.deleting = false;
     };
 
@@ -134,6 +136,7 @@ extendController = ($scope, $http) => {
             });
         } else {
             item.product_id = $scope.selectedProduct.id;
+            item.default_image = $scope.item.default_image;
             if ($scope.editting) {
                 $scope.update($scope.id, item);
             } else if ($scope.deleting) {
@@ -149,11 +152,13 @@ extendController = ($scope, $http) => {
         $scope.editting = false;
     };
     $scope.products = [];
-    $http.get($scope.baseUrl + "/api/admin/products?page=1&limit=1000").then((res) => {
-        if (res.data.status == true) {
-            $scope.products = res.data.data;
-        }
-    });
+    $http
+        .get($scope.baseUrl + "/api/admin/products?page=1&limit=1000")
+        .then((res) => {
+            if (res.data.status == true) {
+                $scope.products = res.data.data;
+            }
+        });
     $scope.change = () => {
         console.log($scope.file);
     };

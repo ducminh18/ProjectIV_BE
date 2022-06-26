@@ -6,7 +6,7 @@
     Đơn đặt hàng
 @endsection
 @section('main-content')
-    <div ng-app="myApp" ng-controller="myController">
+    <div >
         <div class="mb-3 border-1 rounded-1 d-flex justify-content-between">
             <a ng-click="showAddNew()" type="button" class="btn btn-primary" href="/admin/invoice/create">
                 Thêm
@@ -108,7 +108,6 @@
                                             <tr>
                                                 <th>Tên sản phẩm</th>
                                                 <th>Kích thước</th>
-                                                <th>Màu sắc</th>
                                                 <th>Số lượng</th>
                                                 <th>Giá tiền</th>
                                                 <th>Tổng số</th>
@@ -116,9 +115,8 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="i in inoivceDetails">
-                                                <td>@{{ i.productDetail.product.name }}</td>
-                                                <td>@{{ i.productDetail.size }}</td>
-                                                <td>@{{ i.productDetail.color }}</td>
+                                                <td>@{{ i.product_detail.product.name }}</td>
+                                                <td>@{{ i.product_detail.size }}</td>
                                                 <td>@{{ i.quantity }}</td>
                                                 <td>@{{ i.price |number }}đ</td>
                                                 <td>@{{ i.price * i.quantity |number }}đ</td>

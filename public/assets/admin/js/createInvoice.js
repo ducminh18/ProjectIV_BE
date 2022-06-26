@@ -22,15 +22,6 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "product_detail.color",
-            column: "",
-            display: "Màu sắc",
-            default: "",
-            readonly: true,
-            type: "text",
-        },
-        {
-            hidden: false,
             field: "product_detail.size",
             column: "",
             display: "Kích thước",
@@ -65,7 +56,7 @@ extendController = ($scope, $http) => {
         },
         {
             hidden: false,
-            field: "product_detail.default_image.file_path",
+            field: "product_detail.image.file_path",
             column: "",
             display: "Ảnh",
             default: "",
@@ -94,7 +85,7 @@ extendController = ($scope, $http) => {
         $scope.item[field.field] = field.default;
     }
     const idInput = document.getElementById("product_id");
-    $scope.extendQuerys = "with_detail=true";
+    $scope.extendQuerys = "with_product=true";
     $scope.showAddNew = () => {
         $scope.newDetail = {};
         document.querySelectorAll("tr input[type=radio]").forEach((i) => {
@@ -113,20 +104,21 @@ extendController = ($scope, $http) => {
         }
     };
     $scope.saveInovoice = () => {
-        const url = $scope.baseUrl + "/api/admin/invoices";
+        const url = $scope.baseUrl + "/api/admin/invoices/create";
         $scope.invoice.status = $scope.selectedStatus?.id;
+        $scope.invoice.details = $scope.details;
         $http.post(url, $scope.invoice).then((res) => {
             if (res.data.status == true) {
-                const id = res.data.data;
-                const addDetailUrl =
-                    $scope.baseUrl + "/api/admin/invoice-details";
-                $scope.details.forEach((detail) => {
-                    $http.post(addDetailUrl, {
-                        product_detail_id: detail.product_detail_id,
-                        invoice_id: id,
-                        quantity: detail.quantity,
-                    });
-                });
+                // const id = res.data.data;
+                // const addDetailUrl =
+                //     $scope.baseUrl + "/api/admin/invoice-details";
+                // $scope.details.forEach((detail) => {
+                //     $http.post(addDetailUrl, {
+                //         product_detail_id: detail.product_detail_id,
+                //         invoice_id: id,
+                //         quantity: detail.quantity,
+                //     });
+                // });
                 alert("Thêm hóa đơn thành công.");
                 window.location.href= "/admin/invoice";
             }

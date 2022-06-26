@@ -6,7 +6,7 @@
     Sản phẩm
 @endsection
 @section('main-content')
-    <div ng-app="myApp" ng-controller="myController">
+    <div >
         <div class="mb-3 border-1 rounded-1 d-flex justify-content-between">
             <button ng-click="showAddNew()" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
@@ -44,7 +44,6 @@
                         <img height="100" ng-if="f.type == 'file'" src="@{{baseUrl}}/api/files/@{{ item | value: f.field }}" />
                     </td>
                     <td>
-                        <a href="/admin/product/@{{ item.id }}" class="btn btn-success m-1">Xem</a>
                         <button ng-click="showEdit(item)" type="button" class="btn btn-info m-1" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                             Sửa
