@@ -38,15 +38,6 @@ extendController = ($scope, $http) => {
         $http.post(url, $scope.invoice).then((res) => {
             if (res.data.status == true) {
                 const id = res.data.data;
-                // const addDetailUrl =
-                //     $scope.baseUrl + "/api/admin/invoice-details";
-                // $scope.details.forEach((detail) => {
-                //     $http.post(addDetailUrl, {
-                //         product_detail_id: detail.product_detail_id,
-                //         invoice_id: id,
-                //         quantity: detail.quantity,
-                //     });
-                // });
                 $scope.cart = [];
                 window.location.href = "/contact?message=1&id=" + id;
             }
